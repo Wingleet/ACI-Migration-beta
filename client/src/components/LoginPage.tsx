@@ -54,7 +54,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         {/* Title */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-bold text-white tracking-tight">
-            AMOS Migration Project
+            MIS Migration Project
           </h1>
           <p className="text-slate-400 text-sm">
             Plateforme de gestion de projet

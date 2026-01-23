@@ -67,7 +67,7 @@ export const Header: React.FC = () => {
 
       {/* Project Title */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        <h1 className="text-lg font-semibold tracking-tight">AMOS Migration Project</h1>
+        <h1 className="text-lg font-semibold tracking-tight">MIS Migration Project</h1>
       </div>
 
       {/* Logo */}

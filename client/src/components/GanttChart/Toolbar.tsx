@@ -86,7 +86,7 @@ export const Toolbar: React.FC = () => {
       pdf.setTextColor(0, 0, 0);
       pdf.setFontSize(16);
       pdf.setFont('helvetica', 'bold');
-      pdf.text('AMOS Migration Project', margin, yPosition + 6);
+      pdf.text('MIS Migration Project', margin, yPosition + 6);
       
       pdf.setFontSize(10);
       pdf.setTextColor(grayColor);
@@ -157,7 +157,7 @@ export const Toolbar: React.FC = () => {
       pdf.setTextColor(0, 0, 0);
       pdf.setFontSize(14);
       pdf.setFont('helvetica', 'bold');
-      pdf.text('AMOS Migration Project', margin, yPosition + 5);
+      pdf.text('MIS Migration Project', margin, yPosition + 5);
       
       pdf.setFontSize(10);
       pdf.setTextColor(grayColor);

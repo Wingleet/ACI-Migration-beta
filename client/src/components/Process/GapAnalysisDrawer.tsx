@@ -149,7 +149,7 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
         pdf.setTextColor(0, 0, 0);
         pdf.setFontSize(14);
         pdf.setFont('helvetica', 'bold');
-        pdf.text('AMOS Migration Project', margin, yPos + 5);
+        pdf.text('MIS Migration Project', margin, yPos + 5);
         
         // Page title on the right
         pdf.setFontSize(11);
