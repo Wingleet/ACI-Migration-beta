@@ -4,41 +4,35 @@ import { FlowchartNodeData, ProcessCategory } from '@/types/flowchart';
 
 interface ProcessColors {
   bg: string;
-  darkBg: string;
   border: string;
   handle: string;
 }
 
 const categoryColors: Record<ProcessCategory | 'default', ProcessColors> = {
   acc: {
-    bg: 'bg-slate-200',
-    darkBg: 'dark:bg-slate-700/50',
-    border: 'border-slate-500',
-    handle: '!bg-slate-500',
+    bg: '#e2e8f0', // slate-200
+    border: '#64748b', // slate-500
+    handle: '#64748b',
   },
   engineering: {
-    bg: 'bg-red-100',
-    darkBg: 'dark:bg-red-900/50',
-    border: 'border-red-500',
-    handle: '!bg-red-500',
+    bg: '#fee2e2', // red-100
+    border: '#ef4444', // red-500
+    handle: '#ef4444',
   },
   production: {
-    bg: 'bg-blue-100',
-    darkBg: 'dark:bg-blue-900/50',
-    border: 'border-blue-500',
-    handle: '!bg-blue-500',
+    bg: '#dbeafe', // blue-100
+    border: '#3b82f6', // blue-500
+    handle: '#3b82f6',
   },
   logistics: {
-    bg: 'bg-green-100',
-    darkBg: 'dark:bg-green-900/50',
-    border: 'border-green-500',
-    handle: '!bg-green-500',
+    bg: '#dcfce7', // green-100
+    border: '#22c55e', // green-500
+    handle: '#22c55e',
   },
   default: {
-    bg: 'bg-blue-100',
-    darkBg: 'dark:bg-blue-900/50',
-    border: 'border-blue-500',
-    handle: '!bg-blue-500',
+    bg: '#dbeafe',
+    border: '#3b82f6',
+    handle: '#3b82f6',
   },
 };
 
@@ -52,18 +46,42 @@ const ProcessNodeBase: React.FC<ProcessNodeBaseProps> = ({ data, selected, categ
   
   return (
     <div
-      className={`
-        px-2 py-1 min-w-[60px] min-h-[28px]
-        ${colors.bg} ${colors.darkBg}
-        border rounded
-        flex items-center justify-center
-        text-[10px] font-medium text-center
-        ${selected ? 'border-primary ring-2 ring-primary/30' : colors.border}
-      `}
+      style={{
+        backgroundColor: colors.bg,
+        border: `1px solid ${selected ? '#3b82f6' : colors.border}`,
+        boxShadow: selected ? '0 0 0 2px rgba(59, 130, 246, 0.3)' : 'none',
+        borderRadius: '4px',
+        padding: '4px 8px',
+        minWidth: '60px',
+        minHeight: '28px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
-      <Handle type="target" position={Position.Top} className={`${colors.handle} !w-1.5 !h-1.5`} />
-      <span className="truncate max-w-[80px]">{nodeData.name || 'Process'}</span>
-      <Handle type="source" position={Position.Bottom} className={`${colors.handle} !w-1.5 !h-1.5`} />
+      <Handle 
+        type="target" 
+        position={Position.Top} 
+        style={{ backgroundColor: colors.handle, width: '6px', height: '6px' }} 
+      />
+      <span 
+        style={{ 
+          fontSize: '10px', 
+          fontWeight: 500, 
+          textAlign: 'center',
+          color: '#1f2937',
+          maxWidth: '80px',
+          wordBreak: 'break-word',
+          lineHeight: '1.2',
+        }}
+      >
+        {nodeData.name || 'Process'}
+      </span>
+      <Handle 
+        type="source" 
+        position={Position.Bottom} 
+        style={{ backgroundColor: colors.handle, width: '6px', height: '6px' }} 
+      />
     </div>
   );
 };

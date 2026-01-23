@@ -7,18 +7,42 @@ const TerminatorNode: React.FC<NodeProps> = ({ data, selected }) => {
   
   return (
     <div
-      className={`
-        px-2 py-1 min-w-[50px] min-h-[24px]
-        bg-white dark:bg-slate-100
-        border rounded-full
-        flex items-center justify-center
-        text-[9px] font-medium text-center text-slate-800
-        ${selected ? 'border-primary ring-2 ring-primary/30' : 'border-slate-400'}
-      `}
+      style={{
+        backgroundColor: '#ffffff',
+        border: `1px solid ${selected ? '#3b82f6' : '#94a3b8'}`,
+        boxShadow: selected ? '0 0 0 2px rgba(59, 130, 246, 0.3)' : 'none',
+        borderRadius: '9999px',
+        padding: '4px 8px',
+        minWidth: '50px',
+        minHeight: '24px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
-      <Handle type="target" position={Position.Top} className="!bg-slate-500 !w-1.5 !h-1.5" />
-      <span className="truncate max-w-[60px]">{nodeData.name || 'Start/End'}</span>
-      <Handle type="source" position={Position.Bottom} className="!bg-slate-500 !w-1.5 !h-1.5" />
+      <Handle 
+        type="target" 
+        position={Position.Top} 
+        style={{ backgroundColor: '#64748b', width: '6px', height: '6px' }} 
+      />
+      <span 
+        style={{ 
+          fontSize: '9px', 
+          fontWeight: 500, 
+          textAlign: 'center',
+          color: '#1f2937',
+          maxWidth: '60px',
+          wordBreak: 'break-word',
+          lineHeight: '1.2',
+        }}
+      >
+        {nodeData.name || 'Start/End'}
+      </span>
+      <Handle 
+        type="source" 
+        position={Position.Bottom} 
+        style={{ backgroundColor: '#64748b', width: '6px', height: '6px' }} 
+      />
     </div>
   );
 };

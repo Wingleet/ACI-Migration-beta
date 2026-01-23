@@ -7,7 +7,8 @@ import {
   FileText, 
   CircleDot,
   SquareStack,
-  Cloud
+  Cloud,
+  StickyNote
 } from 'lucide-react';
 
 interface PaletteProps {
@@ -39,6 +40,8 @@ const getIcon = (type: NodeType) => {
       return <CircleDot className={iconClass} />;
     case 'cloud':
       return <Cloud className={iconClass} />;
+    case 'note':
+      return <StickyNote className={iconClass} />;
     default:
       return <Square className={iconClass} />;
   }
@@ -71,6 +74,8 @@ const getColorClass = (type: NodeType) => {
       return 'bg-slate-100 border-slate-400 hover:bg-slate-200 dark:bg-slate-700/50 dark:border-slate-500';
     case 'cloud':
       return 'bg-cyan-100 border-cyan-400 hover:bg-cyan-200 dark:bg-cyan-900/30 dark:border-cyan-600';
+    case 'note':
+      return 'bg-yellow-50 border-yellow-400 hover:bg-yellow-100 dark:bg-yellow-900/30 dark:border-yellow-600 border-dashed';
     default:
       return 'bg-gray-100 border-gray-400';
   }
@@ -90,8 +95,13 @@ export const Palette: React.FC<PaletteProps> = ({ onDragStart }) => {
           className={`
             flex items-center gap-2 p-1.5 rounded border cursor-grab
             transition-colors text-[10px]
-            ${getColorClass(symbol.type)}
+            ${symbol.type !== 'note' ? getColorClass(symbol.type) : ''}
           `}
+          style={symbol.type === 'note' ? {
+            backgroundColor: '#ffffff',
+            borderColor: '#9ca3af',
+            borderStyle: 'dashed',
+          } : undefined}
           title={`${symbol.standardName} - ${symbol.amosUsage}`}
         >
           {getIcon(symbol.type)}

@@ -17,17 +17,15 @@ const CloudNode: React.FC<NodeProps> = ({ data, selected }) => {
              C 51 3 60 6 63 15 
              C 69 18 69 27 60 30 
              Z"
-          className={`
-            fill-cyan-100 dark:fill-cyan-900/50
-            ${selected ? 'stroke-primary' : 'stroke-cyan-500'}
-          `}
+          fill="#cffafe"
+          stroke={selected ? '#3b82f6' : '#06b6d4'}
           strokeWidth="1.5"
         />
       </svg>
       
       {/* Text overlay */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-[9px] font-medium text-center truncate max-w-[55px] px-1">
+        <span className="text-[9px] font-medium text-center max-w-[55px] px-1 text-gray-800 leading-tight" style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>
           {nodeData.name || 'Software'}
         </span>
       </div>

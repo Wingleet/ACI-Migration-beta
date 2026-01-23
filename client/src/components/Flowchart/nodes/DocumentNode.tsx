@@ -18,17 +18,15 @@ const DocumentNode: React.FC<NodeProps> = ({ data, selected }) => {
              Q 45 29 30 32 
              Q 15 35 0 32 
              L 0 3 Z"
-          className={`
-            fill-orange-100 dark:fill-orange-900/50
-            ${selected ? 'stroke-primary' : 'stroke-orange-500'}
-          `}
+          fill="#ffedd5"
+          stroke={selected ? '#3b82f6' : '#f97316'}
           strokeWidth="1.5"
         />
       </svg>
       
       {/* Text overlay */}
       <div className="absolute inset-0 flex items-center justify-center pb-1">
-        <span className="text-[9px] font-medium text-center truncate max-w-[50px] px-1">
+        <span className="text-[9px] font-medium text-center max-w-[50px] px-1 text-gray-800 leading-tight" style={{ wordBreak: 'break-word', whiteSpace: 'normal', overflow: 'visible' }}>
           {nodeData.name || 'Doc'}
         </span>
       </div>

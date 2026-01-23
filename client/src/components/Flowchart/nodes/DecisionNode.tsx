@@ -9,19 +9,18 @@ const DecisionNode: React.FC<NodeProps> = ({ data, selected }) => {
     <div className="relative w-[50px] h-[50px]">
       {/* Diamond shape using CSS transform */}
       <div
-        className={`
-          absolute inset-0
-          bg-amber-100 dark:bg-amber-900/50
-          border
-          transform rotate-45
-          ${selected ? 'border-primary ring-2 ring-primary/30' : 'border-amber-500'}
-        `}
-        style={{ margin: '6px' }}
+        className="absolute inset-0 transform rotate-45"
+        style={{ 
+          margin: '6px',
+          backgroundColor: '#fef3c7',
+          border: `1px solid ${selected ? '#3b82f6' : '#f59e0b'}`,
+          boxShadow: selected ? '0 0 0 2px rgba(59, 130, 246, 0.3)' : 'none'
+        }}
       />
       
       {/* Text container (not rotated) */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-[8px] font-medium text-center truncate max-w-[35px] px-0.5">
+        <span className="text-[8px] font-medium text-center max-w-[35px] px-0.5 text-gray-800 leading-tight" style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>
           {nodeData.name || '?'}
         </span>
       </div>

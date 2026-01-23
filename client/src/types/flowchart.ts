@@ -15,7 +15,8 @@ export type NodeType =
   | 'decision'          // Decision - diamond
   | 'document'          // Document/Data - document shape
   | 'connector'         // Connector - small circle
-  | 'cloud';            // Cloud - other software
+  | 'cloud'             // Cloud - other software
+  | 'note';             // Note - text only
 
 export type ProcessCategory = 'acc' | 'engineering' | 'production' | 'logistics';
 
@@ -148,5 +149,12 @@ export const FLOWCHART_SYMBOLS = [
     standardName: 'Other Software', 
     amosUsage: 'Autre logiciel',
     icon: '☁'
+  },
+  { 
+    type: 'note' as NodeType, 
+    shape: 'note', 
+    standardName: 'Note', 
+    amosUsage: 'Annotation',
+    icon: '📝'
   },
 ] as const;

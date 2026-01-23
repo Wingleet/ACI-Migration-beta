@@ -14,6 +14,7 @@ import DecisionNode from './DecisionNode';
 import DocumentNode from './DocumentNode';
 import ConnectorNode from './ConnectorNode';
 import CloudNode from './CloudNode';
+import NoteNode from './NoteNode';
 
 export const nodeTypes = {
   terminator: TerminatorNode,
@@ -31,6 +32,7 @@ export const nodeTypes = {
   document: DocumentNode,
   connector: ConnectorNode,
   cloud: CloudNode,
+  note: NoteNode,
 };
 
 export {
@@ -49,4 +51,5 @@ export {
   DocumentNode,
   ConnectorNode,
   CloudNode,
+  NoteNode,
 };

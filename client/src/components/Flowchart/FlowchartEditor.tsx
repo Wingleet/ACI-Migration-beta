@@ -176,6 +176,7 @@ const FlowchartEditorInner: React.FC<FlowchartEditorProps> = ({
         document: 'Document',
         connector: '1',
         cloud: 'Software',
+        note: 'Note...',
       };
 
       const newNode: Node = {
