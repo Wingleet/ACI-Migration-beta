@@ -1,0 +1,98 @@
+{
+  "name": "Exemple Projet Import",
+  "tasks": [
+    {
+      "name": "Phase 1 - Préparation",
+      "start": "2026-02-01",
+      "end": "2026-02-15",
+      "progress": 100,
+      "type": "task",
+      "lane": "Planning",
+      "owner": "Marie Dupont"
+    },
+    {
+      "name": "Analyse des besoins",
+      "start": "2026-02-16",
+      "end": "2026-03-01",
+      "progress": 80,
+      "type": "task",
+      "lane": "Planning",
+      "owner": "Jean Martin",
+      "dependencies": ["Phase 1 - Préparation"]
+    },
+    {
+      "name": "Milestone: Fin d'analyse",
+      "start": "2026-03-01",
+      "end": "2026-03-01",
+      "progress": 0,
+      "type": "milestone",
+      "lane": "Planning",
+      "dependencies": ["Analyse des besoins"]
+    },
+    {
+      "name": "Développement Module A",
+      "start": "2026-03-02",
+      "end": "2026-04-15",
+      "progress": 0,
+      "type": "task",
+      "lane": "Développement",
+      "owner": "Sophie Bernard",
+      "dependencies": ["Milestone: Fin d'analyse"]
+    },
+    {
+      "name": "Développement Module B",
+      "start": "2026-03-15",
+      "end": "2026-05-01",
+      "progress": 0,
+      "type": "task",
+      "lane": "Développement",
+      "owner": "Pierre Leroy",
+      "dependencies": ["Milestone: Fin d'analyse"]
+    },
+    {
+      "name": "Tests d'intégration",
+      "start": "2026-05-02",
+      "end": "2026-05-20",
+      "progress": 0,
+      "type": "task",
+      "lane": "QA",
+      "dependencies": ["Développement Module A", "Développement Module B"]
+    },
+    {
+      "name": "Tests utilisateurs",
+      "start": "2026-05-21",
+      "end": "2026-06-10",
+      "progress": 0,
+      "type": "task",
+      "lane": "QA",
+      "dependencies": ["Tests d'intégration"]
+    },
+    {
+      "name": "Formation utilisateurs",
+      "start": "2026-06-01",
+      "end": "2026-06-15",
+      "progress": 0,
+      "type": "task",
+      "lane": "Formation",
+      "owner": "Marie Dupont"
+    },
+    {
+      "name": "Go-Live",
+      "start": "2026-06-15",
+      "end": "2026-06-15",
+      "progress": 0,
+      "type": "milestone",
+      "lane": "Déploiement",
+      "dependencies": ["Tests utilisateurs", "Formation utilisateurs"]
+    },
+    {
+      "name": "Support post-production",
+      "start": "2026-06-16",
+      "end": "2026-07-31",
+      "progress": 0,
+      "type": "task",
+      "lane": "Support",
+      "dependencies": ["Go-Live"]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+[build]
+  command = "pnpm run build:netlify"
+  publish = "dist/public"
+  functions = "netlify/functions"
+
+[dev]
+  command = "cd client && pnpm run dev"
+  targetPort = 3000
+  port = 8888
+  autoLaunch = false
+  framework = "#custom"
+
+# API redirects - process-db function
+[[redirects]]
+  from = "/api/process-db"
+  to = "/.netlify/functions/process-db"
+  status = 200
+
+[[redirects]]
+  from = "/api/process-db/*"
+  to = "/.netlify/functions/process-db"
+  status = 200
+
+# SPA fallback (must be last)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[functions]
+  node_bundler = "esbuild"
+  included_files = ["netlify/functions/**"]
