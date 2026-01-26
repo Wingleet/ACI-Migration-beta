@@ -27,18 +27,18 @@ export const ModuleColumn: React.FC<ModuleColumnProps> = ({
   const progress = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
 
   return (
-    <div className="flex flex-col w-36 shrink-0 bg-muted/20 rounded overflow-hidden border border-border/50">
+    <div className="flex flex-col w-28 shrink-0 bg-muted/20 rounded overflow-hidden border border-border/50">
       {/* Header */}
-      <div className={cn("px-1 py-1 shrink-0 text-center", headerColorClasses[module.departmentColor])}>
+      <div className={cn("px-1 py-0.5 shrink-0 text-center", headerColorClasses[module.departmentColor])}>
         <div className="flex items-center justify-between">
-          <span className="text-[8px] font-mono opacity-80">{module.id}</span>
-          <span className="text-[8px] font-mono opacity-80">{doneCount}/{totalCount}</span>
+          <span className="text-[7px] font-mono opacity-80">{module.id}</span>
+          <span className="text-[7px] font-mono opacity-80">{doneCount}/{totalCount}</span>
         </div>
-        <h3 className="font-semibold text-[9px] leading-tight">{module.name}</h3>
+        <h3 className="font-semibold text-[8px] leading-tight truncate">{module.name}</h3>
       </div>
 
-      {/* Sub-modules list */}
-      <div className="flex-1 p-1.5 space-y-2 overflow-y-auto">
+      {/* Sub-modules list - fit content */}
+      <div className="p-1 space-y-1">
         {module.subModules.map((subModule) => (
           <SubModuleCard
             key={subModule.id}
@@ -49,8 +49,8 @@ export const ModuleColumn: React.FC<ModuleColumnProps> = ({
           />
         ))}
         {module.subModules.length === 0 && (
-          <div className="text-center text-sm text-muted-foreground py-4">
-            Aucun résultat
+          <div className="text-center text-[9px] text-muted-foreground py-2">
+            Aucun
           </div>
         )}
       </div>
