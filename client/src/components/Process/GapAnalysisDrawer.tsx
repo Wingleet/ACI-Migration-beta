@@ -38,6 +38,7 @@ import {
 } from '@/components/ui/collapsible';
 import { FlowchartEditor } from '@/components/Flowchart';
 import { FlowchartDiagram } from '@/types/flowchart';
+import { getFlowchartImages, getFlowchartImagePath } from '@/lib/flowchartImageMapping';
 
 interface GapAnalysisDrawerProps {
   module: Module;
@@ -68,31 +69,76 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [isFlowchartFullscreen, setIsFlowchartFullscreen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const aciFlowchartRef = useRef<HTMLDivElement>(null);
 
-  // Generate image path from subModule id and name
-  const getFlowchartImagePath = () => {
-    return `/images/flowchart/${subModule.id}_${subModule.name}.png`;
+  // Get all flowchart images for this subModule
+  const flowchartImages = useMemo(() => {
+    return getFlowchartImages(subModule.id);
+  }, [subModule.id]);
+  
+  // Get current image path
+  const getCurrentImagePath = () => {
+    if (flowchartImages.length === 0) {
+      // Fallback to old naming convention
+      return `/images/flowchart/${subModule.id}_${subModule.name}.png`;
+    }
+    return flowchartImages[currentImageIndex] || flowchartImages[0];
   };
 
-  // Reset image error when subModule changes
+  // State for default ACI flowchart loaded from JSON file
+  const [defaultAciFlowchart, setDefaultAciFlowchart] = useState<FlowchartDiagram | null>(null);
+  const [isLoadingAciFlowchart, setIsLoadingAciFlowchart] = useState(false);
+
+  // Reset image state when subModule changes
   useEffect(() => {
     setImageError(false);
     setIsImageZoomed(false);
+    setCurrentImageIndex(0);
   }, [subModule.id]);
 
-  // Parse flowchart data from stored JSON string
+  // Load default ACI flowchart from JSON file when subModule changes
+  useEffect(() => {
+    const loadDefaultFlowchart = async () => {
+      // Only load if no user-edited flowchart exists
+      if (subModule.gapRecord.aciFlowchart) {
+        setDefaultAciFlowchart(null);
+        return;
+      }
+
+      setIsLoadingAciFlowchart(true);
+      try {
+        const response = await fetch(`/Flowchart/flowchart_${subModule.id}.json`);
+        if (response.ok) {
+          const data = await response.json() as FlowchartDiagram;
+          setDefaultAciFlowchart(data);
+        } else {
+          setDefaultAciFlowchart(null);
+        }
+      } catch {
+        setDefaultAciFlowchart(null);
+      } finally {
+        setIsLoadingAciFlowchart(false);
+      }
+    };
+
+    loadDefaultFlowchart();
+  }, [subModule.id, subModule.gapRecord.aciFlowchart]);
+
+  // Parse flowchart data from stored JSON string, or use default from file
   const initialFlowchart = useMemo(() => {
+    // Priority 1: User-edited flowchart stored in gapRecord
     if (subModule.gapRecord.aciFlowchart) {
       try {
         return JSON.parse(subModule.gapRecord.aciFlowchart) as FlowchartDiagram;
       } catch {
-        return null;
+        return defaultAciFlowchart;
       }
     }
-    return null;
-  }, [subModule.id]); // Only reparse when subModule changes
+    // Priority 2: Default flowchart loaded from JSON file
+    return defaultAciFlowchart;
+  }, [subModule.id, subModule.gapRecord.aciFlowchart, defaultAciFlowchart]);
 
   const handleGapRecordChange = (field: string, value: any) => {
     updateGapRecord(module.id, subModule.id, { [field]: value });
@@ -124,7 +170,7 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
     setSectionsOpen((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
-  // PDF Export function - 3 pages: AMOS, ACI, Comments
+  // PDF Export function - Dynamic pages: AMOS (1 per image), ACI, Comments
   const handleExportPdf = async () => {
     setIsExportingPdf(true);
     
@@ -140,6 +186,11 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
       const margin = 15;
       const grayColor = '#6b7280';
       const lightGray = '#f3f4f6';
+      
+      // Get all AMOS images for this subModule
+      const amosImages = flowchartImages.length > 0 ? flowchartImages : [getCurrentImagePath()];
+      const amosPageCount = amosImages.length;
+      const totalPageCount = amosPageCount + 2; // AMOS pages + ACI page + Comments page
       
       // Helper: Add header to each page
       const addPageHeader = (pageTitle: string) => {
@@ -199,70 +250,79 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
         return yPos + 8;
       };
       
-      // ==========================================
-      // PAGE 1: AMOS Process Flowchart
-      // ==========================================
-      let yPosition = addPageHeader('Page 1/3 - AMOS Process');
-      
-      // Title
-      pdf.setFillColor('#dbeafe');
-      pdf.roundedRect(margin, yPosition - 2, pageWidth - margin * 2, 10, 2, 2, 'F');
-      pdf.setTextColor('#1d4ed8');
-      pdf.setFontSize(11);
-      pdf.setFont('helvetica', 'bold');
-      pdf.text('AMOS Process Flowchart', margin + 5, yPosition + 5);
-      
-      yPosition += 15;
-      
-      // Try to add AMOS image
-      const imagePath = getFlowchartImagePath();
-      const imageBoxHeight = pageHeight - yPosition - 25;
-      
-      try {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        await new Promise<void>((resolve, reject) => {
-          img.onload = () => resolve();
-          img.onerror = () => reject();
-          img.src = imagePath;
-        });
+      // Helper: Add AMOS image to current page
+      const addAmosImage = async (imagePath: string, pageNum: number, imageNum: number, totalImages: number) => {
+        const imageLabel = totalImages > 1 ? ` (${imageNum}/${totalImages})` : '';
+        let yPosition = addPageHeader(`AMOS Process${imageLabel}`);
         
-        const imgCanvas = document.createElement('canvas');
-        imgCanvas.width = img.width;
-        imgCanvas.height = img.height;
-        const ctx = imgCanvas.getContext('2d');
-        ctx?.drawImage(img, 0, 0);
-        const imgData = imgCanvas.toDataURL('image/png');
+        // Title
+        pdf.setFillColor('#dbeafe');
+        pdf.roundedRect(margin, yPosition - 2, pageWidth - margin * 2, 10, 2, 2, 'F');
+        pdf.setTextColor('#1d4ed8');
+        pdf.setFontSize(11);
+        pdf.setFont('helvetica', 'bold');
+        pdf.text(`AMOS Process Flowchart${imageLabel}`, margin + 5, yPosition + 5);
         
-        // Calculate image dimensions to fit
-        const maxImgWidth = pageWidth - margin * 2;
-        const maxImgHeight = imageBoxHeight;
-        const imgRatio = img.width / img.height;
-        let imgWidth = maxImgWidth;
-        let imgHeight = imgWidth / imgRatio;
-        if (imgHeight > maxImgHeight) {
-          imgHeight = maxImgHeight;
-          imgWidth = imgHeight * imgRatio;
+        yPosition += 15;
+        
+        const imageBoxHeight = pageHeight - yPosition - 25;
+        
+        try {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          await new Promise<void>((resolve, reject) => {
+            img.onload = () => resolve();
+            img.onerror = () => reject();
+            img.src = imagePath;
+          });
+          
+          const imgCanvas = document.createElement('canvas');
+          imgCanvas.width = img.width;
+          imgCanvas.height = img.height;
+          const ctx = imgCanvas.getContext('2d');
+          ctx?.drawImage(img, 0, 0);
+          const imgData = imgCanvas.toDataURL('image/png');
+          
+          // Calculate image dimensions to fit
+          const maxImgWidth = pageWidth - margin * 2;
+          const maxImgHeight = imageBoxHeight;
+          const imgRatio = img.width / img.height;
+          let imgWidth = maxImgWidth;
+          let imgHeight = imgWidth / imgRatio;
+          if (imgHeight > maxImgHeight) {
+            imgHeight = maxImgHeight;
+            imgWidth = imgHeight * imgRatio;
+          }
+          
+          // Center the image
+          const xOffset = margin + (maxImgWidth - imgWidth) / 2;
+          pdf.addImage(imgData, 'PNG', xOffset, yPosition, imgWidth, imgHeight);
+        } catch {
+          pdf.setFillColor(lightGray);
+          pdf.roundedRect(margin, yPosition, pageWidth - margin * 2, 60, 3, 3, 'F');
+          pdf.setTextColor(grayColor);
+          pdf.setFontSize(10);
+          pdf.text('Image AMOS non disponible', pageWidth / 2 - 30, yPosition + 30);
+          pdf.setFontSize(8);
+          pdf.text(imagePath, pageWidth / 2 - 40, yPosition + 40);
         }
-        
-        // Center the image
-        const xOffset = margin + (maxImgWidth - imgWidth) / 2;
-        pdf.addImage(imgData, 'PNG', xOffset, yPosition, imgWidth, imgHeight);
-      } catch {
-        pdf.setFillColor(lightGray);
-        pdf.roundedRect(margin, yPosition, pageWidth - margin * 2, 60, 3, 3, 'F');
-        pdf.setTextColor(grayColor);
-        pdf.setFontSize(10);
-        pdf.text('Image AMOS non disponible', pageWidth / 2 - 30, yPosition + 30);
-        pdf.setFontSize(8);
-        pdf.text(imagePath, pageWidth / 2 - 40, yPosition + 40);
+      };
+      
+      // ==========================================
+      // AMOS Process Pages (one per image)
+      // ==========================================
+      for (let i = 0; i < amosImages.length; i++) {
+        if (i > 0) {
+          pdf.addPage();
+        }
+        await addAmosImage(amosImages[i], i + 1, i + 1, amosImages.length);
       }
       
       // ==========================================
-      // PAGE 2: ACI Process Flowchart (Screenshot)
+      // ACI Process Flowchart Page (Screenshot)
       // ==========================================
       pdf.addPage();
-      yPosition = addPageHeader('Page 2/3 - ACI Process');
+      let yPosition = addPageHeader('ACI Process');
       
       // Title
       pdf.setFillColor('#ffedd5');
@@ -280,19 +340,61 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
       const reactFlowCanvas = aciContainer?.querySelector('.react-flow') as HTMLElement;
       if (reactFlowCanvas) {
         try {
-          // Use html-to-image which supports modern CSS colors (oklch)
+          // Before capturing, force SVG edge styles to be inline (html-to-image issue with computed styles)
+          const edgePaths = reactFlowCanvas.querySelectorAll('.react-flow__edge path:not(.react-flow__edge-interaction)');
+          const originalStyles: { el: SVGPathElement; stroke: string; strokeWidth: string }[] = [];
+          
+          edgePaths.forEach((path) => {
+            const pathEl = path as SVGPathElement;
+            // Save original inline styles
+            originalStyles.push({
+              el: pathEl,
+              stroke: pathEl.style.stroke,
+              strokeWidth: pathEl.style.strokeWidth,
+            });
+            // Force inline styles for capture
+            const computedStyle = window.getComputedStyle(pathEl);
+            pathEl.style.stroke = computedStyle.stroke || pathEl.getAttribute('stroke') || '#b1b1b7';
+            pathEl.style.strokeWidth = computedStyle.strokeWidth || pathEl.getAttribute('stroke-width') || '2';
+            pathEl.style.fill = 'none';
+          });
+          
+          // Also ensure edge labels are visible
+          const edgeLabels = reactFlowCanvas.querySelectorAll('.react-flow__edge-text');
+          edgeLabels.forEach((label) => {
+            const el = label as HTMLElement;
+            el.style.fontFamily = 'Arial, sans-serif';
+          });
+          
+          // Use html-to-image with optimized options for SVG capture
           const aciImgData = await toPng(reactFlowCanvas, {
             backgroundColor: '#ffffff',
             pixelRatio: 2,
-            skipFonts: true,
+            cacheBust: true,
+            skipFonts: false, // Include fonts for better text rendering
             filter: (node) => {
-              // Filter out controls and panels from ReactFlow
-              const exclusionClasses = ['react-flow__panel', 'react-flow__controls', 'react-flow__minimap'];
-              if (node.classList) {
-                return !exclusionClasses.some(cls => node.classList.contains(cls));
+              // Filter out controls and panels from ReactFlow, but KEEP edges and SVGs
+              if (node instanceof Element) {
+                const exclusionClasses = ['react-flow__panel', 'react-flow__controls', 'react-flow__minimap'];
+                // Always keep SVG elements (edges)
+                if (node.tagName === 'svg' || node.tagName === 'path' || node.tagName === 'g' || 
+                    node.classList?.contains('react-flow__edge') ||
+                    node.classList?.contains('react-flow__edges')) {
+                  return true;
+                }
+                // Filter out control panels
+                if (node.classList) {
+                  return !exclusionClasses.some(cls => node.classList.contains(cls));
+                }
               }
               return true;
             },
+          });
+          
+          // Restore original styles
+          originalStyles.forEach(({ el, stroke, strokeWidth }) => {
+            el.style.stroke = stroke;
+            el.style.strokeWidth = strokeWidth;
           });
           
           // Get dimensions from the ReactFlow canvas
@@ -329,10 +431,10 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
       }
       
       // ==========================================
-      // PAGE 3: Comments
+      // Comments Page
       // ==========================================
       pdf.addPage();
-      yPosition = addPageHeader('Page 3/3 - Commentaires');
+      yPosition = addPageHeader('Commentaires');
       
       // Title
       pdf.setFillColor('#f3f4f6');
@@ -549,12 +651,19 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
               </Button>
             </div>
             <div ref={aciFlowchartRef} className="flex-1 border border-t-0 border-border rounded-b-lg overflow-hidden">
-              <FlowchartEditor
-                key={subModule.id}
-                diagramId={subModule.id}
-                initialDiagram={initialFlowchart}
-                onChange={handleFlowchartChange}
-              />
+              {isLoadingAciFlowchart ? (
+                <div className="flex items-center justify-center h-full">
+                  <Loader2 className="w-6 h-6 animate-spin text-muted-foreground" />
+                  <span className="ml-2 text-sm text-muted-foreground">Chargement du flowchart...</span>
+                </div>
+              ) : (
+                <FlowchartEditor
+                  key={`${subModule.id}-${initialFlowchart?.id || 'empty'}`}
+                  diagramId={subModule.id}
+                  initialDiagram={initialFlowchart}
+                  onChange={handleFlowchartChange}
+                />
+              )}
             </div>
           </div>
 
@@ -569,17 +678,45 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
                 <div className="flex flex-col items-center gap-2 text-muted-foreground p-4">
                   <ImageIcon className="w-10 h-10" />
                   <span className="text-xs text-center">Image non disponible</span>
-                  <span className="text-[10px] text-center opacity-70">{getFlowchartImagePath()}</span>
+                  <span className="text-[10px] text-center opacity-70">{getCurrentImagePath()}</span>
                 </div>
               ) : (
                 <>
                   <img
-                    src={getFlowchartImagePath()}
+                    src={getCurrentImagePath()}
                     alt={`Flowchart ${subModule.name}`}
                     className="w-full h-full object-contain cursor-pointer hover:opacity-90 transition-opacity p-2"
                     onError={() => setImageError(true)}
                     onClick={() => setIsImageZoomed(true)}
                   />
+                  {/* Navigation pour plusieurs images */}
+                  {flowchartImages.length > 1 && (
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-background/90 rounded-full px-3 py-1.5 shadow-md">
+                      <button
+                        className="p-1 hover:bg-muted rounded-full disabled:opacity-30"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(i => Math.max(0, i - 1));
+                        }}
+                        disabled={currentImageIndex === 0}
+                      >
+                        <ChevronUp className="w-4 h-4 -rotate-90" />
+                      </button>
+                      <span className="text-xs font-medium min-w-[3rem] text-center">
+                        {currentImageIndex + 1} / {flowchartImages.length}
+                      </span>
+                      <button
+                        className="p-1 hover:bg-muted rounded-full disabled:opacity-30"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(i => Math.min(flowchartImages.length - 1, i + 1));
+                        }}
+                        disabled={currentImageIndex === flowchartImages.length - 1}
+                      >
+                        <ChevronDown className="w-4 h-4 -rotate-90" />
+                      </button>
+                    </div>
+                  )}
                   <button
                     className="absolute bottom-2 right-2 p-1.5 bg-background/80 rounded-md hover:bg-background transition-colors"
                     onClick={() => setIsImageZoomed(true)}
@@ -678,9 +815,9 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
           className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-8 cursor-pointer"
           onClick={() => setIsImageZoomed(false)}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh]">
+          <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
             <img
-              src={getFlowchartImagePath()}
+              src={getCurrentImagePath()}
               alt={`Flowchart ${subModule.name}`}
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
             />
@@ -690,6 +827,28 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
             >
               <X className="w-5 h-5" />
             </button>
+            {/* Navigation en mode zoom pour plusieurs images */}
+            {flowchartImages.length > 1 && (
+              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-background/90 rounded-full px-4 py-2 shadow-lg">
+                <button
+                  className="p-2 hover:bg-muted rounded-full disabled:opacity-30 transition-colors"
+                  onClick={() => setCurrentImageIndex(i => Math.max(0, i - 1))}
+                  disabled={currentImageIndex === 0}
+                >
+                  <ChevronUp className="w-5 h-5 -rotate-90" />
+                </button>
+                <span className="text-sm font-medium min-w-[4rem] text-center">
+                  {currentImageIndex + 1} / {flowchartImages.length}
+                </span>
+                <button
+                  className="p-2 hover:bg-muted rounded-full disabled:opacity-30 transition-colors"
+                  onClick={() => setCurrentImageIndex(i => Math.min(flowchartImages.length - 1, i + 1))}
+                  disabled={currentImageIndex === flowchartImages.length - 1}
+                >
+                  <ChevronDown className="w-5 h-5 -rotate-90" />
+                </button>
+              </div>
+            )}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-background/90 rounded-lg">
               <span className="text-sm font-medium">{subModule.id} - {subModule.name}</span>
             </div>
@@ -722,7 +881,7 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
           {/* Fullscreen Flowchart Editor */}
           <div className="flex-1 overflow-hidden">
             <FlowchartEditor
-              key={`fullscreen-${subModule.id}`}
+              key={`fullscreen-${subModule.id}-${initialFlowchart?.id || 'empty'}`}
               diagramId={subModule.id}
               initialDiagram={initialFlowchart}
               onChange={handleFlowchartChange}

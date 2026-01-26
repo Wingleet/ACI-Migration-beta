@@ -1,11 +1,13 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { useGanttStore } from '@/stores/ganttStore';
+import { useServicesStore } from '@/stores/servicesStore';
 import { getXForDate, generateTimeTicks } from '@/lib/ganttUtils';
 import { Task, Lane } from '@/types/gantt';
 import { cn } from '@/lib/utils';
 import { useGanttInteraction } from '@/hooks/useGanttInteraction';
 import { Toolbar } from './Toolbar';
 import { TaskDetailsPanel } from './TaskDetailsPanel';
+import { ServicesSectionSidebar, ServicesSectionTimeline } from './ServicesSection';
 import { format, isWithinInterval, isToday, differenceInDays } from 'date-fns';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
@@ -223,8 +225,13 @@ const TaskTooltip: React.FC<{ task: Task }> = ({ task }) => (
   </div>
 );
 
+// Constants for services section
+const SERVICE_ROW_HEIGHT = 28;
+const SERVICE_HEADER_HEIGHT = 32;
+
 export const GanttChart: React.FC = () => {
   const { project, viewSettings, selectTask, selectedTaskId } = useGanttStore();
+  const { members } = useServicesStore();
   const containerRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [canvasWidth, setCanvasWidth] = useState(0);
@@ -266,8 +273,33 @@ export const GanttChart: React.FC = () => {
     [viewSettings.startDate, viewSettings.endDate, viewSettings.zoomLevel]
   );
   
+  // Calculate services section height (simplified)
+  const servicesSectionHeight = useMemo(() => {
+    // Group members by main service
+    const serviceGroups: Record<string, number> = {};
+    members.forEach((m) => {
+      const mainService = m.service.split(' - ')[0];
+      serviceGroups[mainService] = (serviceGroups[mainService] || 0) + 1;
+    });
+    
+    let height = 32; // Separator
+    const expandedServices = ['Projet', 'Technical Office', 'Production', 'Logistique'];
+    
+    Object.entries(serviceGroups).forEach(([service, count]) => {
+      if (count > 0) {
+        height += SERVICE_HEADER_HEIGHT;
+        if (expandedServices.includes(service)) {
+          height += count * SERVICE_ROW_HEIGHT;
+        }
+      }
+    });
+    
+    return height;
+  }, [members]);
+  
   const totalWidth = ticks.length * viewSettings.columnWidth;
-  const totalHeight = project.tasks.length * viewSettings.rowHeight + (project.lanes.length * 40) + 56;
+  const projectHeight = project.tasks.length * viewSettings.rowHeight + (project.lanes.length * 40) + 56;
+  const totalHeight = projectHeight + servicesSectionHeight;
 
   // Today line position
   const todayX = useMemo(() => {
@@ -370,6 +402,9 @@ export const GanttChart: React.FC = () => {
                 </div>
               );
             })}
+            
+            {/* Services Section */}
+            <ServicesSectionSidebar startY={projectHeight - 56} />
           </div>
         </div>
 
@@ -499,6 +534,9 @@ export const GanttChart: React.FC = () => {
                   );
                 });
               })()}
+              
+              {/* Services Timeline */}
+              <ServicesSectionTimeline startY={projectHeight - 56} />
             </div>
           </div>
         </div>

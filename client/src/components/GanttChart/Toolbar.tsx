@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGanttStore } from '@/stores/ganttStore';
+import { useServicesStore } from '@/stores/servicesStore';
 import { Button } from '@/components/ui/button';
 import { 
   ZoomIn, 
@@ -9,6 +10,9 @@ import {
   Check,
   AlertCircle,
   FileDown,
+  Cloud,
+  CloudOff,
+  Save,
 } from 'lucide-react';
 import { ViewSettings } from '@/types/gantt';
 import { addMonths, subMonths, startOfMonth, format } from 'date-fns';
@@ -24,6 +28,7 @@ import { Separator } from '@/components/ui/separator';
 import { parseProjectFile } from '@/lib/mppParser';
 import { toPng } from 'html-to-image';
 import { jsPDF } from 'jspdf';
+import { cn } from '@/lib/utils';
 
 const zoomLevelLabels: Record<ViewSettings['zoomLevel'], string> = {
   year: 'Année',
@@ -37,10 +42,113 @@ const availableZoomLevels: ViewSettings['zoomLevel'][] = ['month', 'week'];
 
 export const Toolbar: React.FC = () => {
   const { viewSettings, updateViewSettings, project, setProject } = useGanttStore();
+  const { members } = useServicesStore();
   
   const [isImporting, setIsImporting] = useState(false);
   const [importStatus, setImportStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [isExportingPdf, setIsExportingPdf] = useState(false);
+  
+  // Cloud save state
+  const [isSaving, setIsSaving] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [cloudStatus, setCloudStatus] = useState<'idle' | 'connected' | 'error'>('idle');
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [lastSaved, setLastSaved] = useState<string | null>(null);
+
+  // Load data from cloud on mount
+  useEffect(() => {
+    const loadFromCloud = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('/api/project-save');
+        const result = await response.json();
+        
+        if (result.success && result.data) {
+          // Restore project data
+          if (result.data.project) {
+            const restoredProject = {
+              ...result.data.project,
+              startDate: new Date(result.data.project.startDate),
+              tasks: result.data.project.tasks.map((task: any) => ({
+                ...task,
+                start: new Date(task.start),
+                end: new Date(task.end),
+                baselineStart: task.baselineStart ? new Date(task.baselineStart) : undefined,
+                baselineEnd: task.baselineEnd ? new Date(task.baselineEnd) : undefined,
+              })),
+            };
+            setProject(restoredProject);
+          }
+          
+          // Restore members
+          if (result.data.members) {
+            localStorage.setItem('services-storage-v6', JSON.stringify({ 
+              state: { members: result.data.members }, 
+              version: 0 
+            }));
+          }
+          
+          setLastSaved(result.savedAt);
+          setCloudStatus('connected');
+        } else {
+          setCloudStatus('connected');
+        }
+      } catch (error) {
+        console.error('Failed to load from cloud:', error);
+        setCloudStatus('error');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadFromCloud();
+  }, [setProject]);
+
+  // Save to cloud
+  const handleCloudSave = async () => {
+    setIsSaving(true);
+    setSaveSuccess(false);
+    
+    try {
+      const dataToSave = {
+        project: {
+          ...project,
+          startDate: project.startDate.toISOString(),
+          tasks: project.tasks.map(task => ({
+            ...task,
+            start: task.start.toISOString(),
+            end: task.end.toISOString(),
+            baselineStart: task.baselineStart?.toISOString(),
+            baselineEnd: task.baselineEnd?.toISOString(),
+          })),
+        },
+        members,
+      };
+      
+      const response = await fetch('/api/project-save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataToSave),
+      });
+      
+      const result = await response.json();
+      
+      if (result.success) {
+        setCloudStatus('connected');
+        setSaveSuccess(true);
+        setLastSaved(result.savedAt);
+        setTimeout(() => setSaveSuccess(false), 2000);
+      } else {
+        throw new Error(result.error || 'Save failed');
+      }
+    } catch (error) {
+      console.error('Failed to save to cloud:', error);
+      setCloudStatus('error');
+      alert('Erreur lors de la sauvegarde. Vérifiez votre connexion.');
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const handleZoomIn = () => {
     const currentIndex = availableZoomLevels.indexOf(viewSettings.zoomLevel);
@@ -403,6 +511,65 @@ export const Toolbar: React.FC = () => {
             </TooltipTrigger>
             <TooltipContent>Exporter le Gantt en PDF</TooltipContent>
           </Tooltip>
+
+          <Separator orientation="vertical" className="h-6" />
+
+          {/* Cloud Save */}
+          <div className="flex items-center gap-2">
+            {/* Cloud status indicator */}
+            {isLoading ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin text-muted-foreground" />
+            ) : cloudStatus === 'connected' ? (
+              <Tooltip>
+                <TooltipTrigger>
+                  <Cloud className="h-3.5 w-3.5 text-emerald-500" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  Connecté au cloud
+                  {lastSaved && (
+                    <span className="block text-[10px] text-muted-foreground">
+                      Dernière sauvegarde: {new Date(lastSaved).toLocaleString('fr-FR')}
+                    </span>
+                  )}
+                </TooltipContent>
+              </Tooltip>
+            ) : cloudStatus === 'error' ? (
+              <Tooltip>
+                <TooltipTrigger>
+                  <CloudOff className="h-3.5 w-3.5 text-red-500" />
+                </TooltipTrigger>
+                <TooltipContent>Erreur de connexion au cloud</TooltipContent>
+              </Tooltip>
+            ) : null}
+
+            {/* Save button */}
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={handleCloudSave}
+                  disabled={isSaving || isLoading}
+                  className={cn(
+                    "gap-1.5 h-8 px-3 text-xs transition-colors",
+                    saveSuccess && "bg-emerald-100 border-emerald-500 text-emerald-700"
+                  )}
+                >
+                  {isSaving ? (
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" />
+                  ) : saveSuccess ? (
+                    <Check className="h-3.5 w-3.5" />
+                  ) : (
+                    <Save className="h-3.5 w-3.5" />
+                  )}
+                  <span className="hidden sm:inline">
+                    {isSaving ? 'Sauvegarde...' : saveSuccess ? 'Sauvegardé' : 'Sauvegarder'}
+                  </span>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>Sauvegarder sur Netlify</TooltipContent>
+            </Tooltip>
+          </div>
         </div>
 
         {/* Center Section - Current Period */}

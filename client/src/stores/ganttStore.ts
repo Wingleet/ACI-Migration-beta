@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { temporal } from 'zundo';
 import { Project, ViewSettings, Task, Dependency } from '@/types/gantt';
 import { recalculateSchedule } from '@/lib/planningEngine';
-import { addMonths, startOfMonth } from 'date-fns';
+// date-fns imports removed - using fixed project dates
 
 interface GanttState {
   project: Project;
@@ -17,10 +17,14 @@ interface GanttState {
   recalculate: () => void;
 }
 
+// Project timeline: January 2026 to January 2027
+const PROJECT_VIEW_START = new Date(2026, 0, 1); // January 1, 2026
+const PROJECT_VIEW_END = new Date(2027, 0, 31);  // January 31, 2027
+
 const initialViewSettings: ViewSettings = {
-  zoomLevel: 'month',
-  startDate: startOfMonth(new Date()),
-  endDate: addMonths(startOfMonth(new Date()), 12),
+  zoomLevel: 'week',
+  startDate: PROJECT_VIEW_START,
+  endDate: PROJECT_VIEW_END,
   rowHeight: 40,
   columnWidth: 60, // Width per day/week/month depending on zoom
 };

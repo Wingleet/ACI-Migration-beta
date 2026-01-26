@@ -2,6 +2,13 @@ export type TaskType = 'task' | 'milestone';
 
 export type DependencyType = 'FS' | 'SS' | 'FF' | 'SF';
 
+// Assignation d'une personne à une tâche avec charge de travail
+export interface TaskAssignment {
+  memberId: string;
+  memberName: string; // Prénom + Nom pour affichage
+  daysPerWeek: number; // ex: 3.75 sur 5
+}
+
 export interface Dependency {
   id: string;
   sourceId: string;
@@ -29,6 +36,9 @@ export interface Task {
   owner?: string;
   status?: 'planned' | 'in-progress' | 'completed' | 'delayed';
   tags?: string[];
+  
+  // Assignations de ressources humaines
+  assignments?: TaskAssignment[];
   
   // Baseline tracking
   baselineStart?: Date;

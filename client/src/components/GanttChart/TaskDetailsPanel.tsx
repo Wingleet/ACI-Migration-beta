@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Task } from '@/types/gantt';
+import { Task, TaskAssignment } from '@/types/gantt';
 import { motion } from 'framer-motion';
 import { format, differenceInDays, addDays } from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -14,14 +14,25 @@ import {
   AlertTriangle,
   Target,
   Minus,
-  Plus
+  Plus,
+  Users,
+  User,
+  Trash2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { cn } from '@/lib/utils';
 import { useGanttStore } from '@/stores/ganttStore';
+import { useServicesStore } from '@/stores/servicesStore';
 
 interface TaskDetailsPanelProps {
   task: Task;
@@ -57,6 +68,7 @@ const statusConfig = {
 
 export const TaskDetailsPanel: React.FC<TaskDetailsPanelProps> = ({ task, onClose }) => {
   const { updateTask } = useGanttStore();
+  const { members } = useServicesStore();
   const status = task.status || 'planned';
   const statusInfo = statusConfig[status];
   
@@ -65,6 +77,47 @@ export const TaskDetailsPanel: React.FC<TaskDetailsPanelProps> = ({ task, onClos
 
   const [editingDuration, setEditingDuration] = useState(false);
   const [durationInput, setDurationInput] = useState(task.duration.toString());
+  
+  // Assignment state
+  const [selectedMemberId, setSelectedMemberId] = useState<string>('');
+  const [daysPerWeek, setDaysPerWeek] = useState<string>('5');
+  
+  const assignments = task.assignments || [];
+  const assignedIds = assignments.map(a => a.memberId);
+  const availableMembers = members.filter(m => !assignedIds.includes(m.id));
+  
+  const handleAddAssignment = () => {
+    if (!selectedMemberId || !daysPerWeek) return;
+    const member = members.find(m => m.id === selectedMemberId);
+    if (!member) return;
+    
+    const newAssignment: TaskAssignment = {
+      memberId: member.id,
+      memberName: `${member.firstName} ${member.lastName}`,
+      daysPerWeek: parseFloat(daysPerWeek),
+    };
+    
+    updateTask(task.id, {
+      assignments: [...assignments, newAssignment],
+    });
+    
+    setSelectedMemberId('');
+    setDaysPerWeek('5');
+  };
+  
+  const handleRemoveAssignment = (memberId: string) => {
+    updateTask(task.id, {
+      assignments: assignments.filter(a => a.memberId !== memberId),
+    });
+  };
+  
+  const handleUpdateAssignmentDays = (memberId: string, newDays: number) => {
+    updateTask(task.id, {
+      assignments: assignments.map(a => 
+        a.memberId === memberId ? { ...a, daysPerWeek: newDays } : a
+      ),
+    });
+  };
 
   const handleToggleLock = () => {
     updateTask(task.id, { isLocked: !task.isLocked });
@@ -243,6 +296,97 @@ export const TaskDetailsPanel: React.FC<TaskDetailsPanelProps> = ({ task, onClos
                   {isOverdue ? Math.abs(daysRemaining) : daysRemaining} j
                 </span>
               </div>
+            )}
+          </div>
+
+          <Separator />
+
+          {/* Ressources assignées */}
+          <div className="space-y-3">
+            <h4 className="text-sm font-medium flex items-center gap-2">
+              <Users className="w-4 h-4 text-muted-foreground" />
+              Ressources ({assignments.length})
+            </h4>
+            
+            {/* Liste des personnes assignées */}
+            {assignments.length > 0 && (
+              <div className="space-y-2">
+                {assignments.map((assignment) => (
+                  <div
+                    key={assignment.memberId}
+                    className="flex items-center justify-between bg-muted/50 rounded-lg p-2 group"
+                  >
+                    <div className="flex items-center gap-2 min-w-0 flex-1">
+                      <User className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                      <span className="text-xs truncate">{assignment.memberName}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Input
+                        type="number"
+                        min="0.25"
+                        max="5"
+                        step="0.25"
+                        value={assignment.daysPerWeek}
+                        onChange={(e) => handleUpdateAssignmentDays(assignment.memberId, parseFloat(e.target.value) || 0)}
+                        className="w-14 h-6 text-xs text-center p-1"
+                      />
+                      <span className="text-[10px] text-muted-foreground">/5</span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-5 w-5 opacity-0 group-hover:opacity-100 text-destructive"
+                        onClick={() => handleRemoveAssignment(assignment.memberId)}
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {/* Ajouter une personne */}
+            {availableMembers.length > 0 && (
+              <div className="flex items-center gap-2">
+                <Select value={selectedMemberId} onValueChange={setSelectedMemberId}>
+                  <SelectTrigger className="flex-1 h-8 text-xs">
+                    <SelectValue placeholder="Ajouter une personne..." />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {availableMembers.map((member) => (
+                      <SelectItem key={member.id} value={member.id} className="text-xs">
+                        {member.firstName} {member.lastName}
+                        <span className="text-muted-foreground ml-1">({member.service})</span>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <Input
+                  type="number"
+                  min="0.25"
+                  max="5"
+                  step="0.25"
+                  value={daysPerWeek}
+                  onChange={(e) => setDaysPerWeek(e.target.value)}
+                  className="w-14 h-8 text-xs text-center"
+                  placeholder="j/s"
+                />
+                <Button
+                  variant="secondary"
+                  size="icon"
+                  className="h-8 w-8 shrink-0"
+                  onClick={handleAddAssignment}
+                  disabled={!selectedMemberId}
+                >
+                  <Plus className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
+            
+            {assignments.length === 0 && availableMembers.length === 0 && (
+              <p className="text-xs text-muted-foreground italic">
+                Aucune ressource disponible
+              </p>
             )}
           </div>
 

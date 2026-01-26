@@ -9,7 +9,6 @@ import { LoginPage } from "./components/LoginPage";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Process from "./pages/Process";
-import Risk from "./pages/Risk";
 import Organigrame from "./pages/Organigrame";
 
 
@@ -18,7 +17,6 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/process"} component={Process} />
-      <Route path={"/risk"} component={Risk} />
       <Route path={"/organigrame"} component={Organigrame} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}

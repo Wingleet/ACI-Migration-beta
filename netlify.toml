@@ -21,6 +21,12 @@
   to = "/.netlify/functions/process-db"
   status = 200
 
+# API redirects - project-save function
+[[redirects]]
+  from = "/api/project-save"
+  to = "/.netlify/functions/project-save"
+  status = 200
+
 # SPA fallback (must be last)
 [[redirects]]
   from = "/*"

@@ -4,7 +4,6 @@ import { cn } from '@/lib/utils';
 import { 
   BarChart3, 
   GitBranch, 
-  AlertTriangle,
   Network,
 } from 'lucide-react';
 
@@ -20,12 +19,6 @@ const navItems = [
     label: 'Process', 
     icon: GitBranch,
     description: 'Workflows'
-  },
-  { 
-    path: '/risk', 
-    label: 'Risk', 
-    icon: AlertTriangle,
-    description: 'Management'
   },
   { 
     path: '/organigrame', 
