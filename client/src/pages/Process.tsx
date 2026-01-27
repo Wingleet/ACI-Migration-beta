@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { ProcessToolbar } from '@/components/Process/ProcessToolbar';
 import { ModuleColumn } from '@/components/Process/ModuleColumn';
 import { GapAnalysisDrawer } from '@/components/Process/GapAnalysisDrawer';
@@ -8,6 +8,7 @@ import { getSortedModules } from '@/lib/processData';
 import { Table2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { useSearch, useLocation } from 'wouter';
 
 export default function Process() {
   const { 
@@ -16,6 +17,20 @@ export default function Process() {
     getFilteredModules,
     getSubModuleById 
   } = useProcessStore();
+  
+  const searchString = useSearch();
+  const [, setLocation] = useLocation();
+  
+  // Auto-select module from URL parameter
+  useEffect(() => {
+    const params = new URLSearchParams(searchString);
+    const moduleParam = params.get('module');
+    if (moduleParam && moduleParam !== selectedSubModuleId) {
+      selectSubModule(moduleParam);
+      // Clear the URL parameter after selection
+      setLocation('/process', { replace: true });
+    }
+  }, [searchString, selectSubModule, selectedSubModuleId, setLocation]);
 
   const filteredModules = getSortedModules(getFilteredModules());
   const selectedData = selectedSubModuleId ? getSubModuleById(selectedSubModuleId) : null;

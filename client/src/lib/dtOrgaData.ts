@@ -30,8 +30,7 @@ export const DT_ORGA_DATA: OrgNode = {
   type: 'direction',
   color: '#6366f1',
   personnel: [
-    { name: 'À définir', role: 'Directeur Technique (CAMO / AMO / LOG)' },
-    { name: 'À définir', role: 'Responsable de l\'organisation' },
+    { name: 'Eric BOUCHER', role: 'Directeur Technique (CAMO / AMO / LOG)' },
   ],
   children: [
     {
@@ -39,13 +38,20 @@ export const DT_ORGA_DATA: OrgNode = {
       name: 'Bureau Technique',
       type: 'service',
       color: '#8b5cf6',
+      personnel: [
+        { name: 'Philippe REITER', role: 'Responsable Bureau Technique' },
+      ],
       children: [
         {
           id: 'planning',
           name: 'Planning',
           type: 'unit',
           color: '#a78bfa',
-          personnel: [],
+          personnel: [
+            { name: 'Jessica BERNANOS', role: 'Planning' },
+            { name: 'Dean HICKSON', role: 'Planning' },
+            { name: 'Jean-Marc PHAM VAN NINH', role: 'Planning' },
+          ],
           processes: [
             { id: 'p-03.01', name: 'Planning', subModuleId: '03.01' },
             { id: 'p-03.02', name: 'Work Package Generation', subModuleId: '03.02' },
@@ -57,7 +63,13 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'Engineering',
           type: 'unit',
           color: '#a78bfa',
-          personnel: [],
+          personnel: [
+            { name: 'Fabien HARS', role: 'Engineering' },
+            { name: 'Antoine JAMEUX', role: 'Engineering' },
+            { name: 'Loic CAVALIE', role: 'Engineering' },
+            { name: 'Pierre-Emile TIREBAQUE', role: 'Engineering' },
+            { name: 'Florentin THIBEAUX', role: 'Engineering' },
+          ],
           processes: [
             { id: 'p-01.01', name: 'Aircraft Definition', subModuleId: '01.01' },
             { id: 'p-01.02', name: 'Parts Definition', subModuleId: '01.02' },
@@ -70,6 +82,19 @@ export const DT_ORGA_DATA: OrgNode = {
             { id: 'p-01.09', name: 'Powerplants', subModuleId: '01.09' },
           ],
         },
+        {
+          id: 'docs',
+          name: 'DOCS',
+          type: 'unit',
+          color: '#a78bfa',
+          personnel: [
+            { name: 'Yael DEVILLERS', role: 'Documentation' },
+          ],
+          processes: [
+            { id: 'p-02.05', name: 'Technical Library', subModuleId: '02.05' },
+            { id: 'p-02.08', name: 'Digital Records', subModuleId: '02.08' },
+          ],
+        },
       ],
     },
     {
@@ -77,13 +102,18 @@ export const DT_ORGA_DATA: OrgNode = {
       name: 'Production',
       type: 'service',
       color: '#ec4899',
+      personnel: [
+        { name: 'Jerome DESCOTES', role: 'Responsable Production' },
+      ],
       children: [
         {
           id: 'shop-cabin',
           name: 'Shop / Cabin',
           type: 'unit',
           color: '#f472b6',
-          personnel: [],
+          personnel: [
+            { name: 'Nancy MALAU', role: 'Shop Cabin' },
+          ],
           processes: [
             { id: 'p-11.01', name: 'Capability List', subModuleId: '11.01' },
             { id: 'p-11.02', name: 'Shop Card Templates', subModuleId: '11.02' },
@@ -98,7 +128,28 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'Maintenance',
           type: 'unit',
           color: '#f472b6',
-          personnel: [],
+          personnel: [
+            { name: 'Charles ACKER', role: 'Maintenance' },
+            { name: 'Loic ARNOUX', role: 'Maintenance' },
+            { name: 'Jean-Pierre BACELOS', role: 'Maintenance' },
+            { name: 'Philippe DOROTHEE', role: 'Maintenance' },
+            { name: 'Denzo HIGA', role: 'Maintenance' },
+            { name: 'Yannick HNIMINAU', role: 'Maintenance' },
+            { name: 'Rodrigue IEKAWE', role: 'Maintenance' },
+            { name: 'Jean-Jacques JEWINE', role: 'Maintenance' },
+            { name: 'Idris KAHLEMU', role: 'Maintenance' },
+            { name: 'Larryson KELETAONA', role: 'Maintenance' },
+            { name: 'Marcel Sinawe NGAIOHNI', role: 'Maintenance' },
+            { name: 'Gregory ROSSILLE', role: 'Maintenance' },
+            { name: 'Raymond SINYEUE', role: 'Maintenance' },
+            { name: 'Antony TIDJINE', role: 'Maintenance' },
+            { name: 'Daniel TROULU', role: 'Maintenance' },
+            { name: 'Jerome WAHMETU', role: 'Maintenance' },
+            { name: 'David WAICANE', role: 'Maintenance' },
+            { name: 'Ezechiel WAMYTAN', role: 'Maintenance' },
+            { name: 'Gael XUMA', role: 'Maintenance' },
+            { name: 'Jean-Edouard YONGOMENE', role: 'Maintenance' },
+          ],
           processes: [
             { id: 'p-08.01', name: 'Maintenance Check Control', subModuleId: '08.01' },
             { id: 'p-08.02', name: 'Performing Maintenance', subModuleId: '08.02' },
@@ -112,7 +163,14 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'MCC',
           type: 'unit',
           color: '#f472b6',
-          personnel: [],
+          personnel: [
+            { name: 'Olivier NYIPIE', role: 'MCC' },
+            { name: 'Ruddy DENEUVILLE', role: 'MCC' },
+            { name: 'Laurent DENEUX', role: 'MCC' },
+            { name: 'Stephane DUBROUS', role: 'MCC' },
+            { name: 'Joannes YONGOMENE', role: 'MCC' },
+            { name: 'Jerome PAKIHIVATAU', role: 'MCC' },
+          ],
           processes: [
             { id: 'p-06.01', name: 'Fleet Status Monitoring', subModuleId: '06.01' },
             { id: 'p-06.02', name: 'Delays & Event Tracking', subModuleId: '06.02' },
@@ -126,7 +184,9 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'Preparation Work',
           type: 'unit',
           color: '#f472b6',
-          personnel: [],
+          personnel: [
+            { name: 'David BARBIER', role: 'Preparation Work' },
+          ],
           processes: [
             { id: 'p-07.01', name: 'Shift Planning', subModuleId: '07.01' },
             { id: 'p-07.02', name: 'Hangar & Resources', subModuleId: '07.02' },
@@ -143,13 +203,21 @@ export const DT_ORGA_DATA: OrgNode = {
       name: 'Logistique',
       type: 'service',
       color: '#14b8a6',
+      personnel: [
+        { name: 'Vaiana TAIRIO', role: 'Responsable Logistique' },
+      ],
       children: [
         {
           id: 'purchasing',
           name: 'Purchasing',
           type: 'unit',
           color: '#2dd4bf',
-          personnel: [],
+          personnel: [
+            { name: 'Lan Anh DO', role: 'Purchasing' },
+            { name: 'Deborah LUEPACK', role: 'Purchasing' },
+            { name: 'Rodrigue TUFELE', role: 'Purchasing' },
+            { name: 'Claudicia WALOUA', role: 'Purchasing' },
+          ],
           processes: [
             { id: 'p-09.01', name: 'Material Planning', subModuleId: '09.01' },
             { id: 'p-09.02', name: 'Supplier Management', subModuleId: '09.02' },
@@ -161,7 +229,9 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'Import / Export',
           type: 'unit',
           color: '#2dd4bf',
-          personnel: [],
+          personnel: [
+            { name: 'Nathalie BESANCON', role: 'Import Export' },
+          ],
           processes: [
             { id: 'p-09.04', name: 'Repair & Exchanges', subModuleId: '09.04' },
             { id: 'p-09.07', name: 'Outstations & MRO', subModuleId: '09.07' },
@@ -172,7 +242,9 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'Contrats',
           type: 'unit',
           color: '#2dd4bf',
-          personnel: [],
+          personnel: [
+            { name: 'Leonore PETIT', role: 'Contrats' },
+          ],
           processes: [
             { id: 'p-09.05', name: 'Warranty', subModuleId: '09.05' },
             { id: 'p-09.06', name: 'Pooling & Consignment', subModuleId: '09.06' },
@@ -183,7 +255,14 @@ export const DT_ORGA_DATA: OrgNode = {
           name: 'Store',
           type: 'unit',
           color: '#2dd4bf',
-          personnel: [],
+          personnel: [
+            { name: 'Melodie HAUPUNI', role: 'Store' },
+            { name: 'Sean APELE', role: 'Store' },
+            { name: 'Jean Paul JONE', role: 'Store' },
+            { name: 'Falakiko MOTUKU', role: 'Store' },
+            { name: 'Guillaume QUEMERE', role: 'Store' },
+            { name: 'Arturo Henri VAZQUEZ RODRIGUEZ', role: 'Store' },
+          ],
           processes: [
             { id: 'p-02.04', name: 'Aircraft & Component Counters', subModuleId: '02.04' },
           ],
@@ -195,7 +274,9 @@ export const DT_ORGA_DATA: OrgNode = {
       name: 'Compliance & Safety',
       type: 'service',
       color: '#f59e0b',
-      personnel: [],
+      personnel: [
+        { name: 'Elodie TAVONG', role: 'Compliance & Safety' },
+      ],
       processes: [
         { id: 'p-04.01', name: 'Company Organisation', subModuleId: '04.01' },
         { id: 'p-04.02', name: 'Organisation Approval', subModuleId: '04.02' },
@@ -209,7 +290,9 @@ export const DT_ORGA_DATA: OrgNode = {
       name: 'Admin',
       type: 'service',
       color: '#64748b',
-      personnel: [],
+      personnel: [
+        { name: 'Isabelle RAMES', role: 'Admin' },
+      ],
       processes: [
         { id: 'p-12.01', name: 'Financial Accounting', subModuleId: '12.01' },
         { id: 'p-12.02', name: 'Invoice Checking', subModuleId: '12.02' },
