@@ -3,7 +3,118 @@
  * Ce mapping permet de faire correspondre les IDs des sous-modules aux noms de fichiers réels
  */
 
-// Mapping: subModule.id -> nom du fichier image (sans le chemin de base)
+// Mapping ACI: subModule.id -> nom du fichier image ACI (sans le chemin de base)
+// Les fichiers sont dans /Flowchart/ avec le format "{id} {name} ACI.png"
+export const ACI_FLOWCHART_IMAGE_MAPPING: Record<string, string> = {
+  // Module 01 - Fleet Engineering
+  '01.01': '01.01Aircraft Definition ACI.png',
+  '01.02': '01.02 Parts Definition ACI.png',
+  '01.03': '01.03 Maintenance Program ACI.png',
+  '01.04': '01.04 SB & AD Assessment ACI.png',
+  '01.05': '01.05 Configuration Management ACI.png',
+  '01.06': '01.06 MEL Administration ACI.png',
+  '01.07': '01.07 Reliability ACI.png',
+  '01.08': '01.08 Weight & Balance ACI.png',
+  '01.09': '01.09 Powerplants ACI.png',
+  
+  // Module 02 - Technical Services
+  '02.01': '02.01 Aircraft Phase-in ACI.png',
+  '02.02': '02.02 Aircraft Phase-out ACI.png',
+  '02.03': '02.03 Multi Operator AC Transfer ACI.png',
+  '02.04': '02.04 Aircraft & Component Counters ACI.png',
+  '02.05': '02.05 Technical Library ACI.png',
+  '02.06': '02.06 Requirement Work Scoping ACI.png',
+  '02.07': '02.07 Structural Damages ACI.png',
+  '02.08': '02.08 Digital Records ACI.png',
+  '02.09': '02.09 Airworthiness Certificate ACI.png',
+  
+  // Module 03 - Fleet Planning
+  '03.01': '03.01 Planning ACI.png',
+  '03.02': '03.02 Work Package Generation ACI.png',
+  '03.03': '03.03 Reporting Back ACI.png',
+  '03.04': '03.04 Modification Campaigns ACI.png',
+  '03.05': '03.05 Long Term Planning ACI.png',
+  
+  // Module 04 - Quality Assurance
+  '04.01': '04.01 Company Organisation ACI.png',
+  '04.02': '04.02 Organisation Approval ACI.png',
+  '04.03': '04.03 Training and Qualifications ACI.png',
+  '04.04': '04.04 Approval Control ACI.png',
+  '04.05': '04.05 Quality Auditing ACI.png',
+  
+  // Module 06 - MCC
+  '06.01': '06.01 Fleet Status Monitoring ACI.png',
+  '06.02': '06.02 Delays & Event Tracking ACI.png',
+  '06.03': '06.03 Line Maintenance Oversight ACI.png',
+  '06.04': '06.04 Recurrent Defects ACI.png',
+  '06.05': '06.05 Aircraft Incidents ACI.png',
+  
+  // Module 07 - Production Planning
+  '07.01': '07.01 Shift Planning ACI.png',
+  '07.02': '07.02 Hangar & Resources ACI.png',
+  '07.03': '07.03 Work Templates ACI.png',
+  '07.04': '07.04 Production Plan Preparation ACI.png',
+  '07.05': '07.05 Resource & Staff Allocation ACI.png',
+  '07.06': '07.06 Customer MRO Work Packages ACI.png',
+  
+  // Module 08 - Aircraft Maintenance
+  '08.01': '08.01 Maintenance Check Control ACI.png',
+  '08.02': '08.02 Performing Maintenance ACI.png',
+  '08.03': '08.03 Deferral Handling ACI.png',
+  '08.04': '08.04 Parts Removal & Installation ACI.png',
+  '08.05': '08.05 Release to Service ACI.png',
+  
+  // Module 09 - Procurement
+  '09.01': '09.01 Material Planning ACI.png',
+  '09.02': '09.02 Supplier Management ACI.png',
+  '09.03': '09.03 Ordering ACI.png',
+  '09.04': '09.04 Repair & Exchanges ACI.png',
+  '09.05': '09.05 Warranty ACI.png',
+  '09.06': '09.06 Pooling & Consignment ACI.png',
+  '09.07': '09.07 Outstations & MRO ACI.png',
+  
+  // Module 11 - Component Shops
+  '11.01': '11.01 Capability List ACI.png',
+  '11.02': '11.02 Shop Card Templates ACI.png',
+  '11.03': '11.03 Shop Planner ACI.png',
+  '11.04': '11.04 Component Maintenance ACI.png',
+  '11.05': '11.05 Closed Loop Repair ACI.png',
+  '11.06': '11.06 Component Release ACI.png',
+  
+  // Module 12 - Finance & Commercial
+  '12.01': '12.01 Financial Accounting ACI.png',
+  '12.02': '12.02 Invoice Checking ACI.png',
+  '12.03': '12.03 Fixed Assets & Depreciation ACI.png',
+  '12.04': '12.04 Commercial Pricing & Billing ACI.png',
+  '12.05': '12.05 Customer Quotations ACI.png',
+  '12.06': '12.06 Budgeting & Cost Controlling ACI.png',
+  '12.07': '12.07 Financial Multi Entity ACI.png',
+  
+  // Module 00 - ACC (si applicable)
+  '00.01': '00.01 AMOS Application Configuration ACI.png',
+  '00.02': '00.02 AMOS Users and Roles ACI.png',
+  '00.03': '00.03 Technical Assistance ACI.png',
+  '00.04': '00.04 Scheduler Task ACI.png',
+  '00.05': '00.05 Interfaces AMOScentral ACI.png',
+  '00.06': '00.06 Data and Reports ACI.png',
+  '00.08': '00.08 Support Tool ACI.png',
+  '00.09': '00.09 AMOS Release Change ACI.png',
+};
+
+/**
+ * Récupère le chemin de l'image ACI pour un sous-module donné
+ * @param subModuleId - L'ID du sous-module (ex: '01.01')
+ * @returns Le chemin de l'image ou null si non trouvé
+ */
+export const getAciFlowchartImage = (subModuleId: string): string | null => {
+  const fileName = ACI_FLOWCHART_IMAGE_MAPPING[subModuleId];
+  if (!fileName) {
+    return null;
+  }
+  return `/Flowchart/${fileName}`;
+};
+
+// Mapping AMOS: subModule.id -> nom du fichier image (sans le chemin de base)
 export const FLOWCHART_IMAGE_MAPPING: Record<string, string | string[]> = {
   // Module 00 - ACC
   '00.01': '00.01_AMOS_Application_Configuration-1.png',

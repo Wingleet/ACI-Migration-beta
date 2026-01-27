@@ -1,0 +1,285 @@
+<mxfile host="65bd71144e">
+    <diagram id="RNGnkLI-MCDgjgDuYWAb" name="01.07 Reliability">
+        <mxGraphModel dx="1875" dy="1562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2cl7CHh1-utzGBygBaVu-1" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="-1168" y="-790" width="1168" height="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="2cl7CHh1-utzGBygBaVu-2" value="&lt;font style=&quot;font-size: 22px;&quot;&gt;01.07 Reliability - ACI&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1168" y="-827" width="1168" height="57" as="geometry"/>
+                </mxCell>
+                <mxCell id="aWeAcaWYl1lUYU_2sXSY-3" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="-1142" y="-120" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="aWeAcaWYl1lUYU_2sXSY-4" value="LEGEND" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontStyle=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="-1142" y="-120" width="30" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="0XEC_4WCFHEhhVLIUyW8-63" value="Fleet Engineering" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-1090" y="-110" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="0XEC_4WCFHEhhVLIUyW8-66" target="FX9bpRIGPqzmf9NWgUeN-83" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="0XEC_4WCFHEhhVLIUyW8-66" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="-1150" y="-547.0000000000001" width="68" height="68" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aQ_Hv72BslRWT2Yvw_N-2" value="Set the &lt;br&gt;Reliability &lt;br&gt;Control Program" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-1142" y="-484.5" width="110" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aQ_Hv72BslRWT2Yvw_N-25" value="" style="ellipse;whiteSpace=wrap;html=1;rounded=1;strokeWidth=1;fillColor=#b5b5b5;" parent="1" vertex="1">
+                    <mxGeometry x="-188.5" y="-248.5000000000001" width="68" height="68" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aQ_Hv72BslRWT2Yvw_N-27" value="Managed Reliability &lt;br&gt;Control Program" style="text;html=1;align=left;verticalAlign=middle;resizable=1;points=[];autosize=1;strokeColor=none;fillColor=none;movable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+                    <mxGeometry x="-128" y="-192" width="110" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="iq65A38dECH3Cbfz528j-36" target="FX9bpRIGPqzmf9NWgUeN-9" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="iq65A38dECH3Cbfz528j-36" value="Delays &amp;amp; Event Tracking" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-813" y="-426.00000000000017" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-1" target="FX9bpRIGPqzmf9NWgUeN-22" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-1" value="Performing Maintenance" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-964" y="-704.0000000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-14" target="FX9bpRIGPqzmf9NWgUeN-68" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-14" value="Repair &amp;amp; Exchanges" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-964" y="-294.0000000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-17" target="FX9bpRIGPqzmf9NWgUeN-14" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-17" value="Parts Removal &amp;amp; Installation" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-964" y="-377.7800000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-22" target="iq65A38dECH3Cbfz528j-17" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-530" y="-450" as="targetPoint"/>
+                        <mxPoint x="-350" y="-460" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-19" value="Unscheduled &lt;br&gt;Maintenance&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;(PIREPS &amp;amp; MAREPS)&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="4aFX2cfh_MxOQEUSAFeR-14" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2394" y="2" relative="1" as="geometry">
+                        <mxPoint x="50" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-27" value="&lt;br&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Finding from&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Scheduled &lt;br&gt;Maintencne&lt;/span&gt;&lt;br style=&quot;border-color: var(--border-color); color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;&quot;&gt;&lt;br&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-787" y="-694.5" as="sourcePoint"/>
+                        <mxPoint x="-664" y="-730.0000000000001" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-787" y="-730"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-22" value="" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-807" y="-694.5" width="40" height="41" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-75" value="to analyze&lt;br&gt;System &lt;br&gt;Reliability" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-71" target="FX9bpRIGPqzmf9NWgUeN-1" edge="1">
+                    <mxGeometry x="-0.3148" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-71" target="iq65A38dECH3Cbfz528j-36" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-894" y="-700" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-78" value="to analyze &lt;br&gt;Operation&lt;br&gt;Reliability" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="FX9bpRIGPqzmf9NWgUeN-76" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2561" y="3" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-71" target="FX9bpRIGPqzmf9NWgUeN-17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-79" value="to analyze&lt;br&gt;Component&lt;br&gt;Reliability" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="FX9bpRIGPqzmf9NWgUeN-77" vertex="1" connectable="0">
+                    <mxGeometry x="0.0381" y="-1" relative="1" as="geometry">
+                        <mxPoint x="1" y="-2" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-71" value="" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-929" y="-536" width="50" height="51" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-83" target="FX9bpRIGPqzmf9NWgUeN-71" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-8" value="Specific Unit" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-85" target="FX9bpRIGPqzmf9NWgUeN-45" edge="1">
+                    <mxGeometry x="-0.5062" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                        <mxPoint x="-480" y="-83" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-85" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-419" y="-280"/>
+                            <mxPoint x="-420" y="-597"/>
+                        </Array>
+                        <mxPoint x="-370" y="-597.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-78" value="Part Reliability Issue" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="4aFX2cfh_MxOQEUSAFeR-45" vertex="1" connectable="0">
+                    <mxGeometry x="-0.6678" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-85" value="" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-449.37" y="-214" width="60" height="62" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-68" target="FX9bpRIGPqzmf9NWgUeN-12" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-730" y="-200" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-12" target="FX9bpRIGPqzmf9NWgUeN-85" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-13" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-1064" y="-555" width="109" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-18" value="" style="group" parent="4aFX2cfh_MxOQEUSAFeR-13" vertex="1" connectable="0">
+                    <mxGeometry width="109" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-83" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b&gt;Definition&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;font style=&quot;font-size: 10px;&quot;&gt;central definition for Reliability&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=left;spacingTop=0;spacing=6;" parent="4aFX2cfh_MxOQEUSAFeR-18" vertex="1">
+                    <mxGeometry width="109" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-10" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-704" y="-228" width="190" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-12" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b&gt;Part / Engine Reliability&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: left; font-size: 11px;&quot;&gt;-ETOPS System reliability&lt;/div&gt;&lt;div style=&quot;border-color: var(--border-color); text-align: left; font-size: 11px;&quot;&gt;&lt;span style=&quot;border-color: var(--border-color); background-color: initial;&quot;&gt;-CAT II/III / RVSM&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=left;spacingTop=0;spacing=6;" parent="4aFX2cfh_MxOQEUSAFeR-10" vertex="1">
+                    <mxGeometry width="190" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-16" value="" style="group;verticalAlign=bottom;align=left;spacingRight=-4;" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-664" y="-750.5" width="184" height="70.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-26" value="&lt;div style=&quot;&quot;&gt;&lt;b&gt;Maintenance Finding&amp;nbsp;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;reporting&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=left;spacingTop=0;spacing=6;" parent="4aFX2cfh_MxOQEUSAFeR-16" vertex="1">
+                    <mxGeometry width="184" height="70.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-17" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-664" y="-648.6949999999999" width="195" height="102.38999999999999" as="geometry"/>
+                </mxCell>
+                <mxCell id="iq65A38dECH3Cbfz528j-17" value="&lt;div style=&quot;&quot;&gt;&lt;b&gt;System Reliability&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;-PIRPS/ MAREPS Rate vs alert level&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;-ETOPS System reliability&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;text-align: left; font-size: 11px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;font style=&quot;font-size: 11px;&quot;&gt;-CAT II/III / RVSM&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=center;spacingTop=0;spacing=6;" parent="4aFX2cfh_MxOQEUSAFeR-17" vertex="1">
+                    <mxGeometry width="195" height="102.39" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-68" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;Failure confirmation&lt;/b&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=left;spacingTop=0;spacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="-977" y="-208" width="147" height="49" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-9" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-420" y="-396"/>
+                            <mxPoint x="-420" y="-597"/>
+                        </Array>
+                        <mxPoint x="-370" y="-597.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-9" value="&lt;div style=&quot;&quot;&gt;&lt;b&gt;Dispatch Reliability /&amp;nbsp;&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;&quot;&gt;&lt;b&gt;Operation Interruption&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=center;spacingTop=0;spacing=6;" parent="1" vertex="1">
+                    <mxGeometry x="-653.19" y="-431" width="136.37" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.018;entryY=0.63;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="FX9bpRIGPqzmf9NWgUeN-26" target="4aFX2cfh_MxOQEUSAFeR-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-420" y="-715"/>
+                            <mxPoint x="-420" y="-597"/>
+                            <mxPoint x="-270" y="-597"/>
+                            <mxPoint x="-270" y="-702"/>
+                        </Array>
+                        <mxPoint x="-370" y="-597.5" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.02;entryY=0.623;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="iq65A38dECH3Cbfz528j-17" target="4aFX2cfh_MxOQEUSAFeR-1" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-370" y="-597.5" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-566" y="-650"/>
+                            <mxPoint x="-263" y="-650"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="4aFX2cfh_MxOQEUSAFeR-49" target="4aQ_Hv72BslRWT2Yvw_N-25" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-154" y="-303"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-49" value="Action Campaigns" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-133" y="-333.0000000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="4aFX2cfh_MxOQEUSAFeR-50" target="4aQ_Hv72BslRWT2Yvw_N-25" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-50" value="Maintenance Program" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-295" y="-333.0000000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-53" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-246.25" y="-750.5" width="150" height="77" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-79" value="" style="group" parent="4aFX2cfh_MxOQEUSAFeR-53" vertex="1" connectable="0">
+                    <mxGeometry width="150" height="77" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-1" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b&gt;custermized Reliability Reports&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=left;spacingTop=0;spacing=6;" parent="4aFX2cfh_MxOQEUSAFeR-79" vertex="1">
+                    <mxGeometry width="150" height="77" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-59" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="-761" y="-113" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-60" value="" style="group" parent="4aFX2cfh_MxOQEUSAFeR-59" vertex="1" connectable="0">
+                    <mxGeometry width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="FX9bpRIGPqzmf9NWgUeN-45" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;b&gt;Suspicious Parts&lt;/b&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;fontSize=12;verticalAlign=bottom;align=left;spacingTop=0;spacing=6;" parent="4aFX2cfh_MxOQEUSAFeR-60" vertex="1">
+                    <mxGeometry width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-68" value="Maintenance Program &lt;br&gt;updates based on &lt;br&gt;Reliability Recommendation" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" target="4aFX2cfh_MxOQEUSAFeR-50" edge="1">
+                    <mxGeometry x="0.644" relative="1" as="geometry">
+                        <mxPoint x="-169.5" y="-499" as="sourcePoint"/>
+                        <mxPoint x="-170" y="-380" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="4aFX2cfh_MxOQEUSAFeR-66" target="4aFX2cfh_MxOQEUSAFeR-49" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-90" y="-250" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-70" value="&lt;span style=&quot;background-color: rgb(251, 251, 251);&quot;&gt;Modification Campaigns &lt;br&gt;based on &lt;br&gt;Reliability Recommendation&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="4aFX2cfh_MxOQEUSAFeR-69" vertex="1" connectable="0">
+                    <mxGeometry x="0.2297" y="-3" relative="1" as="geometry">
+                        <mxPoint x="4" y="45" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-66" value="" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-170.5" y="-527.5" width="50" height="51" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="4aFX2cfh_MxOQEUSAFeR-91" target="FX9bpRIGPqzmf9NWgUeN-12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-91" value="&amp;nbsp;Powerplants (Engine/APU)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-824" y="-294.0000000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="4aFX2cfh_MxOQEUSAFeR-93" target="iq65A38dECH3Cbfz528j-17" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="4aFX2cfh_MxOQEUSAFeR-93" value="&lt;p style=&quot;margin: 0in;&quot;&gt;&amp;nbsp;MEL&lt;br&gt;Administration&lt;/p&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fontSize=12;" parent="1" vertex="1">
+                    <mxGeometry x="-627" y="-516.0000000000001" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;sourcePerimeterSpacing=0;targetPerimeterSpacing=0;entryX=1;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="4aFX2cfh_MxOQEUSAFeR-1" target="4aFX2cfh_MxOQEUSAFeR-66">
+                    <mxGeometry width="100" relative="1" as="geometry">
+                        <mxPoint x="-180" y="-560" as="sourcePoint"/>
+                        <mxPoint x="-134" y="-540" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-130" y="-590"/>
+                            <mxPoint x="-134" y="-590"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

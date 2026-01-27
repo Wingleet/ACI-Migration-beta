@@ -1,0 +1,251 @@
+<mxfile host="65bd71144e">
+    <diagram id="mqMeD9baBo8LA7yypqrM" name="24.12">
+        <mxGraphModel dx="2334" dy="1562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-1" value="&#10;&lt;span style=&quot;color: rgb(0, 0, 0); font-family: Helvetica; font-size: 11px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: nowrap; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;&quot;&gt;OPTIONAL&lt;/span&gt;&#10;&#10;" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="-1160" y="-777" width="1150" height="767" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-2" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;01.02 Parts Definition&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1160" y="-820" width="1150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-3" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="-1142" y="-120" width="320" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-4" value="LEGEND" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontStyle=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+                    <mxGeometry x="-1142" y="-120" width="30" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-7" target="yrH9R5_DrpzaF61eR3-v-37" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.25;exitY=0;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-45" target="yrH9R5_DrpzaF61eR3-v-52" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-201" y="-620"/>
+                            <mxPoint x="-294" y="-620"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hfoblcmv0z1o6S7khPI3-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-7" target="yrH9R5_DrpzaF61eR3-v-59" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-7" value="&#10;- Define Part Basic Data&#10;- Main Engineering Data&#10;- Interchangeabilities&#10;- Capabilities,&#10;Assoc. Parts, Part Specials&#10;- Aircraft related info, Position Info&#10;" style="rounded=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" parent="1" vertex="1">
+                    <mxGeometry x="-790" y="-486" width="260" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="yrH9R5_DrpzaF61eR3-v-14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-928" y="-480" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hfoblcmv0z1o6S7khPI3-27" value="New PN/SW required&lt;div&gt;(Requirement, Modifications,&amp;nbsp;&lt;/div&gt;&lt;div&gt;CMM, IPC, SL..)&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="yrH9R5_DrpzaF61eR3-v-13" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2873" y="-1" relative="1" as="geometry">
+                        <mxPoint y="-3" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-14" value="&lt;br&gt;Technical Library" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-988.5" y="-737" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-17" target="yrH9R5_DrpzaF61eR3-v-14" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-930" y="-755"/>
+                            <mxPoint x="-930" y="-740"/>
+                            <mxPoint x="-928" y="-740"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-17" target="yrH9R5_DrpzaF61eR3-v-26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-1113" y="-755"/>
+                            <mxPoint x="-728" y="-755"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-17" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="-1112" y="-770" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-18" value="Request to&amp;nbsp;&lt;div&gt;create/update PN/SW&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-1163" y="-740" width="140" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-19" value="" style="ellipse;whiteSpace=wrap;html=1;rounded=1;strokeWidth=1;fillColor=#b5b5b5;" parent="1" vertex="1">
+                    <mxGeometry x="-1107.5" y="-185" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-20" value="End" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-1147.5" y="-185" width="40" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points"/>
+                        <mxPoint x="-930" y="-480" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hfoblcmv0z1o6S7khPI3-32" value="Unknown Part Request&amp;nbsp;&lt;div&gt;on Workorder&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="yrH9R5_DrpzaF61eR3-v-25" vertex="1" connectable="0">
+                    <mxGeometry x="0.8202" y="1" relative="1" as="geometry">
+                        <mxPoint x="279" y="-128" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-26" value="&lt;br&gt;Performing Maintenance" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-720" y="-737" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.996;exitY=0.499;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-33" target="yrH9R5_DrpzaF61eR3-v-7" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-814.2499999999998" y="-402.5" as="sourcePoint"/>
+                        <mxPoint x="-777" y="-406" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-814" y="-407"/>
+                            <mxPoint x="-814" y="-406"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-33" value="Create Part Definition Working Copy with &#10;Part Basic Data:&#10;- Material Class (Rot./Cons./Exp./Service)&#10;- Material Type &#10;- Measure Unit&#10;- FA Type / ATA / Tool (y/n) / Fixed Asset (y/n)&#10; &amp; Classification Data&#10;- Evaluate IPC/IPL Applicability" style="rounded=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" parent="1" vertex="1">
+                    <mxGeometry x="-1090" y="-476" width="274.75" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-37" target="yrH9R5_DrpzaF61eR3-v-69" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="hfoblcmv0z1o6S7khPI3-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-37" target="yrH9R5_DrpzaF61eR3-v-40" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-37" value="Define Supply Chain Data:&#10;- Reorder Levels for &#10;Consumables&#10;- Vendor Data" style="rounded=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="-747.25" y="-278.25" width="174.5" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-40" target="yrH9R5_DrpzaF61eR3-v-19" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-770" y="-96"/>
+                            <mxPoint x="-770" y="-170"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-40" value="Define Store Data:&#10;- Part Locations&#10;- DGR Info&#10;- Customs Information" style="rounded=1;fillColor=#6d8764;fontColor=#ffffff;strokeColor=#3A5431;" parent="1" vertex="1">
+                    <mxGeometry x="-746.75" y="-132.5" width="173.5" height="102.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-45" target="yrH9R5_DrpzaF61eR3-v-68" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-88" y="-390"/>
+                            <mxPoint x="-77" y="-390"/>
+                        </Array>
+                        <mxPoint x="-70" y="-210" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-44" value="Requirement&lt;br&gt;Performable on Shelf" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="yrH9R5_DrpzaF61eR3-v-43" vertex="1" connectable="0">
+                    <mxGeometry x="-0.7392" y="5" relative="1" as="geometry">
+                        <mxPoint y="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-45" value="Define Part Requirement&#10;- Requirement Type&#10;- Type of Performance &#10;(Comp. Replacement / &#10;On-Wing / Perf. on Shelf (Y/N))&#10;- Pro-Rata Application Y/N&#10;- Effectivity / Time Req. / Worktemplate / &#10;Req. Links" style="rounded=1;fillColor=#e51400;fontColor=#ffffff;strokeColor=#B20000;" parent="1" vertex="1">
+                    <mxGeometry x="-257.5" y="-585.25" width="226.5" height="145.25" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-48" target="yrH9R5_DrpzaF61eR3-v-37" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-524" y="-223"/>
+                            <mxPoint x="-540" y="-223"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-48" value="Create Price Book Entry &#10;for Vendor of this Part" style="rounded=1;fillColor=#60a917;fontColor=#ffffff;strokeColor=#2D7600;" parent="1" vertex="1">
+                    <mxGeometry x="-524" y="-259.5" width="162.5" height="63.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-48" target="yrH9R5_DrpzaF61eR3-v-51" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-51" value="&lt;br&gt;Ordering" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-502.75" y="-130" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-52" value="&amp;nbsp;Configuration Management" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-353.75" y="-737" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-53" value="Maintenance Program" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-204.25" y="-737" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-59" target="yrH9R5_DrpzaF61eR3-v-45" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-378.34000000000015" y="-528.9999999999998" as="sourcePoint"/>
+                        <Array as="points">
+                            <mxPoint x="-318" y="-513"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-56" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="yrH9R5_DrpzaF61eR3-v-55" vertex="1" connectable="0">
+                    <mxGeometry x="0.4205" y="1" relative="1" as="geometry">
+                        <mxPoint x="-27" y="1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-59" target="yrH9R5_DrpzaF61eR3-v-37" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="-415" y="-316"/>
+                            <mxPoint x="-550" y="-316"/>
+                            <mxPoint x="-550" y="-223"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-58" value="No" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="yrH9R5_DrpzaF61eR3-v-57" vertex="1" connectable="0">
+                    <mxGeometry x="-0.8242" y="1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-59" value="Is Part a Rotable?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-488" y="-548.5" width="145" height="73" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-60" value="&lt;br&gt;Aircraft &amp;amp; Component Counters" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-550" y="-737" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-61" value="Fleet Engineering" style="rounded=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-1092.25" y="-105" width="102.5" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-62" value="Procurement" style="rounded=1;fillColor=#82C76B;strokeColor=#3A5431;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-955.75" y="-110" width="95.75" height="27.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-63" value="Stores" style="rounded=1;fillColor=#6d8764;strokeColor=#3A5431;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-955.75" y="-70" width="95.75" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-45" target="yrH9R5_DrpzaF61eR3-v-37" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-470" y="-370" as="targetPoint"/>
+                        <Array as="points">
+                            <mxPoint x="-230" y="-316"/>
+                            <mxPoint x="-550" y="-316"/>
+                            <mxPoint x="-550" y="-223"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-68" value="&amp;nbsp;Inventory &amp;amp; Shelf Life Control" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-137" y="-130" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-69" value="Material Planning" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+                    <mxGeometry x="-924" y="-253.5" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-74" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-45" target="yrH9R5_DrpzaF61eR3-v-53" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-160" y="-607" as="sourcePoint"/>
+                        <mxPoint x="-110" y="-657" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-75" value="Rotable Controlled Taskcard" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="yrH9R5_DrpzaF61eR3-v-74" vertex="1" connectable="0">
+                    <mxGeometry x="0.1436" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="yrH9R5_DrpzaF61eR3-v-80" value="Start" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="-1157.5" y="-770" width="50" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="hfoblcmv0z1o6S7khPI3-11" value="" style="edgeStyle=elbowEdgeStyle;elbow=vertical;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="1" source="yrH9R5_DrpzaF61eR3-v-60" target="yrH9R5_DrpzaF61eR3-v-7" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-610" y="-599.25" as="sourcePoint"/>
+                        <mxPoint x="-560" y="-649.25" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="hfoblcmv0z1o6S7khPI3-12" value="Counter Template&amp;nbsp;&lt;div&gt;Group Assignment&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="hfoblcmv0z1o6S7khPI3-11" vertex="1" connectable="0">
+                    <mxGeometry x="-0.2502" y="1" relative="1" as="geometry">
+                        <mxPoint x="-1" as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
