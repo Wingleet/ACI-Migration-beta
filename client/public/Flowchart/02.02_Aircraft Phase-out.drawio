@@ -1,0 +1,270 @@
+<mxfile host="Electron" modified="2024-11-21T14:50:09.261Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.11 Chrome/114.0.5735.289 Electron/25.9.8 Safari/537.36" etag="74h5tu_0fmwXHVmje9R_" version="22.1.11" type="device">
+  <diagram id="q6ijrib5woku6P2X9P8C" name="02.02 - Aircraft Phase-out">
+    <mxGraphModel dx="2843" dy="1817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="CC9JK5fDMVkyeQSxDH9x-1" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;02.02 - Aircraft Phase-out&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="-1160" y="-821" width="1150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="CC9JK5fDMVkyeQSxDH9x-2" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" vertex="1" parent="1">
+          <mxGeometry x="-1160" y="-778" width="1150" height="767" as="geometry" />
+        </mxCell>
+        <mxCell id="w1LViPG7DVvnnRVhz0nK-1" value="Cartouche" parent="0" />
+        <mxCell id="XWS5DeXvxkO256BPDCBn-1" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="w1LViPG7DVvnnRVhz0nK-1">
+          <mxGeometry x="-1142" y="-120" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="XWS5DeXvxkO256BPDCBn-2" value="LEGEND" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontStyle=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" vertex="1" parent="w1LViPG7DVvnnRVhz0nK-1">
+          <mxGeometry x="-1142" y="-120" width="30" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="XWS5DeXvxkO256BPDCBn-3" value="Fleet Engineering" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="w1LViPG7DVvnnRVhz0nK-1">
+          <mxGeometry x="-1071" y="-95.5" width="90" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="XWS5DeXvxkO256BPDCBn-4" value="ACC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a3aebd;strokeColor=#6c8ebf;fontColor=#ffffff;" vertex="1" parent="w1LViPG7DVvnnRVhz0nK-1">
+          <mxGeometry x="-961" y="-95.5" width="90" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="XWS5DeXvxkO256BPDCBn-5" value="&lt;b&gt;Note:&lt;/b&gt;&amp;nbsp;In case a phase-out check has to be performed, it should be handled via the adequate processes and reported back prior extracting final data and de-activation of the aircraft." style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;dashed=1;spacingLeft=3;spacingRight=3;spacingBottom=3;spacingTop=3;spacing=3;" vertex="1" parent="w1LViPG7DVvnnRVhz0nK-1">
+          <mxGeometry x="-814" y="-80" width="769" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="XWS5DeXvxkO256BPDCBn-6" value="Chart" parent="0" />
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-1150.75" y="-639.2" width="993.75" height="272" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-2" value="End.&lt;br&gt;A/C is removed&lt;br&gt;from the fleet." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-310" y="-255.5" width="110" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-3" value="Aircraft Equipment Lists (LLP Status, Avionic Equipment List, Emergency Equipment List)" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.13315579227696367;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-1144.16" y="-503.2" width="98.16" height="130.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-4" value="" style="group;imageAspect=0;recursiveResize=0;" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-1144.16" y="-613" width="124" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-5" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract installed Components&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-4">
+          <mxGeometry y="3" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-6" value="Desktop 3128" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-4">
+          <mxGeometry x="11" y="5" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-7" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-29" target="ABNYTwjq6yasjHtBXuj7-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-295.05999999999995" y="-347.20000000000005" as="sourcePoint" />
+            <mxPoint x="-121" y="-344" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-8" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#CCCCCC;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-370" y="-240.5" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-9" value="" style="group;imageAspect=0;recursiveResize=0;" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-1035" y="-613" width="108" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-10" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Engines and APU Status Lists&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-9">
+          <mxGeometry y="3" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-11" value="Desktop 3128" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-9">
+          <mxGeometry x="11" y="5" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-12" value="Engine Status Reports (Engines / APU LLP Status, Engines / APU Equipment List" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.18148820326678763;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-1035" y="-503.2" width="98" height="110.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-13" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-10" target="ABNYTwjq6yasjHtBXuj7-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1086" y="-493" as="sourcePoint" />
+            <mxPoint x="-1036" y="-543" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-14" value="Aircraft Modification Status Reports (AD, SB, STC status reports)" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.20408163265306056;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-812" y="-503.2" width="98" height="88.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-15" value="" style="group;imageAspect=0;recursiveResize=0;" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-457" y="-613" width="60" height="86.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-16" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Aircraft W&amp;amp;B Status Report&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-15">
+          <mxGeometry x="-22" y="3" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-17" value="Desktop 292" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-15">
+          <mxGeometry x="-11" y="5" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-18" value="Aircraft W&amp;amp;B Report" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-478" y="-504.2" width="98" height="58.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-19" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-16" target="ABNYTwjq6yasjHtBXuj7-18">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-806.34" y="-493" as="sourcePoint" />
+            <mxPoint x="-756.34" y="-543" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-20" value="Task Card History Report, MPD Compliance Report" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.2301790281329916;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-699.08" y="-504.2" width="88.42" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-21" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-55" target="ABNYTwjq6yasjHtBXuj7-20">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-796.34" y="-483" as="sourcePoint" />
+            <mxPoint x="-746.34" y="-533" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-22" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-57" target="ABNYTwjq6yasjHtBXuj7-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-774" y="-488" as="sourcePoint" />
+            <mxPoint x="-774" y="-461" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-1" target="ABNYTwjq6yasjHtBXuj7-29">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-654" y="-310" />
+              <mxPoint x="-920" y="-310" />
+              <mxPoint x="-920" y="-225" />
+            </Array>
+            <mxPoint x="-574" y="-389" as="sourcePoint" />
+            <mxPoint x="-794.7799999999997" y="-234.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-27" value="Start.&lt;br&gt;Aircraft terminates&lt;br&gt;the operations" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-854" y="-753.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-28" value="" style="group" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-690" y="-267.5" width="146" height="84" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-29" value="Archive/Deactivate aircraft&lt;br&gt;(multiple steps)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#a3aebd;strokeColor=#6c8ebf;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-28">
+          <mxGeometry width="147.9466666666667" height="84.00000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-30" value="Desktop 308" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-28">
+          <mxGeometry x="5.353333333333223" y="5.600000000000001" width="77.86666666666667" height="19.040000000000003" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-5" target="ABNYTwjq6yasjHtBXuj7-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-33" value="Dent &amp;amp; Buckle Chart / List, Aircraft Repair Status" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.2301790281329916;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-364.71000000000004" y="-500.2" width="89.42" height="78.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-34" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-53" target="ABNYTwjq6yasjHtBXuj7-33">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1345.3400000000001" y="-763" as="sourcePoint" />
+            <mxPoint x="-1295.3400000000001" y="-813" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-35" value="" style="group;imageAspect=0;recursiveResize=0;" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-262.75" y="-610" width="104.75" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-36" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Aircraft Status Report&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-35">
+          <mxGeometry y="3" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-37" value="Desktop 476" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-35">
+          <mxGeometry x="11" y="5" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-38" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-36" target="ABNYTwjq6yasjHtBXuj7-49">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-939" y="-782" as="sourcePoint" />
+            <mxPoint x="-889" y="-832" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-39" value="" style="group;imageAspect=0;recursiveResize=0;" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-590" y="-613" width="124" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-40" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Aircraft Open Defects&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-39">
+          <mxGeometry y="3" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-41" value="Desktop 1" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-39">
+          <mxGeometry x="11" y="5" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-42" value="Deferred Defects Status" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.1827242524916934;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-582.5" y="-504.2" width="85" height="60.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-43" value="" style="edgeStyle=segmentEdgeStyle;endArrow=classic;html=1;curved=0;rounded=0;endSize=8;startSize=8;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-40" target="ABNYTwjq6yasjHtBXuj7-42">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-253" y="-492" as="sourcePoint" />
+            <mxPoint x="-203" y="-542" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-44" value="" style="group;imageAspect=0;recursiveResize=0;" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-924" y="-613" width="108" height="83" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-45" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Software Status List&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-44">
+          <mxGeometry y="3" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-46" value="Desktop 1832" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="ABNYTwjq6yasjHtBXuj7-44">
+          <mxGeometry x="11" y="5" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-47" value="Engine Status Reports (Engines / APU LLP Status, Engines / APU Equipment List" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.18148820326678763;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-923" y="-503.2" width="98" height="110.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-45" target="ABNYTwjq6yasjHtBXuj7-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-49" value="Aircraft Status Report&lt;br&gt;" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;size=0.1827242524916934;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-250" y="-500" width="82" height="60.2" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-50" target="ABNYTwjq6yasjHtBXuj7-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-65" value="no" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ABNYTwjq6yasjHtBXuj7-59">
+          <mxGeometry x="-0.147" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-50" target="ABNYTwjq6yasjHtBXuj7-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-68" value="Yes" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="ABNYTwjq6yasjHtBXuj7-66">
+          <mxGeometry x="-0.1604" y="-1" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-50" value="Transfert using S2500D files" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-514" y="-760.5" width="104" height="73.5" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-51" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-52" target="ABNYTwjq6yasjHtBXuj7-50">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-720.000115340697" y="-647.9411764705883" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-52" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-714" y="-744" width="41" height="41" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-57" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Aircraft Modification Status Report&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-812" y="-610" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-58" value="Desktop 231" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-801" y="-608" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="XWS5DeXvxkO256BPDCBn-6" source="ABNYTwjq6yasjHtBXuj7-60" target="ABNYTwjq6yasjHtBXuj7-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-794.7799999999997" y="-234.5" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="-85" y="-310" />
+              <mxPoint x="-920" y="-310" />
+              <mxPoint x="-920" y="-225" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-60" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;dashed=1;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-150" y="-639.2" width="130" height="272" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-70" value="Flydocs4_Aircraft lease return" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-145" y="-585.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-64" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=data:image/svg+xml,PHN2ZyB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1NjYgMTA1IiBoZWlnaHQ9IjEwNXB4IiB3aWR0aD0iNTY2cHgiPiYjeGE7ICAgIDx0aXRsZT5mbHlkb2NzPC90aXRsZT4mI3hhOyAgICA8ZGVmcz4mI3hhOyAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXJHcmFkaWVudC0xIiB5Mj0iMC4wMjA1MjMyNTAyJSIgeDI9IjQ5Ljk5NzYzMTglIiB5MT0iOTkuOTgwNDUyMiUiIHgxPSI0OS45OTc2MzE4JSI+JiN4YTsgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjMDBDQzdFIi8+JiN4YTsgICAgICAgICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMwMEZDOEYiLz4mI3hhOyAgICAgICAgPC9saW5lYXJHcmFkaWVudD4mI3hhOyAgICAgICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXJHcmFkaWVudC0yIiB5Mj0iMC4wOTU0OTk1OTU5JSIgeDI9IjUwLjEwNTI0NDIlIiB5MT0iOTkuOTYwMzgyJSIgeDE9IjUwLjEwNTI0NDIlIj4mI3hhOyAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMwMkEwNUYiLz4mI3hhOyAgICAgICAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzAwQ0M3RSIvPiYjeGE7ICAgICAgICA8L2xpbmVhckdyYWRpZW50PiYjeGE7ICAgIDwvZGVmcz4mI3hhOyAgICA8ZyBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlPSJub25lIiBpZD0iU3ltYm9scyI+JiN4YTsgICAgICAgIDxnIGZpbGwtcnVsZT0ibm9uemVybyIgaWQ9ImxvZ28tZmx5ZG9jcyI+JiN4YTsgICAgICAgICAgICA8ZyBpZD0iZmx5ZG9jcyI+JiN4YTsgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0idXJsKCNsaW5lYXJHcmFkaWVudC0xKSIgaWQ9IlBhdGgiIGQ9Ik0xNTQuMjgsMSBMNzYuNiwxIEM3MC4xOTU0MjQ1LDEuMDAzMTcxNjIgNjQuNDk5MzUxNiw1LjA3MjM2ODk0IDYyLjQyLDExLjEzIEw0MC44LDc0IEMzOC4xMiw4MC43MyAzNS42OSw4MyAzMi40Miw4NC4wNiBDMzIuMTQzODU3Nyw4NC4xMDQxODI4IDMxLjk1NTgxNzMsODQuMzYzODU3NiAzMi4wMDAwMDAxLDg0LjY0IEMzMi4wNDQxODI4LDg0LjkxNjE0MjMgMzIuMzAzODU3Niw4NS4xMDQxODI3IDMyLjU4LDg1LjA2IEwxMTAuMzUsODUuMDYgQzExNi43NTgyNTEsODUuMDYxMDk5IDEyMi40NTk0NTUsODAuOTkxMTA2NyAxMjQuNTQsNzQuOTMgTDE0NC4zNCwxNy4zIEwxNDYuNTcsMTAuODIgQzE0OS4wNiw1IDE1MS4zOSwzIDE1NC40NSwyIEMxNTQuNzI2MTQyLDEuOTUzMDU1OCAxNTQuOTExOTQ0LDEuNjkxMTQyMzcgMTU0Ljg2NSwxLjQxNSBDMTU0LjgxODA1NiwxLjEzODg1NzYzIDE1NC41NTYxNDIsMC45NTMwNTU3OTYgMTU0LjI4LDEgWiIvPiYjeGE7ICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQtMikiIGlkPSJQYXRoIiBkPSJNMzcuMjMsNDMgTDEuNSw0MyBDMS4yMjM4NTc2Myw0Mi45NTU4MTcyIDAuOTY0MTgyNzkyLDQzLjE0Mzg1NzYgMC45MjAwMDAwMTMsNDMuNDIgQzAuODc1ODE3MjM0LDQzLjY5NjE0MjQgMS4wNjM4NTc2Myw0My45NTU4MTcyIDEuMzQsNDQgQzQuNTYsNDUgNyw0Ny4yOCA5LjYyLDUzLjc5IEwxNi44OCw3NC45MiBMMTYuOTQsNzUuMSBDMTkuODcsODMuMzEgMzEuNjIsODMuMSAzNC40Niw3NC44MiBMNDIuNzMsNTAuNzUgQzQ1LjE2LDQzLjc3IDQxLjIyLDQzIDM3LjIzLDQzIFoiLz4mI3hhOyAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMEIxQTI4IiBpZD0iUGF0aCIgZD0iTTIxOC40LDM3LjU0IEwyMDYuODEsMzcuNTQgTDIwNi44MSw4NS4wNSBMMTg4LjkxLDg1LjA1IEwxODguOTEsMzcuNTQgTDE4MC40NywzNy41NCBMMTgwLjQ3LDI0Ljk0IEwxODguOTEsMjQuOTQgTDE4OC45MSwyMC41MyBDMTg4LjkxLDcuNDMgMTk1LjM0LDEgMjA4LjU3LDEgTDIxOC40LDEgTDIxOC40LDE1LjI0IEwyMTMuMTEsMTUuMjQgQzIwOC45NSwxNS4yNCAyMDYuODEsMTcuMTMgMjA2LjgxLDIwLjY2IEwyMDYuODEsMjQuOTQgTDIxOC40LDI0Ljk0IEwyMTguNCwzNy41NCBaIi8+JiN4YTsgICAgICAgICAgICAgICAgPHBvbHlnb24gcG9pbnRzPSIyNDIuNzkgODUuMDUgMjI0LjkgODUuMDUgMjI0LjkgMSAyNDIuNzkgMSIgZmlsbD0iIzBCMUEyOCIgaWQ9IlBhdGgiLz4mI3hhOyAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMEIxQTI4IiBpZD0iUGF0aCIgZD0iTTMwOS44OSwyNC4xOSBMMjg4LjcyLDg1LjU1IEMyODUuMzIsOTUuNTUgMjgzLjMsOTkuMDMgMjgwLjE1LDEwMS4zIEMyNzcuMjUsMTAzLjQ0IDI3My4yMiwxMDQuMyAyNjYuNTQsMTA0LjMgTDI1Ni4wOCwxMDQuMyBMMjU2LjA4LDkwLjg0IEwyNjEuMzgsOTAuODQgQzI2Ny42OCw5MC44NCAyNzAuNTcsODguNDUgMjcwLjU3LDgzLjE2IEMyNzAuNTcsODEuMDEgMjcwLjQ1LDgwLjY0IDI2OC4zMSw3NS4zNCBMMjQ4LjMxLDI0LjE5IEwyNjcuNDYsMjQuMTkgTDI3Ni4zNyw1MiBDMjc4LjEzLDU3LjY3IDI3OC4xMyw1Ny44IDI3OS41Miw2Mi44NCBMMjgwLjI4LDY1LjIzIEMyODEuMDMsNjEuMjMgMjgyLjA0LDU3LjA0IDI4My40Myw1MS42MyBMMjkxLjM3LDI0LjE2IEwzMDkuODksMjQuMTkgWiIvPiYjeGE7ICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiMwQjFBMjgiIGlkPSJTaGFwZSIgZD0iTTM3MC45Myw4NS4wNSBMMzUzLjgsODUuMDUgTDM1My44LDc4LjUgQzM0OS4yNiw4NC40MiAzNDQuNDcsODYuNjggMzM3LjA0LDg2LjY4IEMzMjEuMDQsODYuNjggMzEwLjMzLDczLjk2IDMxMC4zMyw1NC42OCBDMzEwLjMzLDM1LjQgMzIxLjE2LDIyLjQyIDMzNy41NCwyMi40MiBDMzQ0LjA5LDIyLjQyIDM0OC43NiwyNC4zMSAzNTMuMDQsMjguNzIgTDM1My4wNCwxIEwzNzAuOTMsMSBMMzcwLjkzLDg1LjA1IFogTTMyNy45Myw1NC41NSBDMzI3LjkzLDY1LjI2IDMzMi45Myw3Mi4xOSAzNDAuNzgsNzIuMTkgQzM0OC42Myw3Mi4xOSAzNTMuNjMsNjUuMTkgMzUzLjYzLDU0LjgxIEMzNTMuNjMsNDMuOTcgMzQ4LjYzLDM2LjkxIDM0MC43OCwzNi45MSBDMzMyLjkzLDM2LjkxIDMyOCw0My44NCAzMjgsNTQuNTUgTDMyNy45Myw1NC41NSBaIi8+JiN4YTsgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iIzBCMUEyOCIgaWQ9IlNoYXBlIiBkPSJNNDQwLjc0LDU1LjA2IEM0NDAuNzQsNzMuNDUgNDI3LjEzLDg2LjY4IDQwOC4zNSw4Ni42OCBDMzg5LjU3LDg2LjY4IDM3Ni4xLDczLjQ1IDM3Ni4xLDU0LjU1IEMzNzYuMSwzNS42NSAzODkuNDUsMjIuNTUgNDA4LjM1LDIyLjU1IEM0MjcuNjMsMjIuNTUgNDQwLjc0LDM1LjY1IDQ0MC43NCw1NS4wNiBaIE0zOTQuMTEsNTQuNTUgQzM5NC4xMSw2Ni4wMiAzOTkuMjgsNzIuNDUgNDA4LjQ4LDcyLjQ1IEM0MTcuNDMsNzIuNDUgNDIyLjcyLDY2LjAyIDQyMi43Miw1NC45MyBDNDIyLjcyLDQzLjIxIDQxNy43MiwzNi43OSA0MDguMzUsMzYuNzkgQzM5OS4yOCwzNi43OSAzOTQuMTEsNDMuMjEgMzk0LjExLDU0LjU1IFoiLz4mI3hhOyAgICAgICAgICAgICAgICA8cGF0aCBmaWxsPSIjMEIxQTI4IiBpZD0iUGF0aCIgZD0iTTQ4Ny4zNiw0Ni4xMSBDNDg2LjM2LDQwLjMxIDQ4Mi4zNiwzNy4wNCA0NzYuMjcsMzcuMDQgQzQ2OC4wOCwzNy4wNCA0NjMuNjcsNDMuMjEgNDYzLjY3LDU0LjMgQzQ2My42Nyw2Ni4wMiA0NjguMDgsNzIuMTkgNDc2LjM5LDcyLjE5IEM0ODIuODIsNzIuMTkgNDg2LjM5LDY4LjkyIDQ4Ny43Myw2MS43NCBMNTA1LjEyLDYyLjYyIEM1MDIuNiw3OCA0OTIsODYuNjggNDc1Ljg5LDg2LjY4IEM0NTcuMzcsODYuNjggNDQ1LjY1LDc0LjM0IDQ0NS42NSw1NC44MSBDNDQ1LjY1LDM0LjY0IDQ1Ny4yNCwyMi41NSA0NzYuNTIsMjIuNTUgQzQ5Mi40LDIyLjU1IDUwMy4yMywzMS42MiA1MDQuMzcsNDYuMTEgTDQ4Ny4zNiw0Ni4xMSBaIi8+JiN4YTsgICAgICAgICAgICAgICAgPHBhdGggZmlsbD0iIzBCMUEyOCIgaWQ9IlBhdGgiIGQ9Ik01NDcuNDgsNDIuNDYgQzU0Ni43MywzNy45MiA1NDMuMDcsMzUuNTMgNTM3LjE1LDM1LjUzIEM1MzEuOTgsMzUuNTMgNTI4LjU4LDM3LjUzIDUyOC41OCw0MC41MyBDNTI4LjU4LDQyLjc5IDUzMC4zNCw0My45MyA1MzYuMDEsNDUuMTkgTDU0Ny4yMyw0Ny41OCBDNTU0LjY2LDQ5LjA5IDU1OC40NCw1MC43MyA1NjEuMDksNTMuNSBDNTYzLjk5LDU2LjI4IDU2NS42Myw2MC44MSA1NjUuNjMsNjUuNzMgQzU2NS42Myw3OC41OCA1NTUuMTcsODYuNjQgNTM4LjI4LDg2LjY0IEM1MjEuMzksODYuNjQgNTEwLjk0LDc4LjcxIDUwOS45Myw2NS4yMiBMNTI2LjY5LDY1LjIyIEM1MjcuNjksNzEuMDIgNTMxLjQ4LDczLjY3IDUzOC42OSw3My42NyBDNTQ0LjM2LDczLjY3IDU0OC4wMiw3MS40IDU0OC4wMiw2Ny43NCBDNTQ4LjAyLDY0Ljg1IDU0Ni4wMiw2My4zMyA1NDEuMjEsNjIuMiBMNTMwLjEyLDU5LjY4IEM1MTYuNzcsNTYuNzggNTExLjYsNTEuODcgNTExLjYsNDIuMTYgQzUxMS42LDI5Ljk0IDUyMS4zLDIyLjUxIDUzNy42LDIyLjUxIEM1NTMuMjIsMjIuNTEgNTYyLjY3LDI5LjU2IDU2NC4zMSw0Mi40MiBMNTQ3LjQ4LDQyLjQ2IFoiLz4mI3hhOyAgICAgICAgICAgIDwvZz4mI3hhOyAgICAgICAgPC9nPiYjeGE7ICAgIDwvZz4mI3hhOzwvc3ZnPg==;rotation=-30;" vertex="1" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-116" y="-529" width="91" height="16.88" as="geometry" />
+        </mxCell>
+        <mxCell id="SXykwE1kzhrIFjDCDu7s-1" value="" style="group" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-370" y="-606" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-53" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Structural Damage Report&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="SXykwE1kzhrIFjDCDu7s-1">
+          <mxGeometry width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-54" value="Desktop 786" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="SXykwE1kzhrIFjDCDu7s-1">
+          <mxGeometry x="5.289999999999964" width="80" height="17" as="geometry" />
+        </mxCell>
+        <mxCell id="SXykwE1kzhrIFjDCDu7s-3" value="" style="group" vertex="1" connectable="0" parent="XWS5DeXvxkO256BPDCBn-6">
+          <mxGeometry x="-703.87" y="-610" width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-55" value="&lt;p style=&quot;line-height: 100%;&quot;&gt;Extract Task Card History and Status&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E5221B;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="SXykwE1kzhrIFjDCDu7s-3">
+          <mxGeometry width="100" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ABNYTwjq6yasjHtBXuj7-56" value="Desktop 673" style="text;html=1;strokeColor=default;fillColor=default;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;shadow=1;" vertex="1" parent="SXykwE1kzhrIFjDCDu7s-3">
+          <mxGeometry x="4.789999999999964" y="2" width="80" height="17" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

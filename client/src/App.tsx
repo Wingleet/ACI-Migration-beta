@@ -10,6 +10,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Process from "./pages/Process";
 import Organigrame from "./pages/Organigrame";
+import DTOrga from "./pages/DTOrga";
 
 
 function Router() {
@@ -18,6 +19,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/process"} component={Process} />
       <Route path={"/organigrame"} component={Organigrame} />
+      <Route path={"/dt-orga"} component={DTOrga} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

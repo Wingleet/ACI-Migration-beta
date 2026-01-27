@@ -19,9 +19,9 @@ export const ACI_FLOWCHART_IMAGE_MAPPING: Record<string, string> = {
   
   // Module 02 - Technical Services
   '02.01': '02.01 Aircraft Phase-in ACI.png',
-  '02.02': '02.02 Aircraft Phase-out ACI.png',
-  '02.03': '02.03 Multi Operator AC Transfer ACI.png',
-  '02.04': '02.04 Aircraft & Component Counters ACI.png',
+  '02.02': '02.02_Aircraft Phase-out ACI.png',
+  '02.03': '02.03 Multi-Operator AC Transfer ACI.png',
+  '02.04': '02.04 Aircraft & Component counters ACI.png',
   '02.05': '02.05 Technical Library ACI.png',
   '02.06': '02.06 Requirement Work Scoping ACI.png',
   '02.07': '02.07 Structural Damages ACI.png',

@@ -1,0 +1,37 @@
+<mxfile host="65bd71144e">
+    <diagram id="RNGnkLI-MCDgjgDuYWAb" name="02.05 Technical Library">
+        <mxGraphModel dx="2115" dy="1562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="K_kKvktNovDIW0gajXFE-11" value="Background" style="" parent="0"/>
+                <mxCell id="K_kKvktNovDIW0gajXFE-13" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;02.05 Technical Library - ACI&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="K_kKvktNovDIW0gajXFE-11" vertex="1">
+                    <mxGeometry x="-1160" y="-820" width="1150" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="bY_GgN4enz4Orr-RKXMH-69" value="A new publication is&lt;br&gt;available" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="K_kKvktNovDIW0gajXFE-11" vertex="1">
+                    <mxGeometry x="-924.5" y="-557" width="130" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="zU2BjMWSQwcYBp5QRqFI-1" value="&lt;font color=&quot;#000000&quot;&gt;&lt;br&gt;No stand alone save&lt;br&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;" parent="K_kKvktNovDIW0gajXFE-11" vertex="1">
+                    <mxGeometry x="-784.5" y="-630" width="190" height="104" as="geometry"/>
+                </mxCell>
+                <mxCell id="1" value="Main Layer" style="" parent="0"/>
+                <mxCell id="aWeAcaWYl1lUYU_2sXSY-3" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1154" y="-108" width="144" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="aWeAcaWYl1lUYU_2sXSY-4" value="LEGEND" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+                    <mxGeometry x="-1154" y="-108" width="30" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="p1n9YsAw8kMUsl4M7CEJ-27" value="Technical Services" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="-1112" y="-91" width="80" height="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="g3TNZ4spVzTnUWW9o5ED-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="N-9kClkVZ6uvUe7OJd6_-26" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-784.5" y="-575" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="N-9kClkVZ6uvUe7OJd6_-26" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="-872.5" y="-590" width="30" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

@@ -14,7 +14,9 @@ import {
   Trash2,
   User,
   Building2,
+  Network,
 } from 'lucide-react';
+import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -112,15 +114,27 @@ export const ServicesSectionSidebar: React.FC<ServicesSectionProps> = ({ startY 
         <span className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
           Services Impactés
         </span>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="h-5 w-5"
-          onClick={() => setShowAddDialog(true)}
-          title="Ajouter un membre"
-        >
-          <Plus className="w-3 h-3" />
-        </Button>
+        <div className="flex items-center gap-1">
+          <Link href="/organigrame">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-5 w-5"
+              title="Voir l'organigramme"
+            >
+              <Network className="w-3 h-3" />
+            </Button>
+          </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-5 w-5"
+            onClick={() => setShowAddDialog(true)}
+            title="Ajouter un membre"
+          >
+            <Plus className="w-3 h-3" />
+          </Button>
+        </div>
       </div>
 
       {/* Services List */}

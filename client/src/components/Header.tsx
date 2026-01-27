@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { 
   BarChart3, 
   GitBranch, 
-  Network,
+  Building2,
 } from 'lucide-react';
 
 const navItems = [
@@ -21,10 +21,10 @@ const navItems = [
     description: 'Workflows'
   },
   { 
-    path: '/organigrame', 
-    label: 'Organigramme', 
-    icon: Network,
-    description: 'Structure'
+    path: '/dt-orga', 
+    label: 'DT Orga', 
+    icon: Building2,
+    description: 'Organisation DT'
   },
 ];
 
