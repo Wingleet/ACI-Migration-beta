@@ -121,6 +121,21 @@ export const DT_ORGA_DATA: OrgNode = {
             { id: 'p-06.05', name: 'Aircraft Incidents', subModuleId: '06.05' },
           ],
         },
+        {
+          id: 'preparation-work',
+          name: 'Preparation Work',
+          type: 'unit',
+          color: '#f472b6',
+          personnel: [],
+          processes: [
+            { id: 'p-07.01', name: 'Shift Planning', subModuleId: '07.01' },
+            { id: 'p-07.02', name: 'Hangar & Resources', subModuleId: '07.02' },
+            { id: 'p-07.03', name: 'Work Templates', subModuleId: '07.03' },
+            { id: 'p-07.04', name: 'Production Plan Preparation', subModuleId: '07.04' },
+            { id: 'p-07.05', name: 'Resource & Staff Allocation', subModuleId: '07.05' },
+            { id: 'p-07.06', name: 'Customer MRO Work Packages', subModuleId: '07.06' },
+          ],
+        },
       ],
     },
     {
