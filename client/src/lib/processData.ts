@@ -1,15 +1,19 @@
 import { Module, SubModule, GapRecord, Department } from '@/types/process';
 
 // IDs des sous-modules NON sélectionnés (gris)
-const UNSELECTED_SUBMODULES = new Set([
+export const UNSELECTED_SUBMODULES = new Set([
+  '02.03', // Multi-Operator A/C Transfer
   '04.05', // Quality Auditing
   '05.01', // Aircraft Acceptance
+  '05.02', // Pilot Reports (PIREPS)
+  '05.03', // Cabin Defects
   '05.04', // Flight Closing
   '05.05', // Flight Simulators
+  '07.02', // Hangar & Resources
+  '07.03', // Work Templates
   '07.04', // Production Plan Preparation
   '07.06', // Customer MRO Work Packages
   '08.01', // Maintenance Check Control
-  '11.05', // Closed-Loop Repair
   '12.04', // Commercial Pricing & Billing
   '12.05', // Customer Quotations
   '12.07', // Financial Multi-Entity

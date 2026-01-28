@@ -22,7 +22,7 @@ import {
   Check,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { DEPARTMENTS } from '@/lib/processData';
+import { DEPARTMENTS, UNSELECTED_SUBMODULES } from '@/lib/processData';
 import { 
   fetchAllItems, 
   saveItem,
@@ -55,7 +55,15 @@ export const ProcessToolbar: React.FC = () => {
         const items = await fetchAllItems();
         const savedItem = items.find(item => item.id === SHARED_SAVE_ID);
         if (savedItem?.modules) {
-          setModules(savedItem.modules);
+          // Apply UNSELECTED_SUBMODULES to ensure isSelected is always correct
+          const modulesWithCorrectSelection = savedItem.modules.map((mod: any) => ({
+            ...mod,
+            subModules: mod.subModules.map((sm: any) => ({
+              ...sm,
+              isSelected: !UNSELECTED_SUBMODULES.has(sm.id),
+            })),
+          }));
+          setModules(modulesWithCorrectSelection);
           setCloudStatus('connected');
         } else {
           setCloudStatus('idle');

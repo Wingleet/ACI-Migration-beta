@@ -5,6 +5,7 @@ import {
   BarChart3, 
   GitBranch, 
   Building2,
+  Grid3X3,
 } from 'lucide-react';
 
 const navItems = [
@@ -19,6 +20,12 @@ const navItems = [
     label: 'Process', 
     icon: GitBranch,
     description: 'Workflows'
+  },
+  { 
+    path: '/matrix-apn', 
+    label: 'Matrix APN', 
+    icon: Grid3X3,
+    description: 'Matrice APN'
   },
   { 
     path: '/dt-orga', 
