@@ -54,6 +54,8 @@ export const Toolbar: React.FC = () => {
   const [cloudStatus, setCloudStatus] = useState<'idle' | 'connected' | 'error'>('idle');
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [lastSaved, setLastSaved] = useState<string | null>(null);
+  const autoSaveIntervalRef = React.useRef<NodeJS.Timeout | null>(null);
+  const lastSaveDataRef = React.useRef<string>('');
 
   // Load data from cloud on mount
   useEffect(() => {
@@ -149,6 +151,65 @@ export const Toolbar: React.FC = () => {
       setIsSaving(false);
     }
   };
+
+  // Auto-save every 5 seconds if data has changed
+  React.useEffect(() => {
+    const autoSave = async () => {
+      if (isSaving || isLoading) return;
+      
+      const dataToSave = {
+        project: {
+          ...project,
+          startDate: project.startDate.toISOString(),
+          tasks: project.tasks.map(task => ({
+            ...task,
+            start: task.start.toISOString(),
+            end: task.end.toISOString(),
+            baselineStart: task.baselineStart?.toISOString(),
+            baselineEnd: task.baselineEnd?.toISOString(),
+          })),
+        },
+        members,
+      };
+      
+      const currentData = JSON.stringify(dataToSave);
+      if (currentData === lastSaveDataRef.current) return; // No changes
+      
+      lastSaveDataRef.current = currentData;
+      
+      try {
+        setIsSaving(true);
+        const response = await fetch('/api/project-save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: currentData,
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          setCloudStatus('connected');
+          setSaveSuccess(true);
+          setLastSaved(result.savedAt);
+          setTimeout(() => setSaveSuccess(false), 1000);
+        }
+      } catch (error) {
+        console.error('Auto-save failed:', error);
+        setCloudStatus('error');
+      } finally {
+        setIsSaving(false);
+      }
+    };
+
+    // Start auto-save interval
+    autoSaveIntervalRef.current = setInterval(autoSave, 5000);
+
+    return () => {
+      if (autoSaveIntervalRef.current) {
+        clearInterval(autoSaveIntervalRef.current);
+      }
+    };
+  }, [isSaving, isLoading, project, members]);
 
   const handleZoomIn = () => {
     const currentIndex = availableZoomLevels.indexOf(viewSettings.zoomLevel);

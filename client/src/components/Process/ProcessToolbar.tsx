@@ -41,6 +41,8 @@ export const ProcessToolbar: React.FC = () => {
   const [cloudStatus, setCloudStatus] = useState<'idle' | 'connected' | 'error'>('idle');
   const [saveSuccess, setSaveSuccess] = useState(false);
   const hasLoadedRef = useRef(false);
+  const autoSaveIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const lastSaveDataRef = useRef<string>('');
 
   // Auto-load saved state on mount
   useEffect(() => {
@@ -126,6 +128,47 @@ export const ProcessToolbar: React.FC = () => {
       setIsSaving(false);
     }
   };
+
+  // Auto-save every 5 seconds if data has changed
+  useEffect(() => {
+    const autoSave = async () => {
+      if (isSaving || isLoading) return;
+      
+      const currentData = JSON.stringify(extractSaveData());
+      if (currentData === lastSaveDataRef.current) return; // No changes
+      
+      lastSaveDataRef.current = currentData;
+      
+      try {
+        setIsSaving(true);
+        await saveItem({
+          id: SHARED_SAVE_ID,
+          title: 'Process Gap Analysis',
+          description: `Auto-sauvegardé le ${new Date().toLocaleString('fr-FR')}`,
+          tags: ['process', 'gap-analysis'],
+          status: 'active',
+          modules: JSON.parse(currentData),
+        });
+        setCloudStatus('connected');
+        setSaveSuccess(true);
+        setTimeout(() => setSaveSuccess(false), 1000);
+      } catch (error) {
+        console.error('Auto-save failed:', error);
+        setCloudStatus('error');
+      } finally {
+        setIsSaving(false);
+      }
+    };
+
+    // Start auto-save interval
+    autoSaveIntervalRef.current = setInterval(autoSave, 5000);
+
+    return () => {
+      if (autoSaveIntervalRef.current) {
+        clearInterval(autoSaveIntervalRef.current);
+      }
+    };
+  }, [isSaving, isLoading, modules]);
 
   return (
     <div className="border-b border-border bg-card/80 backdrop-blur-sm shrink-0 px-2 py-1 flex items-center gap-4 overflow-x-auto">

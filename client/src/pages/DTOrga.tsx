@@ -428,7 +428,7 @@ interface DetailPanelProps {
 
 const DetailPanel: React.FC<DetailPanelProps> = ({ node, onClose }) => {
   return (
-    <div className="h-full flex flex-col bg-card border-l border-border">
+    <div className="h-full flex flex-col bg-card border-l border-border overflow-hidden">
       {/* Header */}
       <div 
         className="p-4 border-b border-border"
@@ -448,7 +448,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ node, onClose }) => {
         </div>
       </div>
 
-      <ScrollArea className="flex-1">
+      <div className="flex-1 overflow-y-auto">
         <div className="p-4 space-y-6">
           {/* Personnel Section */}
           <div>
@@ -515,7 +515,7 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ node, onClose }) => {
             )}
           </div>
         </div>
-      </ScrollArea>
+      </div>
     </div>
   );
 };
@@ -656,7 +656,7 @@ const DTOrga: React.FC = () => {
 
       {/* Right Panel - Details */}
       {selectedNode && (
-        <div className="w-96 shrink-0 relative z-10">
+        <div className="w-96 shrink-0 relative z-10 h-full overflow-hidden">
           <DetailPanel node={selectedNode} onClose={() => setSelectedNode(null)} />
         </div>
       )}
