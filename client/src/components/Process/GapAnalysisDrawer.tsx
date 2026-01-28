@@ -15,6 +15,8 @@ import {
   ZoomIn,
   FileDown,
   Loader2,
+  Grid3X3,
+  ExternalLink,
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { toPng } from 'html-to-image';
@@ -38,6 +40,14 @@ import { FlowchartDiagram } from '@/types/flowchart';
 import { getFlowchartImages, getFlowchartImagePath, getAciFlowchartImage, getAciDrawioFile } from '@/lib/flowchartImageMapping';
 import { DrawioEditor } from './DrawioEditor';
 import { Pencil } from 'lucide-react';
+import { MATRIX_DATA, AREA_COLORS } from '@/lib/matrixApnData';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface GapAnalysisDrawerProps {
   module: Module;
@@ -68,6 +78,12 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [isAciImageZoomed, setIsAciImageZoomed] = useState(false);
   const [isDrawioEditorOpen, setIsDrawioEditorOpen] = useState(false);
+  const [isApnDialogOpen, setIsApnDialogOpen] = useState(false);
+  
+  // Get APNs for this process
+  const processApns = useMemo(() => {
+    return MATRIX_DATA.filter(apn => apn.processId === subModule.id);
+  }, [subModule.id]);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
@@ -447,6 +463,92 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
       }
       
       // ==========================================
+      // APN Page(s)
+      // ==========================================
+      pdf.addPage();
+      yPosition = addPageHeader('APNs Associés');
+      
+      // Title
+      pdf.setFillColor('#e0e7ff');
+      pdf.roundedRect(margin, yPosition - 2, pageWidth - margin * 2, 10, 2, 2, 'F');
+      pdf.setTextColor('#4338ca');
+      pdf.setFontSize(11);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text(`APNs pour ce Process (${processApns.length})`, margin + 5, yPosition + 5);
+      
+      yPosition += 15;
+      
+      if (processApns.length === 0) {
+        pdf.setFillColor(lightGray);
+        pdf.roundedRect(margin, yPosition, pageWidth - margin * 2, 30, 3, 3, 'F');
+        pdf.setFontSize(10);
+        pdf.setFont('helvetica', 'italic');
+        pdf.setTextColor(grayColor);
+        pdf.text('Aucun APN associé à ce process', pageWidth / 2 - 40, yPosition + 17);
+      } else {
+        // Table header
+        pdf.setFillColor('#f3f4f6');
+        pdf.roundedRect(margin, yPosition - 2, pageWidth - margin * 2, 8, 1, 1, 'F');
+        pdf.setFontSize(8);
+        pdf.setFont('helvetica', 'bold');
+        pdf.setTextColor('#374151');
+        pdf.text('APN', margin + 5, yPosition + 3);
+        pdf.text('Nom', margin + 30, yPosition + 3);
+        pdf.text('Description', margin + 110, yPosition + 3);
+        
+        yPosition += 10;
+        
+        for (const apn of processApns) {
+          // Calculate row height based on content
+          const titleLines = pdf.splitTextToSize(apn.title || '-', pageWidth - margin * 2 - 115);
+          const rowHeight = Math.max(8, 4 + titleLines.length * 3.5);
+          
+          // Check if we need a new page
+          if (yPosition + rowHeight > pageHeight - 20) {
+            pdf.addPage();
+            yPosition = margin + 20;
+            
+            // Repeat table header
+            pdf.setFillColor('#f3f4f6');
+            pdf.roundedRect(margin, yPosition - 2, pageWidth - margin * 2, 8, 1, 1, 'F');
+            pdf.setFontSize(8);
+            pdf.setFont('helvetica', 'bold');
+            pdf.setTextColor('#374151');
+            pdf.text('APN', margin + 5, yPosition + 3);
+            pdf.text('Nom', margin + 30, yPosition + 3);
+            pdf.text('Description', margin + 110, yPosition + 3);
+            yPosition += 10;
+          }
+          
+          // Row background (alternating)
+          const rowIndex = processApns.indexOf(apn);
+          if (rowIndex % 2 === 0) {
+            pdf.setFillColor('#fafafa');
+            pdf.rect(margin, yPosition - 2, pageWidth - margin * 2, rowHeight, 'F');
+          }
+          
+          // APN number
+          pdf.setFontSize(8);
+          pdf.setFont('helvetica', 'bold');
+          pdf.setTextColor('#4338ca');
+          pdf.text(apn.apn.toString(), margin + 5, yPosition + 3);
+          
+          // APN name (truncated)
+          pdf.setFont('helvetica', 'normal');
+          pdf.setTextColor('#000000');
+          const apnNameTruncated = apn.apnName.length > 35 ? apn.apnName.substring(0, 35) + '...' : apn.apnName;
+          pdf.text(apnNameTruncated, margin + 30, yPosition + 3);
+          
+          // Title/Description
+          pdf.setFontSize(7);
+          pdf.setTextColor(grayColor);
+          pdf.text(titleLines, margin + 110, yPosition + 3);
+          
+          yPosition += rowHeight + 1;
+        }
+      }
+      
+      // ==========================================
       // FOOTER on all pages
       // ==========================================
       const totalPages = pdf.getNumberOfPages();
@@ -558,6 +660,17 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
                 ))}
               </SelectContent>
             </Select>
+
+            {/* APN Button */}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="h-7 text-[10px] gap-1"
+              onClick={() => setIsApnDialogOpen(true)}
+            >
+              <Grid3X3 className="w-3 h-3" />
+              APNs ({processApns.length})
+            </Button>
 
             {/* Export PDF Button */}
             <Button 
@@ -848,6 +961,55 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
           </div>
         </div>
       )}
+
+      {/* APN Dialog */}
+      <Dialog open={isApnDialogOpen} onOpenChange={setIsApnDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[80vh]">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <Grid3X3 className="w-5 h-5 text-primary" />
+              APNs pour {subModule.id} - {subModule.name}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="flex items-center gap-2 mb-3">
+            <Badge variant="secondary">{processApns.length} APNs</Badge>
+          </div>
+          <ScrollArea className="h-[400px] pr-4">
+            {processApns.length > 0 ? (
+              <div className="space-y-2">
+                {processApns.map((apn) => {
+                  const areaColor = AREA_COLORS[apn.areaCode] || '#64748b';
+                  return (
+                    <div 
+                      key={apn.id}
+                      className="p-3 rounded-lg border border-border/50 bg-muted/30 hover:bg-muted/50 transition-colors"
+                    >
+                      <div className="flex items-start gap-3">
+                        <Badge 
+                          variant="outline" 
+                          className="font-mono text-xs shrink-0"
+                          style={{ borderColor: areaColor, color: areaColor }}
+                        >
+                          APN {apn.apn}
+                        </Badge>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium">{apn.apnName}</p>
+                          <p className="text-xs text-muted-foreground mt-1 line-clamp-2">{apn.title}</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center h-full text-muted-foreground">
+                <Grid3X3 className="w-12 h-12 mb-2 opacity-50" />
+                <p>Aucun APN associé à ce process</p>
+              </div>
+            )}
+          </ScrollArea>
+        </DialogContent>
+      </Dialog>
 
       {/* Draw.io Editor Modal */}
       <DrawioEditor
