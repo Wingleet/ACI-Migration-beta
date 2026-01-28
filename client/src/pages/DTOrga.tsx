@@ -13,12 +13,15 @@ import {
   ZoomIn,
   ZoomOut,
   RotateCcw,
+  FileDown,
+  Loader2,
 } from 'lucide-react';
 import { DT_ORGA_DATA, OrgNode, PersonnelInfo, ProcessInfo } from '@/lib/dtOrgaData';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Link } from 'wouter';
+import { jsPDF } from 'jspdf';
 
 // ============================================
 // TREE VIEW COMPONENTS
@@ -531,6 +534,188 @@ const DTOrga: React.FC = () => {
   const [viewMode, setViewMode] = useState<ViewMode>('radial');
   const [showPersonnel, setShowPersonnel] = useState(true);
   const [zoom, setZoom] = useState(100);
+  const [isExporting, setIsExporting] = useState(false);
+
+  // Export org chart to PDF - Single page with spread layout
+  const handleExportPdf = async () => {
+    setIsExporting(true);
+    
+    try {
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'mm',
+        format: 'a3',
+      });
+      
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const margin = 10;
+      
+      // Helper to draw a box with personnel
+      const drawBox = (x: number, y: number, width: number, title: string, personnel: PersonnelInfo[], color: string, isService: boolean = false): number => {
+        const headerHeight = isService ? 9 : 7;
+        const lineHeight = 4.5;
+        const padding = 2.5;
+        
+        // Calculate height based on personnel
+        const personnelHeight = personnel.length * lineHeight;
+        const totalHeight = headerHeight + personnelHeight + padding * 2;
+        
+        // Background
+        pdf.setFillColor('#ffffff');
+        pdf.roundedRect(x, y, width, totalHeight, 1.5, 1.5, 'F');
+        
+        // Border
+        pdf.setDrawColor(color);
+        pdf.setLineWidth(isService ? 0.6 : 0.3);
+        pdf.roundedRect(x, y, width, totalHeight, 1.5, 1.5, 'S');
+        
+        // Header
+        pdf.setFillColor(color);
+        pdf.roundedRect(x, y, width, headerHeight, 1.5, 1.5, 'F');
+        pdf.rect(x, y + headerHeight - 1.5, width, 1.5, 'F');
+        
+        // Title
+        pdf.setTextColor('#ffffff');
+        pdf.setFontSize(isService ? 9 : 7);
+        pdf.setFont('helvetica', 'bold');
+        const maxTitleLen = Math.floor(width / 2.2);
+        const displayTitle = title.length > maxTitleLen ? title.substring(0, maxTitleLen - 2) + '..' : title;
+        pdf.text(displayTitle, x + width/2 - pdf.getTextWidth(displayTitle)/2, y + (isService ? 6.5 : 5));
+        
+        // Personnel
+        let pY = y + headerHeight + padding;
+        pdf.setFont('helvetica', 'normal');
+        pdf.setTextColor('#334155');
+        pdf.setFontSize(5.5);
+        
+        personnel.forEach((person) => {
+          const nameParts = person.name.split(' ');
+          const shortName = nameParts.length > 1 
+            ? `${nameParts[0].charAt(0)}. ${nameParts.slice(1).join(' ')}` 
+            : person.name;
+          const maxLen = Math.floor(width / 2);
+          const displayName = shortName.length > maxLen ? shortName.substring(0, maxLen - 2) + '..' : shortName;
+          pdf.text(displayName, x + 2, pY + 2.5);
+          pY += lineHeight;
+        });
+        
+        return totalHeight;
+      };
+      
+      // Draw connection line
+      const drawLine = (x1: number, y1: number, x2: number, y2: number) => {
+        pdf.setDrawColor('#94a3b8');
+        pdf.setLineWidth(0.3);
+        pdf.line(x1, y1, x2, y2);
+      };
+      
+      // Title
+      pdf.setTextColor('#1e293b');
+      pdf.setFontSize(11);
+      pdf.setFont('helvetica', 'bold');
+      pdf.text('Organigramme Direction Technique', pageWidth/2 - 32, margin);
+      
+      const services = DT_ORGA_DATA.children || [];
+      
+      // Layout positions - spread across the page
+      // DT at center top
+      const dtWidth = 45;
+      const dtX = pageWidth/2 - dtWidth/2;
+      const dtY = margin + 8;
+      const dtHeight = drawBox(dtX, dtY, dtWidth, DT_ORGA_DATA.name, DT_ORGA_DATA.personnel || [], '#6366f1', true);
+      
+      // Define service positions spread across the page
+      // [Bureau Technique, Production, Logistique, MCC, Compliance, Admin]
+      const servicePositions = [
+        { name: 'bureau-technique', x: margin + 40, y: 45, unitsBelow: true },
+        { name: 'production', x: pageWidth/2 - 20, y: 110, unitsBelow: true },
+        { name: 'logistique', x: margin + 80, y: pageHeight/2 + 5, unitsBelow: true },
+        { name: 'mcc', x: pageWidth - margin - 50, y: pageHeight/2 + 30, unitsBelow: false },
+        { name: 'compliance-safety', x: pageWidth/2 + 70, y: 55, unitsBelow: false },
+        { name: 'admin', x: pageWidth - margin - 45, y: 55, unitsBelow: false },
+      ];
+      
+      const serviceWidth = 40;
+      const unitWidth = 32;
+      
+      services.forEach((service, idx) => {
+        const pos = servicePositions[idx] || { x: margin + idx * 50, y: 60, unitsBelow: true };
+        
+        // Draw connection from DT to service
+        const dtCenterX = dtX + dtWidth/2;
+        const dtBottomY = dtY + dtHeight;
+        const serviceCenterX = pos.x + serviceWidth/2;
+        
+        // Elbow connection
+        const midY = (dtBottomY + pos.y) / 2;
+        drawLine(dtCenterX, dtBottomY, dtCenterX, midY);
+        drawLine(dtCenterX, midY, serviceCenterX, midY);
+        drawLine(serviceCenterX, midY, serviceCenterX, pos.y);
+        
+        // Draw service box
+        const serviceHeight = drawBox(pos.x, pos.y, serviceWidth, service.name, service.personnel || [], service.color || '#8b5cf6', true);
+        
+        // Draw units
+        const units = service.children || [];
+        if (units.length > 0) {
+          const unitGap = 3;
+          const unitsPerRow = Math.min(units.length, 4);
+          const totalUnitsWidth = unitsPerRow * unitWidth + (unitsPerRow - 1) * unitGap;
+          
+          let unitStartX = pos.x + (serviceWidth - totalUnitsWidth) / 2;
+          if (unitStartX < pos.x - 20) unitStartX = pos.x - 20;
+          
+          let unitY = pos.y + serviceHeight + 8;
+          let currentRow = 0;
+          
+          units.forEach((unit, uIdx) => {
+            const col = uIdx % unitsPerRow;
+            if (col === 0 && uIdx > 0) {
+              currentRow++;
+              unitY += 35;
+            }
+            
+            const uX = unitStartX + col * (unitWidth + unitGap);
+            
+            // Connection from service to unit
+            if (uIdx < unitsPerRow) {
+              const unitCenterX = uX + unitWidth/2;
+              const serviceBottomY = pos.y + serviceHeight;
+              const connY = pos.y + serviceHeight + 4;
+              
+              if (uIdx === 0 && units.length > 1) {
+                drawLine(pos.x + serviceWidth/2, serviceBottomY, pos.x + serviceWidth/2, connY);
+                const firstUnitX = unitStartX + unitWidth/2;
+                const lastUnitX = unitStartX + (Math.min(units.length, unitsPerRow) - 1) * (unitWidth + unitGap) + unitWidth/2;
+                drawLine(firstUnitX, connY, lastUnitX, connY);
+              } else if (units.length === 1) {
+                drawLine(pos.x + serviceWidth/2, serviceBottomY, unitCenterX, unitY);
+              }
+              drawLine(unitCenterX, connY, unitCenterX, unitY);
+            }
+            
+            drawBox(uX, unitY, unitWidth, unit.name, unit.personnel?.slice(0, 8) || [], unit.color || '#10b981', false);
+          });
+        }
+      });
+      
+      // Footer
+      pdf.setFontSize(5);
+      pdf.setTextColor('#94a3b8');
+      const exportDate = new Date().toLocaleDateString('fr-FR');
+      pdf.text(`Aircalin - Direction Technique - Exporté le ${exportDate}`, margin, pageHeight - 5);
+      
+      // Save
+      pdf.save('Organigramme_DT.pdf');
+      
+    } catch (error) {
+      console.error('Export failed:', error);
+      alert('Erreur lors de l\'export');
+    } finally {
+      setIsExporting(false);
+    }
+  };
 
   return (
     <div className="h-full w-full flex bg-background overflow-hidden">
@@ -611,6 +796,22 @@ const DTOrga: React.FC = () => {
                   <span className="text-xs">Liste</span>
                 </Button>
               </div>
+
+              {/* Export Button */}
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-8 px-3 gap-2"
+                onClick={handleExportPdf}
+                disabled={isExporting}
+              >
+                {isExporting ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <FileDown className="w-4 h-4" />
+                )}
+                <span className="text-xs">Export PDF</span>
+              </Button>
             </div>
           </div>
         </div>

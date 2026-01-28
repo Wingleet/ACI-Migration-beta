@@ -43,22 +43,6 @@ export const DT_ORGA_DATA: OrgNode = {
       ],
       children: [
         {
-          id: 'planning',
-          name: 'Planning',
-          type: 'unit',
-          color: '#a78bfa',
-          personnel: [
-            { name: 'Jessica BERNANOS', role: 'Planning' },
-            { name: 'Dean HICKSON', role: 'Planning' },
-            { name: 'Jean-Marc PHAM VAN NINH', role: 'Planning' },
-          ],
-          processes: [
-            { id: 'p-03.01', name: 'Planning', subModuleId: '03.01' },
-            { id: 'p-03.02', name: 'Work Package Generation', subModuleId: '03.02' },
-            { id: 'p-03.05', name: 'Long Term Planning', subModuleId: '03.05' },
-          ],
-        },
-        {
           id: 'engineering',
           name: 'Engineering',
           type: 'unit',
@@ -80,6 +64,22 @@ export const DT_ORGA_DATA: OrgNode = {
             { id: 'p-01.07', name: 'Reliability', subModuleId: '01.07' },
             { id: 'p-01.08', name: 'Weight & Balance', subModuleId: '01.08' },
             { id: 'p-01.09', name: 'Powerplants', subModuleId: '01.09' },
+          ],
+        },
+        {
+          id: 'planning',
+          name: 'Planning',
+          type: 'unit',
+          color: '#a78bfa',
+          personnel: [
+            { name: 'Jessica BERNANOS', role: 'Planning' },
+            { name: 'Dean HICKSON', role: 'Planning' },
+            { name: 'Jean-Marc PHAM VAN NINH', role: 'Planning' },
+          ],
+          processes: [
+            { id: 'p-03.01', name: 'Planning', subModuleId: '03.01' },
+            { id: 'p-03.02', name: 'Work Package Generation', subModuleId: '03.02' },
+            { id: 'p-03.05', name: 'Long Term Planning', subModuleId: '03.05' },
           ],
         },
         {
@@ -130,6 +130,18 @@ export const DT_ORGA_DATA: OrgNode = {
           ],
         },
         {
+          id: 'preparation-work',
+          name: 'Preparation Work',
+          type: 'unit',
+          color: '#f472b6',
+          personnel: [
+            { name: 'David BARBIER', role: 'Preparation Work' },
+          ],
+          processes: [
+            { id: 'p-07.03', name: 'Work Templates', subModuleId: '07.03' },
+          ],
+        },
+        {
           id: 'maintenance',
           name: 'Maintenance',
           type: 'unit',
@@ -164,18 +176,6 @@ export const DT_ORGA_DATA: OrgNode = {
             { id: 'p-08.05', name: 'Release to Service', subModuleId: '08.05' },
           ],
         },
-        {
-          id: 'preparation-work',
-          name: 'Preparation Work',
-          type: 'unit',
-          color: '#f472b6',
-          personnel: [
-            { name: 'David BARBIER', role: 'Preparation Work' },
-          ],
-          processes: [
-            { id: 'p-07.03', name: 'Work Templates', subModuleId: '07.03' },
-          ],
-        },
       ],
     },
     {
@@ -187,6 +187,23 @@ export const DT_ORGA_DATA: OrgNode = {
         { name: 'Vaiana TAIRIO', role: 'Responsable Logistique' },
       ],
       children: [
+        {
+          id: 'store',
+          name: 'Store',
+          type: 'unit',
+          color: '#2dd4bf',
+          personnel: [
+            { name: 'Melodie HAUPUNI', role: 'Store' },
+            { name: 'Sean APELE', role: 'Store' },
+            { name: 'Jean Paul JONE', role: 'Store' },
+            { name: 'Falakiko MOTUKU', role: 'Store' },
+            { name: 'Guillaume QUEMERE', role: 'Store' },
+            { name: 'Arturo Henri VAZQUEZ RODRIGUEZ', role: 'Store' },
+          ],
+          processes: [
+            { id: 'p-02.04', name: 'Aircraft & Component Counters', subModuleId: '02.04' },
+          ],
+        },
         {
           id: 'purchasing',
           name: 'Purchasing',
@@ -228,23 +245,6 @@ export const DT_ORGA_DATA: OrgNode = {
           processes: [
             { id: 'p-09.05', name: 'Warranty', subModuleId: '09.05' },
             { id: 'p-09.06', name: 'Pooling & Consignment', subModuleId: '09.06' },
-          ],
-        },
-        {
-          id: 'store',
-          name: 'Store',
-          type: 'unit',
-          color: '#2dd4bf',
-          personnel: [
-            { name: 'Melodie HAUPUNI', role: 'Store' },
-            { name: 'Sean APELE', role: 'Store' },
-            { name: 'Jean Paul JONE', role: 'Store' },
-            { name: 'Falakiko MOTUKU', role: 'Store' },
-            { name: 'Guillaume QUEMERE', role: 'Store' },
-            { name: 'Arturo Henri VAZQUEZ RODRIGUEZ', role: 'Store' },
-          ],
-          processes: [
-            { id: 'p-02.04', name: 'Aircraft & Component Counters', subModuleId: '02.04' },
           ],
         },
       ],
