@@ -6,7 +6,6 @@ import { useProcessStore } from '@/stores/processStore';
 import { AnimatePresence } from 'framer-motion';
 import { getSortedModules } from '@/lib/processData';
 import { Table2 } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { useSearch, useLocation } from 'wouter';
 
@@ -47,15 +46,6 @@ export default function Process() {
     );
   }, [filteredModules]);
 
-  // Stats
-  const stats = useMemo(() => {
-    const selected = allSubModules.filter(s => s.isSelected).length;
-    const fit = allSubModules.filter(s => s.gapRecord.verdict === 'fit').length;
-    const gap = allSubModules.filter(s => s.gapRecord.verdict === 'gap').length;
-    const na = allSubModules.filter(s => s.gapRecord.verdict === 'na').length;
-    return { total: allSubModules.length, selected, fit, gap, na };
-  }, [allSubModules]);
-
   return (
     <div className="h-full w-full flex flex-col bg-background overflow-hidden">
       {/* Background pattern */}
@@ -64,23 +54,6 @@ export default function Process() {
       </div>
 
       <ProcessToolbar />
-
-      {/* Stats Bar */}
-      <div className="flex items-center px-3 py-1 border-b border-border/50 bg-card/50 shrink-0 relative z-10">
-        <div className="flex items-center gap-3 text-[10px]">
-          <span className="text-muted-foreground font-medium">{stats.total} sous-modules</span>
-          <span className="text-emerald-600">{stats.selected} sélectionnés</span>
-          <Badge variant="outline" className="h-5 text-[9px] bg-emerald-100 text-emerald-700 border-emerald-300">
-            FIT {stats.fit}
-          </Badge>
-          <Badge variant="outline" className="h-5 text-[9px] bg-red-100 text-red-700 border-red-300">
-            GAP {stats.gap}
-          </Badge>
-          <Badge variant="outline" className="h-5 text-[9px] bg-gray-100 text-gray-700 border-gray-300">
-            N/A {stats.na}
-          </Badge>
-        </div>
-      </div>
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto relative z-10">

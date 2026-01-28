@@ -143,19 +143,6 @@ export const ProcessToolbar: React.FC = () => {
         </span>
       </div>
 
-      {/* Verdicts */}
-      <div className="flex items-center gap-1 shrink-0">
-        <Badge variant="secondary" className="text-[9px] px-1 py-0 h-4 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
-          FIT:{kpis.fitCount}
-        </Badge>
-        <Badge variant="secondary" className="text-[9px] px-1 py-0 h-4 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400">
-          GAP:{kpis.gapCount}
-        </Badge>
-        <Badge variant="secondary" className="text-[9px] px-1 py-0 h-4 bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-          N/A:{kpis.naCount}
-        </Badge>
-      </div>
-
       {/* Alerts */}
       {kpis.highRisksCount > 0 && (
         <Badge variant="outline" className="text-[9px] px-1 py-0 h-4 border-red-500 text-red-600">

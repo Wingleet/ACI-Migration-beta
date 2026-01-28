@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useCallback } from 'react';
 import { 
   ChevronDown, 
   ChevronRight, 
@@ -10,6 +10,9 @@ import {
   ExternalLink,
   List,
   Circle,
+  ZoomIn,
+  ZoomOut,
+  RotateCcw,
 } from 'lucide-react';
 import { DT_ORGA_DATA, OrgNode, PersonnelInfo, ProcessInfo } from '@/lib/dtOrgaData';
 import { cn } from '@/lib/utils';
@@ -126,12 +129,14 @@ interface RadialNodeProps {
   x: number;
   y: number;
   angle: number;
-  radius: number;
   level: number;
   parentX?: number;
   parentY?: number;
   onSelect: (node: OrgNode) => void;
   selectedId: string | null;
+  showPersonnel: boolean;
+  centerX: number;
+  centerY: number;
 }
 
 const RadialNode: React.FC<RadialNodeProps> = ({
@@ -139,30 +144,43 @@ const RadialNode: React.FC<RadialNodeProps> = ({
   x,
   y,
   angle,
-  radius,
   level,
   parentX,
   parentY,
   onSelect,
   selectedId,
+  showPersonnel,
+  centerX,
+  centerY,
 }) => {
   const isSelected = selectedId === node.id;
   const hasChildren = node.children && node.children.length > 0;
   
-  // Calculate size based on level
-  const nodeSize = level === 0 ? 80 : level === 1 ? 60 : 50;
+  // Sizes based on level
+  const nodeSize = level === 0 ? 70 : level === 1 ? 55 : 45;
   
   // Calculate children positions
   const childElements: React.ReactNode[] = [];
   
   if (hasChildren && level < 2) {
     const childCount = node.children!.length;
-    const spreadAngle = level === 0 ? 360 : 80; // Wider spread for center
-    const startAngle = level === 0 ? 0 : angle - spreadAngle / 2;
-    const childRadius = level === 0 ? 180 : 140;
+    // Wider spread and larger radius
+    const childRadius = level === 0 ? 180 : 150;
     
     node.children!.forEach((child, index) => {
-      const childAngle = startAngle + (spreadAngle / (childCount - 1 || 1)) * index;
+      // For level 0, distribute evenly around the circle (360/n spacing)
+      // For level 1, spread children around parent angle
+      let childAngle: number;
+      if (level === 0) {
+        // Evenly distribute around circle, starting from top (-90)
+        childAngle = -90 + (360 / childCount) * index;
+      } else {
+        const spreadAngle = 70;
+        const startAngle = angle - spreadAngle / 2;
+        childAngle = childCount === 1 
+          ? angle 
+          : startAngle + (spreadAngle / (childCount - 1)) * index;
+      }
       const childAngleRad = (childAngle * Math.PI) / 180;
       const childX = x + Math.cos(childAngleRad) * childRadius;
       const childY = y + Math.sin(childAngleRad) * childRadius;
@@ -174,12 +192,14 @@ const RadialNode: React.FC<RadialNodeProps> = ({
           x={childX}
           y={childY}
           angle={childAngle}
-          radius={childRadius}
           level={level + 1}
           parentX={x}
           parentY={y}
           onSelect={onSelect}
           selectedId={selectedId}
+          showPersonnel={showPersonnel}
+          centerX={centerX}
+          centerY={centerY}
         />
       );
     });
@@ -195,8 +215,8 @@ const RadialNode: React.FC<RadialNodeProps> = ({
           x2={x}
           y2={y}
           stroke={node.color || '#6b7280'}
-          strokeWidth={2}
-          strokeOpacity={0.4}
+          strokeWidth={level === 1 ? 2.5 : 2}
+          strokeOpacity={0.35}
         />
       )}
       
@@ -213,11 +233,11 @@ const RadialNode: React.FC<RadialNodeProps> = ({
           <circle
             cx={x}
             cy={y}
-            r={nodeSize / 2 + 8}
+            r={nodeSize / 2 + 6}
             fill="none"
             stroke={node.color}
             strokeWidth={3}
-            strokeOpacity={0.5}
+            strokeOpacity={0.6}
           />
         )}
         
@@ -226,10 +246,10 @@ const RadialNode: React.FC<RadialNodeProps> = ({
           cx={x}
           cy={y}
           r={nodeSize / 2}
-          fill={`${node.color}20`}
+          fill={`${node.color}25`}
           stroke={node.color}
           strokeWidth={isSelected ? 3 : 2}
-          className="transition-all hover:opacity-80"
+          className="transition-all"
         />
         
         {/* Icon/Text in center */}
@@ -243,16 +263,16 @@ const RadialNode: React.FC<RadialNodeProps> = ({
           <div className="w-full h-full flex flex-col items-center justify-center">
             {level === 0 ? (
               <>
-                <Building2 className="w-6 h-6" style={{ color: node.color }} />
-                <span className="text-[10px] font-bold mt-0.5" style={{ color: node.color }}>
+                <Building2 className="w-5 h-5" style={{ color: node.color }} />
+                <span className="text-[9px] font-bold mt-0.5" style={{ color: node.color }}>
                   DT
                 </span>
               </>
             ) : (
               <span 
                 className={cn(
-                  "text-center leading-tight px-1",
-                  level === 1 ? "text-[9px] font-semibold" : "text-[8px] font-medium"
+                  "text-center leading-tight px-0.5",
+                  level === 1 ? "text-[8px] font-semibold" : "text-[7px] font-medium"
                 )}
                 style={{ color: node.color }}
               >
@@ -262,28 +282,51 @@ const RadialNode: React.FC<RadialNodeProps> = ({
           </div>
         </foreignObject>
         
-        {/* Badges */}
-        {(node.personnel?.length || node.processes?.length) && level > 0 && (
+        {/* Combined badge (personnel / processes) */}
+        {((node.personnel && node.personnel.length > 0) || (node.processes && node.processes.length > 0)) && level > 0 && (
           <g>
-            {node.processes && node.processes.length > 0 && (
-              <g>
+            {/* Personnel badge - top right */}
+            {node.personnel && node.personnel.length > 0 && (
+              <>
                 <circle
-                  cx={x + nodeSize / 2 - 5}
-                  cy={y - nodeSize / 2 + 5}
+                  cx={x + nodeSize / 2 - 3}
+                  cy={y - nodeSize / 2 + 3}
                   r={8}
-                  fill={node.color}
+                  fill="#3b82f6"
                 />
                 <text
-                  x={x + nodeSize / 2 - 5}
-                  y={y - nodeSize / 2 + 9}
+                  x={x + nodeSize / 2 - 3}
+                  y={y - nodeSize / 2 + 7}
                   textAnchor="middle"
                   fill="white"
-                  fontSize={8}
+                  fontSize={7}
+                  fontWeight="bold"
+                >
+                  {node.personnel.length}
+                </text>
+              </>
+            )}
+            
+            {/* Process badge - top left */}
+            {node.processes && node.processes.length > 0 && (
+              <>
+                <circle
+                  cx={x - nodeSize / 2 + 3}
+                  cy={y - nodeSize / 2 + 3}
+                  r={7}
+                  fill="#10b981"
+                />
+                <text
+                  x={x - nodeSize / 2 + 3}
+                  y={y - nodeSize / 2 + 6}
+                  textAnchor="middle"
+                  fill="white"
+                  fontSize={6}
                   fontWeight="bold"
                 >
                   {node.processes.length}
                 </text>
-              </g>
+              </>
             )}
           </g>
         )}
@@ -295,31 +338,79 @@ const RadialNode: React.FC<RadialNodeProps> = ({
 const RadialView: React.FC<{
   onSelect: (node: OrgNode) => void;
   selectedId: string | null;
-}> = ({ onSelect, selectedId }) => {
-  const centerX = 400;
-  const centerY = 350;
+  showPersonnel: boolean;
+  zoom: number;
+}> = ({ onSelect, selectedId, showPersonnel, zoom }) => {
+  const centerX = 450;
+  const centerY = 380;
+  const scale = zoom / 100;
+  
+  // Pan state
+  const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
+  const [isPanning, setIsPanning] = useState(false);
+  const [startPan, setStartPan] = useState({ x: 0, y: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    // Only start panning on middle click or when holding space
+    if (e.button === 1 || e.button === 0) {
+      setIsPanning(true);
+      setStartPan({ x: e.clientX - panOffset.x, y: e.clientY - panOffset.y });
+    }
+  }, [panOffset]);
+  
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (!isPanning) return;
+    setPanOffset({
+      x: e.clientX - startPan.x,
+      y: e.clientY - startPan.y,
+    });
+  }, [isPanning, startPan]);
+  
+  const handleMouseUp = useCallback(() => {
+    setIsPanning(false);
+  }, []);
+  
+  const handleMouseLeave = useCallback(() => {
+    setIsPanning(false);
+  }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center overflow-auto">
+    <div 
+      ref={containerRef}
+      className="w-full h-full overflow-hidden relative"
+      style={{ cursor: isPanning ? 'grabbing' : 'grab' }}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseLeave}
+    >
       <svg 
-        width="800" 
-        height="700" 
-        className="min-w-[800px] min-h-[700px]"
-        viewBox="0 0 800 700"
+        width={900 * scale} 
+        height={760 * scale} 
+        style={{ 
+          minWidth: 900 * scale, 
+          minHeight: 760 * scale,
+          transform: `translate(${panOffset.x}px, ${panOffset.y}px)`,
+          transition: isPanning ? 'none' : 'transform 0.1s ease-out',
+        }}
+        viewBox="0 0 900 760"
       >
         {/* Background circles */}
-        <circle cx={centerX} cy={centerY} r={180} fill="none" stroke="currentColor" strokeOpacity={0.05} strokeWidth={1} strokeDasharray="4 4" />
-        <circle cx={centerX} cy={centerY} r={320} fill="none" stroke="currentColor" strokeOpacity={0.05} strokeWidth={1} strokeDasharray="4 4" />
+        <circle cx={centerX} cy={centerY} r={180} fill="none" stroke="currentColor" strokeOpacity={0.04} strokeWidth={1} />
+        <circle cx={centerX} cy={centerY} r={330} fill="none" stroke="currentColor" strokeOpacity={0.04} strokeWidth={1} />
         
         <RadialNode
           node={DT_ORGA_DATA}
           x={centerX}
           y={centerY}
           angle={0}
-          radius={0}
           level={0}
           onSelect={onSelect}
           selectedId={selectedId}
+          showPersonnel={showPersonnel}
+          centerX={centerX}
+          centerY={centerY}
         />
       </svg>
     </div>
@@ -438,6 +529,8 @@ type ViewMode = 'tree' | 'radial';
 const DTOrga: React.FC = () => {
   const [selectedNode, setSelectedNode] = useState<OrgNode | null>(null);
   const [viewMode, setViewMode] = useState<ViewMode>('radial');
+  const [showPersonnel, setShowPersonnel] = useState(true);
+  const [zoom, setZoom] = useState(100);
 
   return (
     <div className="h-full w-full flex bg-background overflow-hidden">
@@ -461,26 +554,63 @@ const DTOrga: React.FC = () => {
               </div>
             </div>
 
-            {/* View Mode Toggle */}
-            <div className="flex items-center gap-1 p-1 bg-muted rounded-lg">
-              <Button
-                variant={viewMode === 'radial' ? 'default' : 'ghost'}
-                size="sm"
-                className="h-8 px-3 gap-2"
-                onClick={() => setViewMode('radial')}
-              >
-                <Circle className="w-4 h-4" />
-                <span className="text-xs">Radial</span>
-              </Button>
-              <Button
-                variant={viewMode === 'tree' ? 'default' : 'ghost'}
-                size="sm"
-                className="h-8 px-3 gap-2"
-                onClick={() => setViewMode('tree')}
-              >
-                <List className="w-4 h-4" />
-                <span className="text-xs">Liste</span>
-              </Button>
+            {/* Controls */}
+            <div className="flex items-center gap-3">
+              {/* Zoom Controls */}
+              {viewMode === 'radial' && (
+                <div className="flex items-center gap-1 p-1 bg-muted rounded-lg">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7"
+                    onClick={() => setZoom(Math.max(10, zoom - 10))}
+                    disabled={zoom <= 10}
+                  >
+                    <ZoomOut className="w-4 h-4" />
+                  </Button>
+                  <span className="text-xs font-medium min-w-[3rem] text-center">{zoom}%</span>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7"
+                    onClick={() => setZoom(Math.min(200, zoom + 10))}
+                    disabled={zoom >= 200}
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-7 w-7"
+                    onClick={() => setZoom(100)}
+                    disabled={zoom === 100}
+                  >
+                    <RotateCcw className="w-3 h-3" />
+                  </Button>
+                </div>
+              )}
+              
+              {/* View Mode Toggle */}
+              <div className="flex items-center gap-1 p-1 bg-muted rounded-lg">
+                <Button
+                  variant={viewMode === 'radial' ? 'default' : 'ghost'}
+                  size="sm"
+                  className="h-8 px-3 gap-2"
+                  onClick={() => setViewMode('radial')}
+                >
+                  <Circle className="w-4 h-4" />
+                  <span className="text-xs">Radial</span>
+                </Button>
+                <Button
+                  variant={viewMode === 'tree' ? 'default' : 'ghost'}
+                  size="sm"
+                  className="h-8 px-3 gap-2"
+                  onClick={() => setViewMode('tree')}
+                >
+                  <List className="w-4 h-4" />
+                  <span className="text-xs">Liste</span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -500,6 +630,8 @@ const DTOrga: React.FC = () => {
             <RadialView
               onSelect={setSelectedNode}
               selectedId={selectedNode?.id || null}
+              showPersonnel={showPersonnel}
+              zoom={zoom}
             />
           </div>
         )}
@@ -508,19 +640,15 @@ const DTOrga: React.FC = () => {
         <div className="p-3 border-t border-border bg-muted/30">
           <div className="flex items-center gap-4 text-xs text-muted-foreground">
             <span className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-indigo-500/30 border-2 border-indigo-500" />
-              Direction
+              <div className="w-3 h-3 rounded-full bg-blue-500" />
+              Personnel
             </span>
             <span className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-purple-500/20 border-2 border-purple-500" />
-              Service
+              <div className="w-3 h-3 rounded-full bg-emerald-500" />
+              Process
             </span>
-            <span className="flex items-center gap-1.5">
-              <div className="w-3 h-3 rounded-full bg-muted border-2 border-slate-400" />
-              Unité
-            </span>
-            <span className="flex items-center gap-2 ml-auto text-muted-foreground">
-              Cliquez sur un nœud pour voir les détails
+            <span className="flex items-center gap-2 ml-auto text-muted-foreground/70">
+              Cliquez sur un cercle pour voir les détails • Glissez pour naviguer
             </span>
           </div>
         </div>

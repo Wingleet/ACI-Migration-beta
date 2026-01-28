@@ -3,6 +3,42 @@
  * Ce mapping permet de faire correspondre les IDs des sous-modules aux noms de fichiers réels
  */
 
+// Mapping ACI Drawio: subModule.id -> nom du fichier .drawio (sans le chemin de base)
+export const ACI_FLOWCHART_DRAWIO_MAPPING: Record<string, string> = {
+  // Module 01 - Fleet Engineering
+  '01.01': '01.01Aircraft Definition.drawio',
+  '01.02': '01.02 Parts Definition.drawio',
+  '01.03': '01.03 Maintenance Program.drawio',
+  '01.04': '01.04 SB & AD Assessment.drawio',
+  '01.05': '01.05 Configuration Management.drawio',
+  '01.06': '01.06 MEL Administration.drawio',
+  '01.07': '01.07 Reliability .drawio',
+  '01.08': '01.08 Weight & Balance.drawio',
+  '01.09': '01.09 Powerplants.drawio',
+  
+  // Module 02 - Technical Services
+  '02.01': '02.01 Aircraft Phase-in.drawio',
+  '02.02': '02.02_Aircraft Phase-out.drawio',
+  '02.03': '02.03 Multi-Operator AC Transfer.drawio',
+  '02.04': '02.04 Aircraft & Component counters.drawio',
+  '02.05': '02.05 Technical Library.drawio',
+  '02.06': '02.06 Requirement Work Scoping.drawio',
+  '02.07': '02.07 Structural Damages.drawio',
+  '02.08': '02.08 Digital Records.drawio',
+  '02.09': '02.09 Airworthiness Certificate.drawio',
+};
+
+/**
+ * Récupère le chemin du fichier .drawio pour un sous-module donné
+ */
+export const getAciDrawioFile = (subModuleId: string): string | null => {
+  const fileName = ACI_FLOWCHART_DRAWIO_MAPPING[subModuleId];
+  if (!fileName) {
+    return null;
+  }
+  return `/Flowchart/${fileName}`;
+};
+
 // Mapping ACI: subModule.id -> nom du fichier image ACI (sans le chemin de base)
 // Les fichiers sont dans /Flowchart/ avec le format "{id} {name} ACI.png"
 export const ACI_FLOWCHART_IMAGE_MAPPING: Record<string, string> = {

@@ -35,7 +35,9 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { FlowchartDiagram } from '@/types/flowchart';
-import { getFlowchartImages, getFlowchartImagePath, getAciFlowchartImage } from '@/lib/flowchartImageMapping';
+import { getFlowchartImages, getFlowchartImagePath, getAciFlowchartImage, getAciDrawioFile } from '@/lib/flowchartImageMapping';
+import { DrawioEditor } from './DrawioEditor';
+import { Pencil } from 'lucide-react';
 
 interface GapAnalysisDrawerProps {
   module: Module;
@@ -65,6 +67,7 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
   const [imageError, setImageError] = useState(false);
   const [isImageZoomed, setIsImageZoomed] = useState(false);
   const [isAciImageZoomed, setIsAciImageZoomed] = useState(false);
+  const [isDrawioEditorOpen, setIsDrawioEditorOpen] = useState(false);
   const [isExportingPdf, setIsExportingPdf] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
@@ -585,9 +588,22 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
         <div className="flex-1 grid grid-cols-2 gap-3 p-3 min-h-0">
           {/* ACI Process - Left Column */}
           <div className="flex flex-col min-h-0">
-            <div className="flex items-center gap-2 px-3 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-t-lg border border-orange-200 dark:border-orange-800 shrink-0">
-              <div className="w-3 h-3 rounded-full bg-orange-500" />
-              <span className="font-semibold text-sm text-orange-700 dark:text-orange-300">ACI Process</span>
+            <div className="flex items-center justify-between px-3 py-2 bg-orange-100 dark:bg-orange-900/30 rounded-t-lg border border-orange-200 dark:border-orange-800 shrink-0">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-orange-500" />
+                <span className="font-semibold text-sm text-orange-700 dark:text-orange-300">ACI Process</span>
+              </div>
+              {getAciDrawioFile(subModule.id) && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-7 px-2 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800"
+                  onClick={() => setIsDrawioEditorOpen(true)}
+                >
+                  <Pencil className="w-3.5 h-3.5 mr-1" />
+                  <span className="text-xs">Edit</span>
+                </Button>
+              )}
             </div>
             <div className="flex-1 border border-t-0 border-border rounded-b-lg overflow-hidden bg-white flex items-center justify-center relative">
               {getAciFlowchartImage(subModule.id) ? (
@@ -832,6 +848,15 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
           </div>
         </div>
       )}
+
+      {/* Draw.io Editor Modal */}
+      <DrawioEditor
+        isOpen={isDrawioEditorOpen}
+        onClose={() => setIsDrawioEditorOpen(false)}
+        drawioFilePath={getAciDrawioFile(subModule.id)}
+        moduleName={subModule.name}
+        moduleId={subModule.id}
+      />
 
     </motion.div>
   );
