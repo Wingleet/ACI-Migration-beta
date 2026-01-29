@@ -1,0 +1,190 @@
+<mxfile host="Electron" modified="2024-05-28T09:21:56.862Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.4.8 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" etag="9kGECM9ciZYLgi593PCm" version="24.4.8" type="device">
+  <diagram id="RNGnkLI-MCDgjgDuYWAb" name="09.05_Warranty">
+    <mxGraphModel dx="2603" dy="1663" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2cl7CHh1-utzGBygBaVu-1" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-1160" y="-770" width="1150" height="767" as="geometry" />
+        </mxCell>
+        <mxCell id="2cl7CHh1-utzGBygBaVu-2" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;09.05 Warranty&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-1160" y="-820" width="1150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="aWeAcaWYl1lUYU_2sXSY-3" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-249.3800000000001" y="-105" width="229" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="aWeAcaWYl1lUYU_2sXSY-4" value="LEGEND" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-250" y="-105" width="30" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="p1n9YsAw8kMUsl4M7CEJ-44" target="0vPHtux00Nyvr7rEoYef-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-44" value="Start" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="-1112" y="-750" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-45" value="Warranty is available and needs to be defined" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="-1144.5" y="-720" width="95" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-46" value="End" style="ellipse;whiteSpace=wrap;html=1;rounded=1;strokeWidth=1;fillColor=#b5b5b5;" parent="1" vertex="1">
+          <mxGeometry x="-809.3800000000001" y="-94" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-47" value="&lt;div style=&quot;text-align: center;&quot;&gt;Warranty Claim issued&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="-848.3800000000001" y="-70" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="lOQ5zA1UGN7F7SM8XFNe-13" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#82C76B;strokeColor=#3A5431;fontColor=#ffffff;spacingLeft=10;spacingBottom=6;spacingRight=6;verticalAlign=bottom;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-205.1300000000001" y="-96.5" width="70" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-83" value="&lt;b&gt;Modifications&lt;br&gt;Warranty&lt;/b&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="0vPHtux00Nyvr7rEoYef-2" target="BwAqAiTOIRY78nwKvwlf-20" edge="1">
+          <mxGeometry x="-0.3631" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-85" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="0vPHtux00Nyvr7rEoYef-2" target="BwAqAiTOIRY78nwKvwlf-12" edge="1">
+          <mxGeometry x="-0.3106" y="34" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MGbMSQsIE_lr1e2BqKNz-2" value="&lt;div&gt;Aircraft&amp;nbsp;&lt;/div&gt;&lt;div&gt;Warranty&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" parent="7Cfm1GZL2nCo7GIRGBoB-85" vertex="1" connectable="0">
+          <mxGeometry x="-0.2996" y="-4" relative="1" as="geometry">
+            <mxPoint x="7" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="0vPHtux00Nyvr7rEoYef-2" target="7Cfm1GZL2nCo7GIRGBoB-31" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-89" value="Vendor&lt;br&gt;Warrantiy" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" parent="7Cfm1GZL2nCo7GIRGBoB-86" vertex="1" connectable="0">
+          <mxGeometry x="-0.1825" relative="1" as="geometry">
+            <mxPoint x="-8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0vPHtux00Nyvr7rEoYef-2" value="Origin" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-613.2499999999998" y="-711" width="38.25" height="39" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" source="BwAqAiTOIRY78nwKvwlf-12" target="BwAqAiTOIRY78nwKvwlf-35" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-12" value="Enter warranty limits of the Aircraft and for the installed components upon Aircraft delivery" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#82c76b;strokeColor=#B20000;fontColor=#ffffff;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-684.12" y="-625" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="BwAqAiTOIRY78nwKvwlf-20" target="l93SlAQmdZiqqZf-C1R--1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-20" value="Define labour and material warranty associated with the modification&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="-1000" y="-624" width="180" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-13" value="Desktop APN 308" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-629.12" y="-618" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-21" value="Desktop APN 63" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-949" y="-617" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="BwAqAiTOIRY78nwKvwlf-33" target="7Cfm1GZL2nCo7GIRGBoB-49" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-33" value="08.02 - Performing Maintenance" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-654.12" y="-384.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="BwAqAiTOIRY78nwKvwlf-35" target="BwAqAiTOIRY78nwKvwlf-33" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-35" value="12.06 - Budgeting &amp;amp; Cost Control" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-654.62" y="-482" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="BwAqAiTOIRY78nwKvwlf-43" target="p1n9YsAw8kMUsl4M7CEJ-46" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-43" value="Warranty Claim is generated, based on the collected information" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#82c76b;strokeColor=#6D1F00;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="-684" y="-129" width="180" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BwAqAiTOIRY78nwKvwlf-44" value="Desktop APN 83" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-629" y="-122" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ar9Tzsv46T59wLWAaGwV-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-31" target="7Cfm1GZL2nCo7GIRGBoB-34" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-31" value="Define warranty criteria offered by the Vendor/OEM&lt;br&gt;The warranty conditions defined here covers both components and orders" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#82C76B;strokeColor=#3A5431;fontColor=#ffffff;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-329" y="-645" width="180" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-32" value="Desktop APN 53" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-274" y="-637" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-34" target="7Cfm1GZL2nCo7GIRGBoB-36" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-34" value="12.06 - Budgeting &amp;amp; Cost Control" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-299" y="-485" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-36" target="7Cfm1GZL2nCo7GIRGBoB-38" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-36" value="08.02 - Performing Maintenance" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-299" y="-384.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-38" value="08.04 - Parts Removal &amp;amp; Installation" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-299" y="-291.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-39" target="7Cfm1GZL2nCo7GIRGBoB-49" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-595" y="-180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-39" value="09.04&lt;div&gt;Repair &amp;amp; Exchanges&lt;/div&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-472" y="-291.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-45" value="Warranty team" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-124.88000000000011" y="-96.5" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-47" target="7Cfm1GZL2nCo7GIRGBoB-61" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-47" value="08.02 - Performing Maintenance" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-970" y="-404" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-49" target="BwAqAiTOIRY78nwKvwlf-43" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-814.4999999999999" y="-244.5" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-49" value="12.04 - Commercial Pricing &amp;amp; Billing" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-654.62" y="-231" width="121" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-61" target="7Cfm1GZL2nCo7GIRGBoB-49" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-61" value="Modification Warranty Report is generated" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#e59393;strokeColor=#B20000;fontColor=#ffffff;" parent="1" vertex="1">
+          <mxGeometry x="-1000" y="-306.5" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="7Cfm1GZL2nCo7GIRGBoB-62" value="Desktop APN 640" style="rounded=0;whiteSpace=wrap;html=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-945" y="-299" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="PyAIyPbha9F3z165BF4x-12" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e59393;strokeColor=#3A5431;fontColor=#ffffff;spacingLeft=10;spacingBottom=6;spacingRight=6;verticalAlign=bottom;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-205.1300000000001" y="-53" width="70" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="PyAIyPbha9F3z165BF4x-13" value="Engineering" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-124.88000000000011" y="-53" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="l93SlAQmdZiqqZf-C1R--1" target="7Cfm1GZL2nCo7GIRGBoB-47" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--1" value="12.06 - Budgeting &amp;amp; Cost Control" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-970" y="-500" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--5" value="&lt;b&gt;Note:&lt;/b&gt;&lt;br&gt;Define project" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-530" y="-472.5" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--6" value="&lt;b&gt;Note:&lt;/b&gt;&lt;br&gt;Define project" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-175" y="-480" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="l93SlAQmdZiqqZf-C1R--7" value="&lt;b&gt;Note:&lt;/b&gt;&lt;br&gt;Define project" style="rounded=0;whiteSpace=wrap;html=1;align=left;verticalAlign=top;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="-845" y="-492.5" width="120" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="Mxqx_ckIZiPgP6oeJzZD-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="7Cfm1GZL2nCo7GIRGBoB-38" target="7Cfm1GZL2nCo7GIRGBoB-39" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-239" y="-255" as="sourcePoint" />
+            <mxPoint x="-238.9000000000001" y="-188.40313725490228" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

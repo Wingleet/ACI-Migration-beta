@@ -37,7 +37,7 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 import { FlowchartDiagram } from '@/types/flowchart';
-import { getFlowchartImages, getFlowchartImagePath, getAciFlowchartImage, getAciDrawioFile } from '@/lib/flowchartImageMapping';
+import { getFlowchartImages, getFlowchartImagePath, getAciFlowchartImage, getAciDrawioFile, getProcessDesignFile } from '@/lib/flowchartImageMapping';
 import { DrawioEditor } from './DrawioEditor';
 import { Pencil } from 'lucide-react';
 import { MATRIX_DATA, AREA_COLORS } from '@/lib/matrixApnData';
@@ -672,6 +672,29 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
               APNs ({processApns.length})
             </Button>
 
+            {/* Download Process Design Button */}
+            {getProcessDesignFile(subModule.id) && (
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="h-7 text-[10px] gap-1"
+                onClick={() => {
+                  const filePath = getProcessDesignFile(subModule.id);
+                  if (filePath) {
+                    const link = document.createElement('a');
+                    link.href = filePath;
+                    link.download = filePath.split('/').pop() || 'ProcessDesign.docx';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                  }
+                }}
+              >
+                <FileDown className="w-3 h-3" />
+                Process Design
+              </Button>
+            )}
+
             {/* Export PDF Button */}
             <Button 
               variant="outline" 
@@ -706,17 +729,15 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
                 <div className="w-3 h-3 rounded-full bg-orange-500" />
                 <span className="font-semibold text-sm text-orange-700 dark:text-orange-300">ACI Process</span>
               </div>
-              {getAciDrawioFile(subModule.id) && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-7 px-2 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800"
-                  onClick={() => setIsDrawioEditorOpen(true)}
-                >
-                  <Pencil className="w-3.5 h-3.5 mr-1" />
-                  <span className="text-xs">Edit</span>
-                </Button>
-              )}
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 px-2 text-orange-700 dark:text-orange-300 hover:bg-orange-200 dark:hover:bg-orange-800"
+                onClick={() => setIsDrawioEditorOpen(true)}
+              >
+                <Pencil className="w-3.5 h-3.5 mr-1" />
+                <span className="text-xs">Edit</span>
+              </Button>
             </div>
             <div className="flex-1 border border-t-0 border-border rounded-b-lg overflow-hidden bg-white flex items-center justify-center relative">
               {getAciFlowchartImage(subModule.id) ? (

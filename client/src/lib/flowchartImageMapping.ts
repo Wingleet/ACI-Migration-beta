@@ -5,6 +5,17 @@
 
 // Mapping ACI Drawio: subModule.id -> nom du fichier .drawio (sans le chemin de base)
 export const ACI_FLOWCHART_DRAWIO_MAPPING: Record<string, string> = {
+  // Module 00 - ACC
+  '00.01': '00.01_AMOS_Application_Configuration.drawio',
+  '00.02': '00.02_AMOS_Users_and_Roles.drawio',
+  '00.03': '00.03_Technical Assistance.drawio',
+  '00.04': '00.04_Scheduler_Task.drawio',
+  '00.05': '00.05_Interfaces_AMOScentral.drawio',
+  '00.06': '00.06 Data and Reports.drawio',
+  '00.07': '00.07_eSignature & Certificates.drawio',
+  '00.08': '00.08 Support Tool.drawio',
+  '00.09': '00.09_AMOS_Release_Change.drawio',
+  
   // Module 01 - Fleet Engineering
   '01.01': '01.01Aircraft Definition.drawio',
   '01.02': '01.02 Parts Definition.drawio',
@@ -26,6 +37,75 @@ export const ACI_FLOWCHART_DRAWIO_MAPPING: Record<string, string> = {
   '02.07': '02.07 Structural Damages.drawio',
   '02.08': '02.08 Digital Records.drawio',
   '02.09': '02.09 Airworthiness Certificate.drawio',
+  
+  // Module 03 - Fleet Planning
+  '03.01': '03.01 Planning.drawio',
+  '03.02': '03.02 Work Package Generation.drawio',
+  '03.03': '03.03 Reporting Back.drawio',
+  '03.04': '03.04 Modification Campaigns.drawio',
+  '03.05': '03.05 Long Term Planning.drawio',
+  
+  // Module 04 - Quality Assurance
+  '04.01': '04.01 Company Organisation.drawio',
+  '04.03': '04.03 Training and Qualifications.drawio',
+  '04.04': '04.04 Approval Control.drawio',
+  '04.05': '04.05 Quality Auditing.drawio',
+  
+  // Module 06 - MCC
+  '06.01': '06.01 - Fleet Status Monitoring.vsdx.drawio',
+  '06.02': '06.02 - Delays & Event Tracking.drawio',
+  '06.03': '06.03 - Line Maintenance Oversight.vsdx.drawio',
+  '06.04': '06.04 - Recurrent Defects.drawio',
+  '06.05': '06.05 - Aircraft Incidents.drawio',
+  
+  // Module 07 - Production Planning
+  '07.01': '07.01 - Shift Planning.drawio',
+  '07.02': '07.02 - Hangar & Resources.drawio',
+  '07.03': '07.03 - Work Templates.drawio',
+  '07.04': '07.04 - Production Plan Preparation.drawio',
+  '07.05': '07.05 - Resource & Staff Allocation.drawio',
+  '07.06': '07.06 - Customer MRO Work Packages.drawio',
+  
+  // Module 08 - Aircraft Maintenance
+  '08.01': '08.01 - Maintenance Check Control.drawio',
+  '08.02': '08.02 - Performing Maintenance.drawio',
+  '08.03': '08.03 - Deferral Handling.drawio',
+  '08.04': '08.04 - Parts Removal & Installation.drawio',
+  '08.05': '08.05 - Release to Service.drawio',
+  
+  // Module 09 - Procurement
+  '09.01': '09.01_Material_Planning.drawio',
+  '09.02': '09.02 Supplier Management_Visio.drawio',
+  '09.03': '09.03_Ordering.drawio',
+  '09.04': '09.04 Repair_&_Exchanges_Visio.drawio',
+  '09.05': '09.05_Warranty.drawio',
+  '09.06': '09.06_Pooling & Consignment.drawio',
+  '09.07': '09.07_Outstations & MRO.drawio',
+  
+  // Module 10 - Stores
+  '10.01': '10.01_Logistics.drawio',
+  '10.02': '10.02_Goods_Receiving_&_Inspection.drawio',
+  '10.03': '10.03_Major_Assemblies.drawio',
+  '10.04': '10.04 Part_Request_Fulfilment_Visio.drawio',
+  '10.05': '10.05 Tools.drawio',
+  '10.06': '10.06_Inventory_and_Shelf-Life_Control.drawio',
+  '10.07': '10.07_Customer_Material.drawio',
+  
+  // Module 11 - Component Shops
+  '11.01': '11.01_Capability_List.drawio',
+  '11.02': '11.02_Shop_Card_Templates.drawio',
+  '11.03': '11.03_Shop_Planner.drawio',
+  '11.05': '11.05_Closed_Loop_Repair.drawio',
+  '11.06': '11.06_Component_Release.drawio',
+  
+  // Module 12 - Finance & Commercial
+  '12.01': '12.01_Financial_Accounting.drawio',
+  '12.02': '12.02_Invoice Checking.drawio',
+  '12.03': '12.03_Fixed Assets & Depreciation.drawio',
+  '12.04': '12.04_Commercial Pricing & Billing.drawio',
+  '12.05': '12.05_Customer Quotations.drawio',
+  '12.06': '12.06_Budgeting & Cost Controlling.drawio',
+  '12.07': '12.07_Financial_Multi_Entity.drawio',
 };
 
 /**
@@ -230,6 +310,15 @@ export const FLOWCHART_IMAGE_MAPPING: Record<string, string | string[]> = {
   '09.06': ['09.06_Pooling & Consignment-1.png', '09.06_Pooling & Consignment-2.png', '09.06_Pooling & Consignment-3.png', '09.06_Pooling & Consignment-4.png'],
   '09.07': '09.07_Outstations & MRO-1.png',
   
+  // Module 10 - Stores
+  '10.01': '10.01_Logistics.png',
+  '10.02': '10.02_Goods_Receiving_&_Inspection.png',
+  '10.03': '10.03_Major_Assemblies.png',
+  '10.04': '10.04_Part_Request_Fulfilment.png',
+  '10.05': '10.05_Tools.png',
+  '10.06': '10.06_Inventory_and_Shelf-Life_Control.png',
+  '10.07': '10.07_Customer_Material.png',
+  
   // Module 11 - Component Shops
   '11.01': '11.01_Capability_List-1.png',
   '11.02': '11.02_Shop_Card_Templates-1.png',
@@ -286,4 +375,124 @@ export const getFlowchartImagePath = (subModuleId: string): string | null => {
 export const hasMultipleFlowchartImages = (subModuleId: string): boolean => {
   const mapping = FLOWCHART_IMAGE_MAPPING[subModuleId];
   return Array.isArray(mapping) && mapping.length > 1;
+};
+
+// Mapping Process Design Word documents: subModule.id -> nom du fichier .docx
+export const PROCESS_DESIGN_MAPPING: Record<string, string> = {
+  // Module 00 - ACC
+  '00.01': '00.01_AMOS_Application_Configuration_ProcessDesign.docx',
+  '00.02': '00.02_AMOS_Users_and_Roles_ProcessDesign.docx',
+  '00.03': '00.03_Technical Assistance_ProcessDesign.docx',
+  '00.04': '00.04_Scheduler_Task_ProcessDesign.docx',
+  '00.05': '00.05_Interfaces_AMOScentral_ProcessDesign.docx',
+  '00.06': '00.06 Data and Reports_ProcessDesign.docx',
+  '00.07': '00.07 eSignature & Certificates_ProcessDesign.docx',
+  '00.08': '00.08 Support Tool_ProcessDesign.docx',
+  '00.09': '00.09_AMOS_Release_Change_ProcessDesign.docx',
+  
+  // Module 01 - Fleet Engineering
+  '01.01': '01.01 Aircraft Definition.docx',
+  '01.02': '01.02 Parts Definition.docx',
+  '01.03': '01.03 Maintenance Program.docx',
+  '01.04': '01.04 SB & AD Assessment.docx',
+  '01.05': '01.05 Configuration Management.docx',
+  '01.06': '01.06 MEL Administration.docx',
+  '01.07': '01.07 Reliability.docx',
+  '01.08': '01.08 Weight And Balance.docx',
+  '01.09': '01.09 Powerplants (Engine_APU).docx',
+  
+  // Module 02 - Technical Services
+  '02.01': '02.01 Aircraft Phase-in_ProcessDesign.docx',
+  '02.02': '02.02 Aircraft Phase-out_ProcessDesign.docx',
+  '02.03': '02.03 Multi-Operator AC Transfer_ProcessDesign.docx',
+  '02.04': '02.04 Aircraft & Comp Counters_ProcessDesign.docx',
+  '02.05': '02.05 Technical Library_ProcessDesign.docx',
+  '02.06': '02.06 Requirement Work Scoping_ProcessDesign.docx',
+  '02.07': '02.07 Stuctural Damage_ProcessDesign.docx',
+  '02.08': '02.08 Digital Records_ProcessDesign.docx',
+  '02.09': '02.09 Airworthiness Certificate.docx',
+  
+  // Module 03 - Fleet Planning
+  '03.01': '03.01 Planning_ProcessDesign.docx',
+  '03.02': '03.02 Work Package Generation_ProcessDesign.docx',
+  '03.03': '03.03 Reporting Back_ProcessDesign.docx',
+  '03.04': '03.04 Modification Campaigns_ProcessDesign.docx',
+  '03.05': '03.05 Long Term Planning_ProcessDesign.docx',
+  
+  // Module 04 - Quality Assurance
+  '04.01': '04.01_Company Organisation_ProcessDesign.docx',
+  '04.02': '04.02 Maintenance Agreements_ProcessDesign.docx',
+  '04.03': '04.03 Training and Qualification.docx',
+  '04.04': '04.04 Approval Control.docx',
+  '04.05': '04.05 Quality Auditing.docx',
+  
+  // Module 06 - MCC
+  '06.01': '06.01 - Fleet Status Monitoring_ProcessDesign.docx',
+  '06.02': '06.02 Delays_Event tracking_ProcessDesign.docx',
+  '06.03': '06.03 - Line Maintenance Oversight_ProcessDesign.docx',
+  '06.04': '06.04 - Recurrent Defects_ProcessDesign.docx',
+  '06.05': '06.05 - Aircraft Incidents_ProcessDesign.docx',
+  
+  // Module 07 - Production Planning
+  '07.01': '07.01 - Shift_Planning_ProcessDesign.docx',
+  '07.02': '07.02 - Hangar & Resources_ProcessDesign.docx',
+  '07.03': '07.03 - Work Templates_ProcessDesign.docx',
+  '07.04': '07.04 - Production Plan Preparation_ProcessDesign.docx',
+  '07.05': '07.05 - Resource & Staff Allocation_ProcessDesign.docx',
+  '07.06': '07.06 - Customer MRO Workpackages_ProcessDesign.docx',
+  
+  // Module 08 - Aircraft Maintenance
+  '08.01': '08.01 - Maintenance Check Control_ProcessDesign.docx',
+  '08.02': '08.02 - Performing Maintenance_ProcessDesign.docx',
+  '08.03': '08.03 - Deferral Handling_ProcessDesign.docx',
+  '08.04': '08.04 - Parts Removal & Installation_ProcessDesign.docx',
+  '08.05': '08.05 - Release to Service_ProcessDesign.docx',
+  
+  // Module 09 - Procurement
+  '09.01': '09.01_Material Planning_ProcessDesign.docx',
+  '09.02': '09.02_Supplier Management_ProcessDesign.docx',
+  '09.03': '09.03_Ordering_ProcessDesign.docx',
+  '09.04': '09.04_Repair_&_Exchange_ProcessDesign.docx',
+  '09.05': '09.05_Warranty_ProcessDesign.docx',
+  '09.06': '09.06_Pooling & Consignment_ProcessDesign.docx',
+  '09.07': '09.07_Outstation & MRO_ProcessDesign.docx',
+  
+  // Module 10 - Stores
+  '10.01': '10.01_Logistics_ProcessDesign.docx',
+  '10.02': '10.02_Goods_Receiving_&_Inspection_ProcessDesign.docx',
+  '10.03': '10.03_Major_Assemblies_ProcessDesign.docx',
+  '10.04': '10.04_Part Request Fulfilment_ProcessDesign.docx',
+  '10.05': '10.05_Tools_ProcessDesign.docx',
+  '10.06': '10.06_Inventory & Shelf Life Control_ProcessDesign.docx',
+  '10.07': '10.07_Customer Material_ProcessDesign.docx',
+  
+  // Module 11 - Component Shops
+  '11.01': '11.01_Capability List_ProcessDesign.docx',
+  '11.02': '11.02_Shop Card Templates_ProcessDesign.docx',
+  '11.03': '11.03_Shop Planner_ProcessDesign.docx',
+  '11.04': '11.04_Component Maintenance_ProcessDesign.docx',
+  '11.05': '11.05_Closed Loop_ProcessDesign.docx',
+  '11.06': '11.06_Component Release_ProcessDesign.docx',
+  
+  // Module 12 - Finance & Commercial
+  '12.01': '12.01_Financial Accounting_ProcessDesign.docx',
+  '12.02': '12.02_Invoice Checking_ProcessDesign.docx',
+  '12.03': '12.03_Fixed Assets & Depreciation_ProcessDesign.docx',
+  '12.04': '12.04_Commercial Pricing & Billing_ProcessDesign.docx',
+  '12.05': '12.05_Customer Quotations_ProcessDesign.docx',
+  '12.06': '12.06_Budgeting&CostControlling_ProcessDesign.docx',
+  '12.07': '12.07_Financial Multi Entity_ProcessDesign.docx',
+};
+
+/**
+ * Récupère le chemin du fichier Process Design Word pour un sous-module donné
+ * @param subModuleId - L'ID du sous-module (ex: '02.01')
+ * @returns Le chemin du fichier Word ou null si non trouvé
+ */
+export const getProcessDesignFile = (subModuleId: string): string | null => {
+  const fileName = PROCESS_DESIGN_MAPPING[subModuleId];
+  if (!fileName) {
+    return null;
+  }
+  return `/Words/${fileName}`;
 };

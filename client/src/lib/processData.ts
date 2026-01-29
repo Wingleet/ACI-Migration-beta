@@ -20,11 +20,11 @@ export const UNSELECTED_SUBMODULES = new Set([
 ]);
 
 // Default empty gap record
-const createEmptyGapRecord = (): GapRecord => ({
+const createEmptyGapRecord = (isUnselected: boolean = false): GapRecord => ({
   asIs: '',
   toBe: '',
   dataScope: '',
-  verdict: null,
+  verdict: isUnselected ? 'na' : null,
   gapType: null,
   decision: null,
   actions: [],
@@ -42,14 +42,17 @@ const createEmptyGapRecord = (): GapRecord => ({
 });
 
 // Helper to create submodule
-const createSubModule = (id: string, name: string): SubModule => ({
-  id,
-  name,
-  status: 'not_started',
-  criticality: 'medium',
-  isSelected: !UNSELECTED_SUBMODULES.has(id),
-  gapRecord: createEmptyGapRecord(),
-});
+const createSubModule = (id: string, name: string): SubModule => {
+  const isUnselected = UNSELECTED_SUBMODULES.has(id);
+  return {
+    id,
+    name,
+    status: 'not_started',
+    criticality: 'medium',
+    isSelected: !isUnselected,
+    gapRecord: createEmptyGapRecord(isUnselected),
+  };
+};
 
 // Departments definition
 export const DEPARTMENTS: Department[] = [

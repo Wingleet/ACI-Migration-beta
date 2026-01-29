@@ -1,0 +1,109 @@
+<mxfile host="Electron" modified="2023-12-08T09:19:12.126Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.1.2 Chrome/114.0.5735.289 Electron/25.9.4 Safari/537.36" etag="oLDypfiv7qLIztPIxkEt" version="22.1.2" type="device">
+  <diagram id="RNGnkLI-MCDgjgDuYWAb" name="11.02 Shop Card Templates">
+    <mxGraphModel dx="2601" dy="2174" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2cl7CHh1-utzGBygBaVu-1" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+          <mxGeometry x="-1160" y="-777" width="1150" height="767" as="geometry" />
+        </mxCell>
+        <mxCell id="2cl7CHh1-utzGBygBaVu-2" value="&lt;span style=&quot;font-size: 22px;&quot;&gt;11.02 Shop Card Templates&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=left;fontStyle=1;movable=1;resizable=1;rotatable=1;deletable=1;editable=1;locked=0;connectable=1;" parent="1" vertex="1">
+          <mxGeometry x="-1160" y="-820" width="1150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="aWeAcaWYl1lUYU_2sXSY-3" value="" style="rounded=0;whiteSpace=wrap;html=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+          <mxGeometry x="-1142" y="-120" width="320" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="aWeAcaWYl1lUYU_2sXSY-4" value="LEGEND" style="rounded=0;whiteSpace=wrap;html=1;horizontal=0;fontStyle=1;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;connectable=0;" parent="1" vertex="1">
+          <mxGeometry x="-1142" y="-120" width="30" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="p1n9YsAw8kMUsl4M7CEJ-5" target="QNobUS_JotRcsl2D5b8N-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-5" value="11.04 Component Maintenance" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
+          <mxGeometry x="-440" y="-390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="p1n9YsAw8kMUsl4M7CEJ-20" target="p1n9YsAw8kMUsl4M7CEJ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1n9YsAw8kMUsl4M7CEJ-20" target="p1n9YsAw8kMUsl4M7CEJ-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-20" value="Create Shopcard or Component Rerquirement&lt;br&gt;Link CMM pages&lt;br&gt;Add metadata:&amp;nbsp;ATA Reference, CMM, Revision Number, Part Number, Manufacturer, Required Condition, Shop, Document Number and Customer&lt;br&gt;Activate and sync Shopcard or Component Requirement" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;opacity=50;" parent="1" vertex="1">
+          <mxGeometry x="-711.5" y="-465" width="184" height="211" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-22" value="Desktop APN 1848" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-652.25" y="-460" width="65.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p1n9YsAw8kMUsl4M7CEJ-44" target="QNobUS_JotRcsl2D5b8N-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-44" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="-1109.25" y="-700" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-45" value="New publication is received and a shop template needs to be created / revised" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="-1141.75" y="-665" width="92.75" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-46" value="" style="ellipse;whiteSpace=wrap;html=1;rounded=1;strokeWidth=1;fillColor=#b5b5b5;" parent="1" vertex="1">
+          <mxGeometry x="-90" y="-550" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="p1n9YsAw8kMUsl4M7CEJ-47" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255);&quot;&gt;Shop Template is created/revised and available for production&lt;/span&gt;&lt;/div&gt;" style="text;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-125" y="-515" width="100" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="lOQ5zA1UGN7F7SM8XFNe-13" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;spacingLeft=10;spacingBottom=6;spacingRight=6;verticalAlign=bottom;align=left;spacingTop=0;" parent="1" vertex="1">
+          <mxGeometry x="-1100.25" y="-107" width="70" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="lOQ5zA1UGN7F7SM8XFNe-14" value="Technical Library" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-1025.25" y="-109.5" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="lOQ5zA1UGN7F7SM8XFNe-15" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;opacity=50;spacingLeft=10;spacingBottom=6;spacingRight=6;verticalAlign=bottom;align=left;" parent="1" vertex="1">
+          <mxGeometry x="-1100" y="-67" width="70" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="lOQ5zA1UGN7F7SM8XFNe-16" value="Shop Engineer" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+          <mxGeometry x="-1025" y="-69.5" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="QNobUS_JotRcsl2D5b8N-2" target="p1n9YsAw8kMUsl4M7CEJ-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="QNobUS_JotRcsl2D5b8N-2" target="QNobUS_JotRcsl2D5b8N-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-2" value="Load component manuals in SGML, S1000D or PDF format&lt;br&gt;Activate the latest revision" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="-1025" y="-407.5" width="184" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-3" value="Desktop APN 1524" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-965.75" y="-402.5" width="65.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="QNobUS_JotRcsl2D5b8N-4" target="p1n9YsAw8kMUsl4M7CEJ-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-4" value="Review CMM content and print when required." style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#647687;strokeColor=#314354;fontColor=#ffffff;opacity=50;" vertex="1" parent="1">
+          <mxGeometry x="-1025" y="-262.5" width="184" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-5" value="Desktop APN 1525" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-965.75" y="-257.5" width="65.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="QNobUS_JotRcsl2D5b8N-9" target="QNobUS_JotRcsl2D5b8N-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-9" value="Register new publication&lt;br&gt;Annouce arrival of new publications&lt;br&gt;Distribution and processing of document" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="-1025" y="-745" width="184" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-10" value="Desktop APN 565" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-965.75" y="-740" width="65.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="QNobUS_JotRcsl2D5b8N-11" target="QNobUS_JotRcsl2D5b8N-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-11" value="Acknowledge the arrival of new publication" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=bottom;spacingTop=0;spacingBottom=6;spacingLeft=10;spacingRight=6;align=left;fillColor=#E59393;strokeColor=#B20000;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="-1025" y="-550" width="184" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-12" value="Desktop APN 685" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-965.75" y="-545" width="65.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QNobUS_JotRcsl2D5b8N-24" value="11.06 Component Release" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="-270" y="-390" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
