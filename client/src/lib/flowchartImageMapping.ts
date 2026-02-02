@@ -46,7 +46,8 @@ export const ACI_FLOWCHART_DRAWIO_MAPPING: Record<string, string> = {
   '03.05': '03.05 Long Term Planning.drawio',
   
   // Module 04 - Quality Assurance
-  '04.01': '04.01 Company Organisation.drawio',
+  '04.01': '04.01 Company Organization.drawio',
+  '04.02': '04.02 Maintenance Agreements.drawio',
   '04.03': '04.03 Training and Qualifications.drawio',
   '04.04': '04.04 Approval Control.drawio',
   '04.05': '04.05 Quality Auditing.drawio',
