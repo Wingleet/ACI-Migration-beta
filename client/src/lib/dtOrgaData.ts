@@ -30,7 +30,7 @@ export const DT_ORGA_DATA: OrgNode = {
   type: 'direction',
   color: '#6366f1',
   personnel: [
-    { name: 'Eric BOUCHER', role: 'Directeur Technique (CAMO / AMO / LOG)' },
+    { name: 'E. BOU', role: 'Directeur Technique (CAMO / AMO / LOG)' },
   ],
   children: [
     {
@@ -39,7 +39,7 @@ export const DT_ORGA_DATA: OrgNode = {
       type: 'service',
       color: '#8b5cf6',
       personnel: [
-        { name: 'Philippe REITER', role: 'Responsable Bureau Technique' },
+        { name: 'P. REI', role: 'Responsable Bureau Technique' },
       ],
       children: [
         {
@@ -48,11 +48,11 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#a78bfa',
           personnel: [
-            { name: 'Fabien HARS', role: 'Engineering' },
-            { name: 'Antoine JAMEUX', role: 'Engineering' },
-            { name: 'Loic CAVALIE', role: 'Engineering' },
-            { name: 'Pierre-Emile TIREBAQUE', role: 'Engineering' },
-            { name: 'Florentin THIBEAUX', role: 'Engineering' },
+            { name: 'F. HAR', role: 'Engineering' },
+            { name: 'A. JAM', role: 'Engineering' },
+            { name: 'L. CAV', role: 'Engineering' },
+            { name: 'P. TIR', role: 'Engineering' },
+            { name: 'F. THI', role: 'Engineering' },
           ],
           processes: [
             { id: 'p-01.01', name: 'Aircraft Definition', subModuleId: '01.01' },
@@ -72,9 +72,9 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#a78bfa',
           personnel: [
-            { name: 'Jessica BERNANOS', role: 'Planning' },
-            { name: 'Dean HICKSON', role: 'Planning' },
-            { name: 'Jean-Marc PHAM VAN NINH', role: 'Planning' },
+            { name: 'J. BER', role: 'Planning' },
+            { name: 'D. HIC', role: 'Planning' },
+            { name: 'J. PHA', role: 'Planning' },
           ],
           processes: [
             { id: 'p-03.01', name: 'Planning', subModuleId: '03.01' },
@@ -88,7 +88,7 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#a78bfa',
           personnel: [
-            { name: 'Yael DEVILLERS', role: 'Documentation' },
+            { name: 'Y. DEV', role: 'Documentation' },
           ],
           processes: [
             { id: 'p-02.05', name: 'Technical Library', subModuleId: '02.05' },
@@ -103,7 +103,7 @@ export const DT_ORGA_DATA: OrgNode = {
       type: 'service',
       color: '#ec4899',
       personnel: [
-        { name: 'Jerome DESCOTES', role: 'Responsable Production' },
+        { name: 'J. DES', role: 'Responsable Production' },
       ],
       processes: [
         { id: 'p-07.01', name: 'Shift Planning', subModuleId: '07.01' },
@@ -118,7 +118,7 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#f472b6',
           personnel: [
-            { name: 'Nancy MALAU', role: 'Shop Cabin' },
+            { name: 'N. MAL', role: 'Shop Cabin' },
           ],
           processes: [
             { id: 'p-11.01', name: 'Capability List', subModuleId: '11.01' },
@@ -135,7 +135,7 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#f472b6',
           personnel: [
-            { name: 'David BARBIER', role: 'Preparation Work' },
+            { name: 'D. BAR', role: 'Preparation Work' },
           ],
           processes: [
             { id: 'p-07.03', name: 'Work Templates', subModuleId: '07.03' },
@@ -147,26 +147,26 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#f472b6',
           personnel: [
-            { name: 'Charles ACKER', role: 'Maintenance' },
-            { name: 'Loic ARNOUX', role: 'Maintenance' },
-            { name: 'Jean-Pierre BACELOS', role: 'Maintenance' },
-            { name: 'Philippe DOROTHEE', role: 'Maintenance' },
-            { name: 'Denzo HIGA', role: 'Maintenance' },
-            { name: 'Yannick HNIMINAU', role: 'Maintenance' },
-            { name: 'Rodrigue IEKAWE', role: 'Maintenance' },
-            { name: 'Jean-Jacques JEWINE', role: 'Maintenance' },
-            { name: 'Idris KAHLEMU', role: 'Maintenance' },
-            { name: 'Larryson KELETAONA', role: 'Maintenance' },
-            { name: 'Marcel Sinawe NGAIOHNI', role: 'Maintenance' },
-            { name: 'Gregory ROSSILLE', role: 'Maintenance' },
-            { name: 'Raymond SINYEUE', role: 'Maintenance' },
-            { name: 'Antony TIDJINE', role: 'Maintenance' },
-            { name: 'Daniel TROULU', role: 'Maintenance' },
-            { name: 'Jerome WAHMETU', role: 'Maintenance' },
-            { name: 'David WAICANE', role: 'Maintenance' },
-            { name: 'Ezechiel WAMYTAN', role: 'Maintenance' },
-            { name: 'Gael XUMA', role: 'Maintenance' },
-            { name: 'Jean-Edouard YONGOMENE', role: 'Maintenance' },
+            { name: 'C. ACK', role: 'Maintenance' },
+            { name: 'L. ARN', role: 'Maintenance' },
+            { name: 'J. BAC', role: 'Maintenance' },
+            { name: 'P. DOR', role: 'Maintenance' },
+            { name: 'D. HIG', role: 'Maintenance' },
+            { name: 'Y. HNI', role: 'Maintenance' },
+            { name: 'R. IEK', role: 'Maintenance' },
+            { name: 'J. JEW', role: 'Maintenance' },
+            { name: 'I. KAH', role: 'Maintenance' },
+            { name: 'L. KEL', role: 'Maintenance' },
+            { name: 'M. NGA', role: 'Maintenance' },
+            { name: 'G. ROS', role: 'Maintenance' },
+            { name: 'R. SIN', role: 'Maintenance' },
+            { name: 'A. TID', role: 'Maintenance' },
+            { name: 'D. TRO', role: 'Maintenance' },
+            { name: 'J. WAH', role: 'Maintenance' },
+            { name: 'D. WAI', role: 'Maintenance' },
+            { name: 'E. WAM', role: 'Maintenance' },
+            { name: 'G. XUM', role: 'Maintenance' },
+            { name: 'J. YON', role: 'Maintenance' },
           ],
           processes: [
             { id: 'p-08.01', name: 'Maintenance Check Control', subModuleId: '08.01' },
@@ -184,7 +184,7 @@ export const DT_ORGA_DATA: OrgNode = {
       type: 'service',
       color: '#14b8a6',
       personnel: [
-        { name: 'Vaiana TAIRIO', role: 'Responsable Logistique' },
+        { name: 'V. TAI', role: 'Responsable Logistique' },
       ],
       children: [
         {
@@ -193,12 +193,12 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#2dd4bf',
           personnel: [
-            { name: 'Melodie HAUPUNI', role: 'Store' },
-            { name: 'Sean APELE', role: 'Store' },
-            { name: 'Jean Paul JONE', role: 'Store' },
-            { name: 'Falakiko MOTUKU', role: 'Store' },
-            { name: 'Guillaume QUEMERE', role: 'Store' },
-            { name: 'Arturo Henri VAZQUEZ RODRIGUEZ', role: 'Store' },
+            { name: 'M. HAU', role: 'Store' },
+            { name: 'S. APE', role: 'Store' },
+            { name: 'J. JON', role: 'Store' },
+            { name: 'F. MOT', role: 'Store' },
+            { name: 'G. QUE', role: 'Store' },
+            { name: 'A. VAZ', role: 'Store' },
           ],
           processes: [
             { id: 'p-02.04', name: 'Aircraft & Component Counters', subModuleId: '02.04' },
@@ -210,10 +210,10 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#2dd4bf',
           personnel: [
-            { name: 'Lan Anh DO', role: 'Purchasing' },
-            { name: 'Deborah LUEPACK', role: 'Purchasing' },
-            { name: 'Rodrigue TUFELE', role: 'Purchasing' },
-            { name: 'Claudicia WALOUA', role: 'Purchasing' },
+            { name: 'L. DO', role: 'Purchasing' },
+            { name: 'D. LUE', role: 'Purchasing' },
+            { name: 'R. TUF', role: 'Purchasing' },
+            { name: 'C. WAL', role: 'Purchasing' },
           ],
           processes: [
             { id: 'p-09.01', name: 'Material Planning', subModuleId: '09.01' },
@@ -227,7 +227,7 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#2dd4bf',
           personnel: [
-            { name: 'Nathalie BESANCON', role: 'Import Export' },
+            { name: 'N. BES', role: 'Import Export' },
           ],
           processes: [
             { id: 'p-09.04', name: 'Repair & Exchanges', subModuleId: '09.04' },
@@ -240,7 +240,7 @@ export const DT_ORGA_DATA: OrgNode = {
           type: 'unit',
           color: '#2dd4bf',
           personnel: [
-            { name: 'Leonore PETIT', role: 'Contrats' },
+            { name: 'L. PET', role: 'Contrats' },
           ],
           processes: [
             { id: 'p-09.05', name: 'Warranty', subModuleId: '09.05' },
@@ -255,12 +255,12 @@ export const DT_ORGA_DATA: OrgNode = {
       type: 'service',
       color: '#06b6d4',
       personnel: [
-        { name: 'Olivier NYIPIE', role: 'MCC' },
-        { name: 'Ruddy DENEUVILLE', role: 'MCC' },
-        { name: 'Laurent DENEUX', role: 'MCC' },
-        { name: 'Stephane DUBROUS', role: 'MCC' },
-        { name: 'Joannes YONGOMENE', role: 'MCC' },
-        { name: 'Jerome PAKIHIVATAU', role: 'MCC' },
+        { name: 'O. NYI', role: 'MCC' },
+        { name: 'R. DEN', role: 'MCC' },
+        { name: 'L. DEN', role: 'MCC' },
+        { name: 'S. DUB', role: 'MCC' },
+        { name: 'J. YON', role: 'MCC' },
+        { name: 'J. PAK', role: 'MCC' },
       ],
       processes: [
         { id: 'p-06.01', name: 'Fleet Status Monitoring', subModuleId: '06.01' },
@@ -276,7 +276,7 @@ export const DT_ORGA_DATA: OrgNode = {
       type: 'service',
       color: '#f59e0b',
       personnel: [
-        { name: 'Elodie TAVONG', role: 'Compliance & Safety' },
+        { name: 'E. TAV', role: 'Compliance & Safety' },
       ],
       processes: [
         { id: 'p-04.01', name: 'Company Organisation', subModuleId: '04.01' },
@@ -292,7 +292,7 @@ export const DT_ORGA_DATA: OrgNode = {
       type: 'service',
       color: '#64748b',
       personnel: [
-        { name: 'Isabelle RAMES', role: 'Admin' },
+        { name: 'I. RAM', role: 'Admin' },
       ],
       processes: [
         { id: 'p-12.01', name: 'Financial Accounting', subModuleId: '12.01' },
@@ -303,4 +303,57 @@ export const DT_ORGA_DATA: OrgNode = {
       ],
     },
   ],
+};
+
+// Interface pour les services/unités avec leurs subModuleIds
+export interface ServiceUnit {
+  id: string;
+  name: string;
+  type: 'service' | 'unit';
+  color: string;
+  parentName?: string;
+  subModuleIds: string[];
+}
+
+// Fonction pour extraire tous les services et unités avec leurs subModuleIds
+export const getAllServicesAndUnits = (): ServiceUnit[] => {
+  const result: ServiceUnit[] = [];
+  
+  const extractFromNode = (node: OrgNode, parentName?: string) => {
+    if (node.type === 'service' || node.type === 'unit') {
+      const subModuleIds = (node.processes || [])
+        .map(p => p.subModuleId)
+        .filter((id): id is string => !!id);
+      
+      result.push({
+        id: node.id,
+        name: node.name,
+        type: node.type,
+        color: node.color || '#6366f1',
+        parentName,
+        subModuleIds,
+      });
+    }
+    
+    if (node.children) {
+      const newParent = node.type === 'service' ? node.name : parentName;
+      node.children.forEach(child => extractFromNode(child, newParent));
+    }
+  };
+  
+  extractFromNode(DT_ORGA_DATA);
+  return result;
+};
+
+// Fonction pour obtenir les subModuleIds d'un service/unité donné
+export const getSubModuleIdsByServiceId = (serviceId: string): string[] => {
+  const services = getAllServicesAndUnits();
+  const service = services.find(s => s.id === serviceId);
+  return service?.subModuleIds || [];
+};
+
+// Fonction pour obtenir le nom du service/unité qui contient un subModuleId
+export const getServiceBySubModuleId = (subModuleId: string): ServiceUnit | undefined => {
+  const services = getAllServicesAndUnits();
+  return services.find(s => s.subModuleIds.includes(subModuleId));
 };

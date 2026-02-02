@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef, useCallback } from 'react';
+import React, { useState, useMemo, useRef, useCallback, memo } from 'react';
 import { 
   ChevronDown, 
   ChevronRight, 
@@ -16,7 +16,9 @@ import {
   FileDown,
   Loader2,
 } from 'lucide-react';
-import { DT_ORGA_DATA, OrgNode, PersonnelInfo, ProcessInfo } from '@/lib/dtOrgaData';
+import { DT_ORGA_DATA, OrgNode, PersonnelInfo, ProcessInfo, getAllServicesAndUnits } from '@/lib/dtOrgaData';
+import { useDTOrgaStore } from '@/stores/dtOrgaStore';
+import { useProcessStore } from '@/stores/processStore';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -430,6 +432,42 @@ interface DetailPanelProps {
 }
 
 const DetailPanel: React.FC<DetailPanelProps> = ({ node, onClose }) => {
+  // Get dynamic services and process data
+  const { getAllServicesAndUnits: getDynamicServices } = useDTOrgaStore();
+  const { modules } = useProcessStore();
+  
+  // Get processes for this node from dynamic store
+  const dynamicProcesses = useMemo(() => {
+    const allServices = getDynamicServices();
+    const service = allServices.find(s => s.id === node.id);
+    
+    if (service) {
+      // Map subModuleIds to ProcessInfo with names from processStore
+      return service.subModuleIds.map(subModuleId => {
+        // Find the submodule in processStore to get the name
+        for (const module of modules) {
+          const subModule = module.subModules.find(sm => sm.id === subModuleId);
+          if (subModule) {
+            return {
+              id: `p-${subModuleId}`,
+              name: subModule.name,
+              subModuleId: subModuleId
+            } as ProcessInfo;
+          }
+        }
+        // Fallback: check static data
+        const staticProcess = node.processes?.find(p => p.subModuleId === subModuleId);
+        return staticProcess || {
+          id: `p-${subModuleId}`,
+          name: subModuleId,
+          subModuleId: subModuleId
+        } as ProcessInfo;
+      });
+    }
+    // Fallback to static processes
+    return node.processes || [];
+  }, [node.id, node.processes, getDynamicServices, modules]);
+
   return (
     <div className="h-full flex flex-col bg-card border-l border-border overflow-hidden">
       {/* Header */}
@@ -488,11 +526,11 @@ const DetailPanel: React.FC<DetailPanelProps> = ({ node, onClose }) => {
           <div>
             <h3 className="text-sm font-semibold flex items-center gap-2 mb-3">
               <GitBranch className="w-4 h-4" style={{ color: node.color }} />
-              Processus AMOS
+              Processus AMOS ({dynamicProcesses.length})
             </h3>
-            {node.processes && node.processes.length > 0 ? (
+            {dynamicProcesses.length > 0 ? (
               <div className="space-y-2">
-                {node.processes.map((process) => (
+                {dynamicProcesses.map((process) => (
                   <Link 
                     key={process.id} 
                     href={`/process?module=${process.subModuleId}`}

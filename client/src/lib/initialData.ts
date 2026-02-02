@@ -222,7 +222,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: [],
       status: 'planned',
-      owner: 'Pierre Leroy',
+      owner: 'P. LER',
       tags: ['data', 'mapping']
     },
     {
@@ -236,7 +236,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: ['data-1'],
       status: 'planned',
-      owner: 'Sophie Bernard'
+      owner: 'S. BER'
     },
     {
       id: 'data-3',
@@ -249,7 +249,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: ['data-2'],
       status: 'planned',
-      owner: 'Pierre Leroy',
+      owner: 'P. LER',
       tags: ['migration']
     },
     {
@@ -263,7 +263,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: ['data-3'],
       status: 'planned',
-      owner: 'Pierre Leroy',
+      owner: 'P. LER',
       tags: ['migration']
     },
     {
@@ -277,7 +277,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: ['data-4'],
       status: 'planned',
-      owner: 'Sophie Bernard',
+      owner: 'S. BER',
       tags: ['migration']
     },
     {
@@ -307,7 +307,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: [],
       status: 'in-progress',
-      owner: 'Jean Martin',
+      owner: 'J. MAR',
       tags: ['infrastructure']
     },
     {
@@ -321,7 +321,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: [],
       status: 'in-progress',
-      owner: 'Rudy NADIMIN',
+      owner: 'R. NAD',
       tags: ['infrastructure', 'interfaces']
     },
 
@@ -339,7 +339,7 @@ export const AVIATION_PROJECT_DATA: Project = {
       type: 'task',
       dependencies: ['test-3', 'data-6'],
       status: 'planned',
-      owner: 'Gaétan MAHON',
+      owner: 'G. MAH',
       tags: ['support', 'go-live']
     },
   ]

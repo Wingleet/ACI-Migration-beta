@@ -17,6 +17,11 @@ import {
   Loader2,
   Grid3X3,
   ExternalLink,
+  Building2,
+  Check,
+  Search,
+  Users,
+  Sparkles,
 } from 'lucide-react';
 import { jsPDF } from 'jspdf';
 import { toPng } from 'html-to-image';
@@ -41,6 +46,8 @@ import { getFlowchartImages, getFlowchartImagePath, getAciFlowchartImage, getAci
 import { DrawioEditor } from './DrawioEditor';
 import { Pencil } from 'lucide-react';
 import { MATRIX_DATA, AREA_COLORS } from '@/lib/matrixApnData';
+import { getAllServicesAndUnits, ServiceUnit } from '@/lib/dtOrgaData';
+import { useDTOrgaStore, getServiceBySubModuleIdDynamic } from '@/stores/dtOrgaStore';
 import {
   Dialog,
   DialogContent,
@@ -79,6 +86,118 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
   const [isAciImageZoomed, setIsAciImageZoomed] = useState(false);
   const [isDrawioEditorOpen, setIsDrawioEditorOpen] = useState(false);
   const [isApnDialogOpen, setIsApnDialogOpen] = useState(false);
+  const [isServiceDialogOpen, setIsServiceDialogOpen] = useState(false);
+  const [serviceSearchQuery, setServiceSearchQuery] = useState('');
+  const [aciImageFromDb, setAciImageFromDb] = useState<string | null>(null);
+  const [aciImageLoading, setAciImageLoading] = useState(false);
+  
+  // DT Orga Store - subscribe to customAssociations for reactivity
+  const customAssociations = useDTOrgaStore(state => state.customAssociations);
+  const addProcessToService = useDTOrgaStore(state => state.addProcessToService);
+  const removeProcessFromService = useDTOrgaStore(state => state.removeProcessFromService);
+  const isSyncing = useDTOrgaStore(state => state.isSyncing);
+  const lastSyncedAt = useDTOrgaStore(state => state.lastSyncedAt);
+  const loadFromNetlify = useDTOrgaStore(state => state.loadFromNetlify);
+  const saveToNetlify = useDTOrgaStore(state => state.saveToNetlify);
+  
+  // Charger les données depuis Netlify au démarrage
+  useEffect(() => {
+    loadFromNetlify();
+  }, []);
+
+  // Charger l'image ACI depuis la DB
+  useEffect(() => {
+    if (!subModule.id) return;
+    
+    setAciImageLoading(true);
+    setAciImageFromDb(null);
+    
+    fetch(`/api/aci-image?moduleId=${encodeURIComponent(subModule.id)}`)
+      .then(res => {
+        if (!res.ok) throw new Error('Not found');
+        return res.json();
+      })
+      .then(data => {
+        if (data.data?.content) {
+          // Convertir base64 en data URL
+          const mimeType = data.data.mimeType || 'image/png';
+          setAciImageFromDb(`data:${mimeType};base64,${data.data.content}`);
+        }
+      })
+      .catch(() => {
+        // Fallback sur l'image locale
+        setAciImageFromDb(null);
+      })
+      .finally(() => {
+        setAciImageLoading(false);
+      });
+  }, [subModule.id]);
+  
+  // Fermer avec la touche Échap
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        // Fermer d'abord les dialogs ouverts, sinon fermer le drawer principal
+        if (isDrawioEditorOpen) {
+          setIsDrawioEditorOpen(false);
+        } else if (isServiceDialogOpen) {
+          setIsServiceDialogOpen(false);
+        } else if (isApnDialogOpen) {
+          setIsApnDialogOpen(false);
+        } else if (isImageZoomed) {
+          setIsImageZoomed(false);
+        } else if (isAciImageZoomed) {
+          setIsAciImageZoomed(false);
+        } else {
+          onClose();
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, isDrawioEditorOpen, isServiceDialogOpen, isApnDialogOpen, isImageZoomed, isAciImageZoomed]);
+  
+  // Get all services with dynamic associations
+  const allServices = useMemo(() => {
+    const staticServices = getAllServicesAndUnits();
+    return staticServices.map(service => {
+      const customAssoc = customAssociations.find(a => a.serviceId === service.id);
+      if (customAssoc) {
+        return { ...service, subModuleIds: customAssoc.subModuleIds };
+      }
+      return service;
+    });
+  }, [customAssociations]);
+  
+  // Get services associated with this process
+  const associatedServices = useMemo(() => {
+    return allServices.filter(service => service.subModuleIds.includes(subModule.id));
+  }, [subModule.id, allServices]);
+  
+  // Filter and group services
+  const filteredAndGroupedServices = useMemo(() => {
+    const query = serviceSearchQuery.toLowerCase().trim();
+    
+    // Filter services based on search
+    const filtered = query 
+      ? allServices.filter(s => 
+          s.name.toLowerCase().includes(query) ||
+          (s.parentName && s.parentName.toLowerCase().includes(query))
+        )
+      : allServices;
+    
+    // Group by parent
+    const groups: { [key: string]: ServiceUnit[] } = {};
+    filtered.forEach(service => {
+      const groupKey = service.type === 'unit' && service.parentName 
+        ? service.parentName 
+        : service.type === 'service' ? service.name : 'Autres';
+      if (!groups[groupKey]) groups[groupKey] = [];
+      groups[groupKey].push(service);
+    });
+    return groups;
+  }, [allServices, serviceSearchQuery]);
   
   // Get APNs for this process
   const processApns = useMemo(() => {
@@ -661,6 +780,17 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
               </SelectContent>
             </Select>
 
+            {/* Service/Unit Button */}
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="h-7 text-[10px] gap-1"
+              onClick={() => setIsServiceDialogOpen(true)}
+            >
+              <Building2 className="w-3 h-3" />
+              Services ({associatedServices.length})
+            </Button>
+
             {/* APN Button */}
             <Button 
               variant="outline" 
@@ -740,10 +870,15 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
               </Button>
             </div>
             <div className="flex-1 border border-t-0 border-border rounded-b-lg overflow-hidden bg-white flex items-center justify-center relative">
-              {getAciFlowchartImage(subModule.id) ? (
+              {aciImageLoading ? (
+                <div className="flex flex-col items-center gap-2 text-muted-foreground p-4">
+                  <Loader2 className="w-8 h-8 animate-spin" />
+                  <span className="text-xs text-center">Chargement...</span>
+                </div>
+              ) : (aciImageFromDb || getAciFlowchartImage(subModule.id)) ? (
                 <>
                   <img
-                    src={getAciFlowchartImage(subModule.id)!}
+                    src={aciImageFromDb || getAciFlowchartImage(subModule.id)!}
                     alt={`ACI Flowchart ${subModule.name}`}
                     className="w-full h-full object-contain cursor-pointer hover:opacity-90 transition-opacity p-2"
                     onClick={() => setIsAciImageZoomed(true)}
@@ -758,6 +893,11 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
                   >
                     <ZoomIn className="w-4 h-4 text-muted-foreground" />
                   </button>
+                  {aciImageFromDb && (
+                    <div className="absolute top-2 right-2 px-2 py-1 bg-emerald-500/90 text-white text-[9px] rounded-md">
+                      DB
+                    </div>
+                  )}
                 </>
               ) : (
                 <div className="flex flex-col items-center gap-2 text-muted-foreground p-4">
@@ -912,14 +1052,14 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
       </div>
 
       {/* ACI Image Zoom Modal */}
-      {isAciImageZoomed && getAciFlowchartImage(subModule.id) && (
+      {isAciImageZoomed && (aciImageFromDb || getAciFlowchartImage(subModule.id)) && (
         <div 
           className="fixed inset-0 bg-black/80 z-[100] flex items-center justify-center p-8 cursor-pointer"
           onClick={() => setIsAciImageZoomed(false)}
         >
           <div className="relative max-w-[90vw] max-h-[90vh]" onClick={(e) => e.stopPropagation()}>
             <img
-              src={getAciFlowchartImage(subModule.id)!}
+              src={aciImageFromDb || getAciFlowchartImage(subModule.id)!}
               alt={`ACI Flowchart ${subModule.name}`}
               className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
             />
@@ -982,6 +1122,194 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
           </div>
         </div>
       )}
+
+      {/* Service Selection Dialog */}
+      <Dialog open={isServiceDialogOpen} onOpenChange={(open) => {
+        setIsServiceDialogOpen(open);
+        if (!open) setServiceSearchQuery('');
+      }}>
+        <DialogContent className="max-w-3xl h-[85vh] flex flex-col p-0 gap-0 overflow-hidden">
+          {/* Header avec gradient */}
+          <div className="bg-gradient-to-r from-primary/10 via-primary/5 to-transparent p-6 border-b">
+            <DialogHeader>
+              <DialogTitle className="flex items-center gap-3 text-xl">
+                <div className="p-2 rounded-lg bg-primary/10">
+                  <Building2 className="w-5 h-5 text-primary" />
+                </div>
+                Assigner des services
+                {/* Indicateur de synchronisation Netlify */}
+                {isSyncing ? (
+                  <Badge variant="secondary" className="ml-auto gap-1.5 animate-pulse">
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                    Synchronisation...
+                  </Badge>
+                ) : lastSyncedAt && (
+                  <Badge variant="outline" className="ml-auto gap-1.5 text-emerald-600 border-emerald-300">
+                    <Check className="w-3 h-3" />
+                    Sauvegardé
+                  </Badge>
+                )}
+              </DialogTitle>
+            </DialogHeader>
+          </div>
+          
+          {/* Sélections actuelles */}
+          {associatedServices.length > 0 && (
+            <div className="px-6 py-3 bg-emerald-50 dark:bg-emerald-950/30 border-b flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-emerald-600" />
+                <span className="text-sm font-medium text-emerald-700 dark:text-emerald-400">
+                  {associatedServices.length} service{associatedServices.length > 1 ? 's' : ''} assigné{associatedServices.length > 1 ? 's' : ''}
+                </span>
+              </div>
+              <div className="flex-1 flex items-center gap-1.5 overflow-x-auto">
+                {associatedServices.map((s) => (
+                  <Badge 
+                    key={s.id}
+                    variant="secondary"
+                    className="shrink-0 gap-1.5 pr-1.5 bg-white dark:bg-background"
+                  >
+                    <div className="w-2 h-2 rounded-full" style={{ backgroundColor: s.color }} />
+                    {s.name}
+                    <button
+                      onClick={() => removeProcessFromService(s.id, subModule.id)}
+                      className="ml-1 p-0.5 hover:bg-destructive/20 rounded-full"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="text-xs text-muted-foreground hover:text-destructive shrink-0"
+                onClick={() => {
+                  associatedServices.forEach(s => {
+                    removeProcessFromService(s.id, subModule.id);
+                  });
+                }}
+              >
+                Tout retirer
+              </Button>
+            </div>
+          )}
+          
+          {/* Liste des services */}
+          <ScrollArea className="flex-1 min-h-0">
+            <div className="p-6 space-y-6">
+              {Object.keys(filteredAndGroupedServices).length === 0 ? (
+                <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
+                  <Search className="w-12 h-12 mb-4 opacity-20" />
+                  <p className="text-lg font-medium">Aucun service trouvé</p>
+                  <p className="text-sm">Essayez avec d'autres termes de recherche</p>
+                </div>
+              ) : (
+                Object.entries(filteredAndGroupedServices).map(([groupName, services]) => (
+                  <div key={groupName}>
+                    {/* En-tête du groupe */}
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4 text-muted-foreground" />
+                        <h4 className="text-sm font-semibold">{groupName}</h4>
+                      </div>
+                      <div className="flex-1 h-px bg-border" />
+                      <span className="text-xs text-muted-foreground">
+                        {services.filter(s => associatedServices.some(as => as.id === s.id)).length}/{services.length}
+                      </span>
+                    </div>
+                    
+                    {/* Grille des services */}
+                    <div className="grid grid-cols-2 gap-3">
+                      {services.map((service) => {
+                        const isAssociated = associatedServices.some(s => s.id === service.id);
+                        return (
+                          <button
+                            key={service.id}
+                            type="button"
+                            onClick={() => {
+                              if (isAssociated) {
+                                removeProcessFromService(service.id, subModule.id);
+                              } else {
+                                addProcessToService(service.id, subModule.id);
+                              }
+                            }}
+                            className={cn(
+                              "relative flex items-start gap-3 p-4 rounded-xl border-2 text-left transition-all",
+                              "hover:scale-[1.02] active:scale-[0.98]",
+                              isAssociated 
+                                ? "bg-primary/5 border-primary shadow-md shadow-primary/10" 
+                                : "bg-card border-transparent hover:border-muted-foreground/20 hover:shadow-sm"
+                            )}
+                          >
+                            {/* Checkbox visuel */}
+                            <div 
+                              className={cn(
+                                "w-6 h-6 rounded-lg border-2 flex items-center justify-center shrink-0 transition-all",
+                                isAssociated 
+                                  ? "bg-primary border-primary" 
+                                  : "border-muted-foreground/30 group-hover:border-muted-foreground/50"
+                              )}
+                            >
+                              {isAssociated && (
+                                <Check className="w-4 h-4 text-primary-foreground" />
+                              )}
+                            </div>
+                            
+                            {/* Contenu */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 mb-1">
+                                <div 
+                                  className="w-3 h-3 rounded-full shrink-0"
+                                  style={{ backgroundColor: service.color }}
+                                />
+                                <span className="font-semibold text-sm truncate">
+                                  {service.name}
+                                </span>
+                              </div>
+                              <p className="text-xs text-muted-foreground">
+                                {service.type === 'unit' ? 'Unité' : 'Service'}
+                                {service.parentName && service.type === 'unit' && (
+                                  <span className="opacity-60"> • {service.parentName}</span>
+                                )}
+                              </p>
+                            </div>
+                            
+                            {/* Badge compteur */}
+                            <Badge 
+                              variant="secondary"
+                              className={cn(
+                                "absolute -top-2 -right-2 text-[10px] font-bold px-2",
+                                isAssociated && "bg-primary text-primary-foreground"
+                              )}
+                            >
+                              {service.subModuleIds.length}
+                            </Badge>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </ScrollArea>
+          
+          {/* Footer */}
+          <div className="p-4 border-t bg-muted/30 flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Check className="w-4 h-4 text-emerald-500" />
+              Sauvegarde automatique
+            </div>
+            <Button 
+              onClick={() => setIsServiceDialogOpen(false)}
+              className="px-6"
+            >
+              Terminé
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* APN Dialog */}
       <Dialog open={isApnDialogOpen} onOpenChange={setIsApnDialogOpen}>

@@ -1,15 +1,33 @@
 import { GanttChart } from "@/components/GanttChart/GanttChart";
 import { useGanttStore } from "@/stores/ganttStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AVIATION_PROJECT_DATA } from "@/lib/initialData";
 
 export default function Home() {
-  const { setProject } = useGanttStore();
+  const { setProject, loadFromNetlify, project } = useGanttStore();
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Initialize with real aviation project data
+  // Load from Netlify first, fallback to initial data
   useEffect(() => {
-    setProject(AVIATION_PROJECT_DATA);
-  }, [setProject]);
+    const loadData = async () => {
+      try {
+        await loadFromNetlify();
+        // Si pas de données (projet vide), utiliser les données initiales
+        const currentProject = useGanttStore.getState().project;
+        if (!currentProject.tasks || currentProject.tasks.length === 0) {
+          setProject(AVIATION_PROJECT_DATA);
+        }
+      } catch (error) {
+        console.warn('Fallback to initial data:', error);
+        setProject(AVIATION_PROJECT_DATA);
+      }
+      setIsLoaded(true);
+    };
+    
+    if (!isLoaded) {
+      loadData();
+    }
+  }, [loadFromNetlify, setProject, isLoaded]);
 
   return (
     <div className="h-full w-full flex flex-col bg-background overflow-hidden">

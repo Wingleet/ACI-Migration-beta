@@ -16,21 +16,11 @@ export default async (req, context) => {
   try {
     const sql = neon();
 
-    // Créer la table si elle n'existe pas
-    await sql`
-      CREATE TABLE IF NOT EXISTS project_data (
-        id SERIAL PRIMARY KEY,
-        data JSONB NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `;
-
-    // GET - Load project data
+    // GET - Load process modules data
     if (req.method === "GET") {
       const rows = await sql`
         SELECT data, updated_at 
-        FROM project_data 
+        FROM process_modules 
         ORDER BY updated_at DESC 
         LIMIT 1
       `;
@@ -49,34 +39,30 @@ export default async (req, context) => {
       return new Response(
         JSON.stringify({ 
           success: true, 
-          data: rows[0].data,
+          data: { modules: rows[0].data },
           savedAt: rows[0].updated_at 
         }),
         { status: 200, headers }
       );
     }
 
-    // POST - Save project data
+    // POST - Save process modules data
     if (req.method === "POST") {
       const body = await req.json();
+      const modules = body.modules || [];
       const now = new Date().toISOString();
-      
-      const dataToSave = {
-        ...body,
-        savedAt: now,
-      };
 
       // Supprimer les anciennes données et insérer les nouvelles
-      await sql`DELETE FROM project_data`;
+      await sql`DELETE FROM process_modules`;
       await sql`
-        INSERT INTO project_data (data, updated_at)
-        VALUES (${JSON.stringify(dataToSave)}, ${now})
+        INSERT INTO process_modules (data, updated_at)
+        VALUES (${JSON.stringify(modules)}, ${now})
       `;
 
       return new Response(
         JSON.stringify({ 
           success: true, 
-          message: "Project saved successfully",
+          message: "Process data saved successfully",
           savedAt: now 
         }),
         { status: 200, headers }
@@ -101,5 +87,5 @@ export default async (req, context) => {
 };
 
 export const config = {
-  path: "/api/project-save"
+  path: "/api/process-save"
 };

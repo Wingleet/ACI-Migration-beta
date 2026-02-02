@@ -5,6 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite --host",
+    "dev:api": "node server/dev-api.js",
+    "dev:full": "node server/dev-api.js & vite",
     "dev:netlify": "netlify dev",
     "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:netlify": "vite build",
@@ -16,6 +18,7 @@
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
     "@netlify/blobs": "^10.5.0",
+    "@netlify/neon": "^0.1.2",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.7",
@@ -48,6 +51,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
     "embla-carousel-react": "^8.6.0",
     "express": "^4.21.2",
     "framer-motion": "^12.23.22",

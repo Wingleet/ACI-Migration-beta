@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { X, Save, Download, Loader2 } from 'lucide-react';
+import { X, Save, Download, Loader2, Cloud, CloudOff, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Badge } from '@/components/ui/badge';
 
 interface DrawioEditorProps {
   isOpen: boolean;
@@ -20,32 +21,152 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
 }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [saveError, setSaveError] = useState(false);
   const [xmlContent, setXmlContent] = useState<string | null>(null);
+  const [loadedFromDb, setLoadedFromDb] = useState(false);
+  const [isExportingPng, setIsExportingPng] = useState(false);
+  const pendingXmlRef = useRef<string | null>(null);
 
-  // Load the .drawio file content
+  // Load the .drawio file content - first try DB, then fallback to local
   useEffect(() => {
     if (isOpen && drawioFilePath) {
       setIsLoading(true);
-      fetch(drawioFilePath)
+      setLoadedFromDb(false);
+      
+      // First try to load from Neon DB
+      fetch(`/api/flowchart-save?path=${encodeURIComponent(drawioFilePath)}`)
         .then(response => {
-          if (!response.ok) throw new Error('File not found');
-          return response.text();
+          if (!response.ok) throw new Error('Not in DB');
+          return response.json();
         })
-        .then(content => {
-          setXmlContent(content);
-          setIsLoading(false);
+        .then(data => {
+          if (data.data?.content) {
+            setXmlContent(data.data.content);
+            setLoadedFromDb(true);
+            setIsLoading(false);
+          } else {
+            throw new Error('No content in DB');
+          }
         })
-        .catch(error => {
-          console.error('Error loading drawio file:', error);
-          setXmlContent(null);
-          setIsLoading(false);
+        .catch(() => {
+          // Fallback to local file
+          fetch(drawioFilePath)
+            .then(response => {
+              if (!response.ok) throw new Error('File not found');
+              return response.text();
+            })
+            .then(content => {
+              setXmlContent(content);
+              setIsLoading(false);
+            })
+            .catch(error => {
+              console.error('Error loading drawio file:', error);
+              setXmlContent(null);
+              setIsLoading(false);
+            });
         });
     }
   }, [isOpen, drawioFilePath]);
 
+  // Save to Neon DB (drawio XML)
+  const saveDrawioToDb = async (xml: string) => {
+    if (!drawioFilePath) return false;
+    
+    try {
+      const response = await fetch('/api/flowchart-save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: drawioFilePath,
+          name: drawioFilePath.split('/').pop() || `${moduleId}.drawio`,
+          content: xml,
+        }),
+      });
+      
+      if (!response.ok) throw new Error('Save failed');
+      
+      setXmlContent(xml);
+      setLoadedFromDb(true);
+      return true;
+    } catch (error) {
+      console.error('Error saving drawio to DB:', error);
+      return false;
+    }
+  };
+
+  // Save PNG image to Neon DB
+  const savePngToDb = async (base64Data: string) => {
+    try {
+      // Construire le chemin de l'image ACI basé sur le moduleId
+      const imagePath = `/Flowchart/${moduleId} ACI.png`;
+      const imageName = `${moduleId} ACI.png`;
+      
+      const response = await fetch('/api/aci-image', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          path: imagePath,
+          name: imageName,
+          moduleId: moduleId,
+          content: base64Data,
+          mimeType: 'image/png',
+        }),
+      });
+      
+      if (!response.ok) throw new Error('PNG save failed');
+      
+      console.log('✅ PNG sauvegardé dans la DB');
+      return true;
+    } catch (error) {
+      console.error('Error saving PNG to DB:', error);
+      return false;
+    }
+  };
+
+  // Request PNG export from Draw.io
+  const requestPngExport = () => {
+    if (iframeRef.current?.contentWindow) {
+      setIsExportingPng(true);
+      iframeRef.current.contentWindow.postMessage(
+        JSON.stringify({
+          action: 'export',
+          format: 'png',
+          background: '#ffffff',
+          scale: 2, // Higher quality
+          border: 10,
+        }),
+        '*'
+      );
+    }
+  };
+
+  // Full save: XML + PNG
+  const saveToDb = async (xml: string) => {
+    if (!drawioFilePath) return;
+    
+    setIsSaving(true);
+    setSaveSuccess(false);
+    setSaveError(false);
+    
+    // Sauvegarder le XML
+    const xmlSaved = await saveDrawioToDb(xml);
+    
+    if (xmlSaved) {
+      // Stocker le XML pour référence et déclencher l'export PNG
+      pendingXmlRef.current = xml;
+      requestPngExport();
+    } else {
+      setSaveError(true);
+      setTimeout(() => setSaveError(false), 3000);
+      setIsSaving(false);
+    }
+  };
+
   // Handle messages from Draw.io iframe
   useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
+    const handleMessage = async (event: MessageEvent) => {
       if (event.origin !== 'https://embed.diagrams.net') return;
       
       try {
@@ -64,12 +185,35 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
             );
           }
         } else if (msg.event === 'save') {
-          // User clicked save - download the XML
-          console.log('Save event received', msg.xml);
-          // Here you could implement server-side save
+          // User clicked save - save to Neon DB
+          console.log('Save event received');
+          if (msg.xml) {
+            saveToDb(msg.xml);
+          }
         } else if (msg.event === 'export') {
-          // Export completed
-          console.log('Export completed');
+          // Export PNG completed - save to DB
+          console.log('Export PNG completed');
+          setIsExportingPng(false);
+          
+          if (msg.data) {
+            // msg.data contient l'image en base64 (data:image/png;base64,...)
+            // Extraire juste la partie base64
+            const base64Match = msg.data.match(/^data:image\/png;base64,(.+)$/);
+            if (base64Match) {
+              const pngSaved = await savePngToDb(base64Match[1]);
+              
+              if (pngSaved) {
+                setSaveSuccess(true);
+                setTimeout(() => setSaveSuccess(false), 2000);
+              } else {
+                // Le drawio est sauvé mais pas le PNG
+                setSaveSuccess(true);
+                setTimeout(() => setSaveSuccess(false), 2000);
+              }
+            }
+          }
+          
+          setIsSaving(false);
         } else if (msg.event === 'exit') {
           // User closed the editor
           onClose();
@@ -81,7 +225,21 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
 
     window.addEventListener('message', handleMessage);
     return () => window.removeEventListener('message', handleMessage);
-  }, [xmlContent, onClose]);
+  }, [xmlContent, onClose, moduleId]);
+
+  // Fermer avec la touche Échap
+  useEffect(() => {
+    if (!isOpen) return;
+    
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   // Build the Draw.io embed URL
   const getDrawioUrl = () => {
@@ -113,7 +271,7 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
           initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.95, opacity: 0 }}
-          className="w-[95vw] h-[90vh] bg-card rounded-xl shadow-2xl overflow-hidden flex flex-col"
+          className="w-screen h-screen bg-card shadow-2xl overflow-hidden flex flex-col"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
@@ -126,8 +284,49 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
                 <h2 className="text-sm font-semibold">Éditer le flowchart ACI</h2>
                 <p className="text-xs text-muted-foreground">{moduleName}</p>
               </div>
+              {/* Source indicator */}
+              {!isLoading && xmlContent && (
+                <Badge variant="outline" className="text-[10px] ml-2">
+                  {loadedFromDb ? (
+                    <>
+                      <Cloud className="w-3 h-3 mr-1 text-emerald-500" />
+                      Neon DB
+                    </>
+                  ) : (
+                    <>
+                      <CloudOff className="w-3 h-3 mr-1 text-amber-500" />
+                      Local
+                    </>
+                  )}
+                </Badge>
+              )}
             </div>
             <div className="flex items-center gap-2">
+              {/* Save status */}
+              {isSaving && !isExportingPng && (
+                <Badge variant="outline" className="text-[10px]">
+                  <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                  Sauvegarde XML...
+                </Badge>
+              )}
+              {isExportingPng && (
+                <Badge variant="outline" className="text-[10px]">
+                  <Loader2 className="w-3 h-3 mr-1 animate-spin" />
+                  Export PNG...
+                </Badge>
+              )}
+              {saveSuccess && (
+                <Badge variant="outline" className="text-[10px] border-emerald-500 text-emerald-600">
+                  <Check className="w-3 h-3 mr-1" />
+                  XML + PNG sauvegardés
+                </Badge>
+              )}
+              {saveError && (
+                <Badge variant="outline" className="text-[10px] border-red-500 text-red-600">
+                  <X className="w-3 h-3 mr-1" />
+                  Erreur de sauvegarde
+                </Badge>
+              )}
               <Button variant="outline" size="sm" onClick={onClose}>
                 <X className="w-4 h-4 mr-1" />
                 Fermer

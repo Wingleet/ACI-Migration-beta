@@ -1,75 +1,133 @@
-// Simple in-memory storage for Process module
-const store = { items: {} };
+import { neon } from '@netlify/neon';
+
+const headers = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
+  "Content-Type": "application/json",
+};
 
 const generateId = () => `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-exports.handler = async (event) => {
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Allow-Methods": "GET, POST, DELETE, OPTIONS",
-    "Content-Type": "application/json",
-  };
-
+export default async (req, context) => {
   // CORS preflight
-  if (event.httpMethod === "OPTIONS") {
-    return { statusCode: 204, headers, body: "" };
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers });
   }
 
   // Parse ID from query
-  const id = event.queryStringParameters?.id || null;
+  const url = new URL(req.url);
+  const id = url.searchParams.get('id');
 
   try {
+    const sql = neon();
+
+    // Ensure table exists
+    await sql`
+      CREATE TABLE IF NOT EXISTS process_items (
+        id VARCHAR(255) PRIMARY KEY,
+        title VARCHAR(500) NOT NULL,
+        description TEXT,
+        modules JSONB,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      )
+    `;
+
     // GET
-    if (event.httpMethod === "GET") {
+    if (req.method === "GET") {
       if (id) {
-        const item = store.items[id];
-        if (!item) {
-          return { statusCode: 404, headers, body: JSON.stringify({ error: "Not found" }) };
+        const result = await sql`SELECT * FROM process_items WHERE id = ${id}`;
+        if (result.length === 0) {
+          return new Response(JSON.stringify({ error: "Not found" }), { status: 404, headers });
         }
-        return { statusCode: 200, headers, body: JSON.stringify(item) };
+        const item = result[0];
+        return new Response(JSON.stringify({
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          modules: item.modules,
+          createdAt: item.created_at,
+          updatedAt: item.updated_at,
+        }), { status: 200, headers });
       }
-      return { statusCode: 200, headers, body: JSON.stringify({ items: Object.values(store.items) }) };
+      
+      const result = await sql`SELECT * FROM process_items ORDER BY updated_at DESC`;
+      const items = result.map(item => ({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        modules: item.modules,
+        createdAt: item.created_at,
+        updatedAt: item.updated_at,
+      }));
+      return new Response(JSON.stringify({ items }), { status: 200, headers });
     }
 
     // POST
-    if (event.httpMethod === "POST") {
+    if (req.method === "POST") {
       let data;
       try {
-        data = JSON.parse(event.body || "{}");
+        data = await req.json();
       } catch {
-        return { statusCode: 400, headers, body: JSON.stringify({ error: "Invalid JSON" }) };
+        return new Response(JSON.stringify({ error: "Invalid JSON" }), { status: 400, headers });
       }
 
       if (!data.title) {
-        return { statusCode: 400, headers, body: JSON.stringify({ error: "Title required" }) };
+        return new Response(JSON.stringify({ error: "Title required" }), { status: 400, headers });
       }
 
       const itemId = data.id || generateId();
       const now = new Date().toISOString();
-      const isNew = !store.items[itemId];
 
-      store.items[itemId] = {
-        id: itemId,
-        title: data.title,
-        description: data.description || "",
-        modules: data.modules || null,
-        createdAt: isNew ? now : (store.items[itemId]?.createdAt || now),
-        updatedAt: now,
-      };
+      // Check if exists
+      const existing = await sql`SELECT id, created_at FROM process_items WHERE id = ${itemId}`;
+      const isNew = existing.length === 0;
 
-      return { statusCode: isNew ? 201 : 200, headers, body: JSON.stringify(store.items[itemId]) };
+      if (isNew) {
+        await sql`
+          INSERT INTO process_items (id, title, description, modules, created_at, updated_at)
+          VALUES (${itemId}, ${data.title}, ${data.description || ''}, ${JSON.stringify(data.modules || null)}, ${now}, ${now})
+        `;
+      } else {
+        await sql`
+          UPDATE process_items 
+          SET title = ${data.title}, 
+              description = ${data.description || ''}, 
+              modules = ${JSON.stringify(data.modules || null)}, 
+              updated_at = ${now}
+          WHERE id = ${itemId}
+        `;
+      }
+
+      const result = await sql`SELECT * FROM process_items WHERE id = ${itemId}`;
+      const item = result[0];
+      
+      return new Response(JSON.stringify({
+        id: item.id,
+        title: item.title,
+        description: item.description,
+        modules: item.modules,
+        createdAt: item.created_at,
+        updatedAt: item.updated_at,
+      }), { status: isNew ? 201 : 200, headers });
     }
 
     // DELETE
-    if (event.httpMethod === "DELETE") {
-      if (id) delete store.items[id];
-      return { statusCode: 200, headers, body: JSON.stringify({ success: true }) };
+    if (req.method === "DELETE") {
+      if (id) {
+        await sql`DELETE FROM process_items WHERE id = ${id}`;
+      }
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers });
     }
 
-    return { statusCode: 405, headers, body: JSON.stringify({ error: "Method not allowed" }) };
+    return new Response(JSON.stringify({ error: "Method not allowed" }), { status: 405, headers });
   } catch (error) {
     console.error("Function error:", error);
-    return { statusCode: 500, headers, body: JSON.stringify({ error: error.message }) };
+    return new Response(JSON.stringify({ error: error.message }), { status: 500, headers });
   }
+};
+
+export const config = {
+  path: "/api/process-db"
 };

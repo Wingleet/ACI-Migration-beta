@@ -8,7 +8,6 @@ const headers = {
 };
 
 export default async (req, context) => {
-  // CORS preflight
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 204, headers });
   }
@@ -16,22 +15,15 @@ export default async (req, context) => {
   try {
     const sql = neon();
 
-    // Créer la table si elle n'existe pas
-    await sql`
-      CREATE TABLE IF NOT EXISTS project_data (
-        id SERIAL PRIMARY KEY,
-        data JSONB NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `;
-
-    // GET - Load project data
+    // GET - Load gantt project
     if (req.method === "GET") {
+      const url = new URL(req.url);
+      const projectId = url.searchParams.get('projectId') || 'default';
+      
       const rows = await sql`
         SELECT data, updated_at 
-        FROM project_data 
-        ORDER BY updated_at DESC 
+        FROM gantt_project 
+        WHERE project_id = ${projectId}
         LIMIT 1
       `;
       
@@ -40,7 +32,7 @@ export default async (req, context) => {
           JSON.stringify({ 
             success: true, 
             data: null,
-            message: "No saved data found" 
+            message: "No saved project found" 
           }),
           { status: 200, headers }
         );
@@ -56,27 +48,26 @@ export default async (req, context) => {
       );
     }
 
-    // POST - Save project data
+    // POST - Save gantt project
     if (req.method === "POST") {
       const body = await req.json();
+      const projectId = body.projectId || 'default';
+      const project = body.project;
       const now = new Date().toISOString();
-      
-      const dataToSave = {
-        ...body,
-        savedAt: now,
-      };
 
-      // Supprimer les anciennes données et insérer les nouvelles
-      await sql`DELETE FROM project_data`;
       await sql`
-        INSERT INTO project_data (data, updated_at)
-        VALUES (${JSON.stringify(dataToSave)}, ${now})
+        INSERT INTO gantt_project (project_id, data, updated_at)
+        VALUES (${projectId}, ${JSON.stringify(project)}, ${now})
+        ON CONFLICT (project_id) 
+        DO UPDATE SET 
+          data = ${JSON.stringify(project)},
+          updated_at = ${now}
       `;
 
       return new Response(
         JSON.stringify({ 
           success: true, 
-          message: "Project saved successfully",
+          message: "Gantt project saved successfully",
           savedAt: now 
         }),
         { status: 200, headers }
@@ -91,15 +82,12 @@ export default async (req, context) => {
   } catch (error) {
     console.error("Function error:", error);
     return new Response(
-      JSON.stringify({ 
-        success: false, 
-        error: error.message 
-      }),
+      JSON.stringify({ success: false, error: error.message }),
       { status: 500, headers }
     );
   }
 };
 
 export const config = {
-  path: "/api/project-save"
+  path: "/api/gantt-save"
 };

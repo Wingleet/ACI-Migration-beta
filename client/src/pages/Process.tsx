@@ -5,8 +5,9 @@ import { GapAnalysisDrawer } from '@/components/Process/GapAnalysisDrawer';
 import { useProcessStore } from '@/stores/processStore';
 import { AnimatePresence } from 'framer-motion';
 import { getSortedModules } from '@/lib/processData';
-import { Table2 } from 'lucide-react';
+import { Table2, Loader2, Check, Cloud } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 import { useSearch, useLocation } from 'wouter';
 
 export default function Process() {
@@ -14,8 +15,16 @@ export default function Process() {
     selectedSubModuleId, 
     selectSubModule, 
     getFilteredModules,
-    getSubModuleById 
+    getSubModuleById,
+    loadFromNetlify,
+    isSyncing,
+    lastSyncedAt,
   } = useProcessStore();
+  
+  // Charger les données depuis Netlify au démarrage
+  useEffect(() => {
+    loadFromNetlify();
+  }, []);
   
   const searchString = useSearch();
   const [, setLocation] = useLocation();
@@ -80,11 +89,23 @@ export default function Process() {
 
           {/* Table Section */}
           <div className="flex-1 border border-border rounded-lg overflow-hidden bg-card">
-            <div className="px-3 py-2 border-b border-border bg-muted/30">
+            <div className="px-3 py-2 border-b border-border bg-muted/30 flex items-center justify-between">
               <h3 className="text-xs font-semibold flex items-center gap-2">
                 <Table2 className="w-3.5 h-3.5" />
                 Récapitulatif Gap Analysis
               </h3>
+              {/* Indicateur de synchronisation Netlify */}
+              {isSyncing ? (
+                <Badge variant="secondary" className="gap-1.5 animate-pulse text-[10px]">
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                  Sync...
+                </Badge>
+              ) : lastSyncedAt && (
+                <Badge variant="outline" className="gap-1.5 text-emerald-600 border-emerald-300 text-[10px]">
+                  <Cloud className="w-3 h-3" />
+                  Netlify
+                </Badge>
+              )}
             </div>
             <div className="overflow-auto max-h-[400px]">
               <table className="w-full text-xs border-collapse">

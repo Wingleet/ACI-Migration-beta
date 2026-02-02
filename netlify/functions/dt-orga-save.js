@@ -16,67 +16,57 @@ export default async (req, context) => {
   try {
     const sql = neon();
 
-    // Créer la table si elle n'existe pas
-    await sql`
-      CREATE TABLE IF NOT EXISTS project_data (
-        id SERIAL PRIMARY KEY,
-        data JSONB NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      )
-    `;
-
-    // GET - Load project data
+    // GET - Load dt-orga associations
     if (req.method === "GET") {
       const rows = await sql`
-        SELECT data, updated_at 
-        FROM project_data 
-        ORDER BY updated_at DESC 
-        LIMIT 1
+        SELECT service_id, sub_module_ids, updated_at 
+        FROM dt_orga_associations
       `;
       
-      if (rows.length === 0) {
-        return new Response(
-          JSON.stringify({ 
-            success: true, 
-            data: null,
-            message: "No saved data found" 
-          }),
-          { status: 200, headers }
-        );
-      }
+      const customAssociations = rows.map(row => ({
+        serviceId: row.service_id,
+        subModuleIds: row.sub_module_ids
+      }));
+
+      const lastUpdate = rows.length > 0 
+        ? rows.reduce((latest, row) => 
+            new Date(row.updated_at) > new Date(latest) ? row.updated_at : latest, 
+            rows[0].updated_at
+          )
+        : null;
 
       return new Response(
         JSON.stringify({ 
           success: true, 
-          data: rows[0].data,
-          savedAt: rows[0].updated_at 
+          data: { customAssociations },
+          savedAt: lastUpdate
         }),
         { status: 200, headers }
       );
     }
 
-    // POST - Save project data
+    // POST - Save dt-orga associations
     if (req.method === "POST") {
       const body = await req.json();
+      const customAssociations = body.customAssociations || [];
       const now = new Date().toISOString();
-      
-      const dataToSave = {
-        ...body,
-        savedAt: now,
-      };
 
-      // Supprimer les anciennes données et insérer les nouvelles
-      await sql`DELETE FROM project_data`;
-      await sql`
-        INSERT INTO project_data (data, updated_at)
-        VALUES (${JSON.stringify(dataToSave)}, ${now})
-      `;
+      // Upsert each association
+      for (const assoc of customAssociations) {
+        await sql`
+          INSERT INTO dt_orga_associations (service_id, sub_module_ids, updated_at)
+          VALUES (${assoc.serviceId}, ${JSON.stringify(assoc.subModuleIds)}, ${now})
+          ON CONFLICT (service_id) 
+          DO UPDATE SET 
+            sub_module_ids = ${JSON.stringify(assoc.subModuleIds)},
+            updated_at = ${now}
+        `;
+      }
 
       return new Response(
         JSON.stringify({ 
           success: true, 
-          message: "Project saved successfully",
+          message: "DT Orga associations saved successfully",
           savedAt: now 
         }),
         { status: 200, headers }
@@ -101,5 +91,5 @@ export default async (req, context) => {
 };
 
 export const config = {
-  path: "/api/project-save"
+  path: "/api/dt-orga-save"
 };

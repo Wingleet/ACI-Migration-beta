@@ -22,6 +22,11 @@ interface ProcessState {
   filters: ProcessFilters;
   selectedSubModuleId: string | null;
   
+  // État de synchronisation Netlify
+  isSyncing: boolean;
+  lastSyncedAt: string | null;
+  syncError: string | null;
+  
   // Actions
   setModules: (modules: Module[]) => void;
   updateSubModule: (moduleId: string, subModuleId: string, updates: Partial<SubModule>) => void;
@@ -37,6 +42,10 @@ interface ProcessState {
   setFilters: (filters: Partial<ProcessFilters>) => void;
   resetFilters: () => void;
   selectSubModule: (subModuleId: string | null) => void;
+  
+  // Actions de synchronisation Netlify
+  saveToNetlify: () => Promise<void>;
+  loadFromNetlify: () => Promise<void>;
   
   // Computed
   getKPIs: () => ProcessKPIs;
@@ -56,12 +65,22 @@ const initialFilters: ProcessFilters = {
   isSelected: null,
 };
 
+// Debounce helper pour éviter trop de sauvegardes
+let saveTimeout: ReturnType<typeof setTimeout> | null = null;
+const debouncedSave = (saveFn: () => Promise<void>) => {
+  if (saveTimeout) clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => saveFn().catch(console.error), 500);
+};
+
 export const useProcessStore = create<ProcessState>()(
   persist(
     (set, get) => ({
       modules: INITIAL_MODULES,
       filters: initialFilters,
       selectedSubModuleId: null,
+      isSyncing: false,
+      lastSyncedAt: null,
+      syncError: null,
 
       setModules: (modules) => set({ modules }),
 
@@ -78,6 +97,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       updateGapRecord: (moduleId, subModuleId, updates) => {
@@ -98,7 +118,7 @@ export const useProcessStore = create<ProcessState>()(
                               ...sm.gapRecord.auditTrail,
                               {
                                 timestamp,
-                                user: 'Current User',
+                                user: 'Utilisateur',
                                 summary: `Updated: ${Object.keys(updates).join(', ')}`,
                               },
                             ],
@@ -110,6 +130,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       addAction: (moduleId, subModuleId, action) => {
@@ -134,6 +155,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       updateAction: (moduleId, subModuleId, actionId, updates) => {
@@ -159,6 +181,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       removeAction: (moduleId, subModuleId, actionId) => {
@@ -182,6 +205,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       addRisk: (moduleId, subModuleId, risk) => {
@@ -206,6 +230,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       updateRisk: (moduleId, subModuleId, riskId, updates) => {
@@ -231,6 +256,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       removeRisk: (moduleId, subModuleId, riskId) => {
@@ -254,6 +280,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       addComment: (moduleId, subModuleId, userName, content) => {
@@ -283,6 +310,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       removeComment: (moduleId, subModuleId, commentId) => {
@@ -306,6 +334,7 @@ export const useProcessStore = create<ProcessState>()(
               : m
           ),
         }));
+        debouncedSave(() => get().saveToNetlify());
       },
 
       setFilters: (filters) => {
@@ -395,6 +424,67 @@ export const useProcessStore = create<ProcessState>()(
           })
         );
         return Array.from(owners).sort();
+      },
+
+      saveToNetlify: async () => {
+        const { modules } = get();
+        set({ isSyncing: true, syncError: null });
+        
+        try {
+          const response = await fetch('/api/process-save', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ modules }),
+          });
+          
+          const result = await response.json();
+          
+          if (!response.ok || !result.success) {
+            throw new Error(result.error || 'Erreur de sauvegarde');
+          }
+          
+          set({ 
+            isSyncing: false, 
+            lastSyncedAt: result.savedAt,
+            syncError: null 
+          });
+        } catch (error) {
+          set({ 
+            isSyncing: false, 
+            syncError: error instanceof Error ? error.message : 'Erreur inconnue' 
+          });
+          throw error;
+        }
+      },
+
+      loadFromNetlify: async () => {
+        set({ isSyncing: true, syncError: null });
+        
+        try {
+          const response = await fetch('/api/process-save');
+          const result = await response.json();
+          
+          if (!response.ok || !result.success) {
+            throw new Error(result.error || 'Erreur de chargement');
+          }
+          
+          if (result.data?.modules && result.data.modules.length > 0) {
+            set({ 
+              modules: result.data.modules,
+              isSyncing: false, 
+              lastSyncedAt: result.savedAt,
+              syncError: null 
+            });
+          } else {
+            set({ isSyncing: false });
+          }
+        } catch (error) {
+          set({ 
+            isSyncing: false, 
+            syncError: error instanceof Error ? error.message : 'Erreur inconnue' 
+          });
+          console.warn('Impossible de charger depuis Netlify, utilisation du localStorage:', error);
+        }
       },
     }),
     {
