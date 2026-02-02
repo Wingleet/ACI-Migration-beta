@@ -3,6 +3,7 @@ import { X, Save, Download, Loader2, Cloud, CloudOff, Check } from 'lucide-react
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
+import { ACI_FLOWCHART_IMAGE_MAPPING } from '@/lib/flowchartImageMapping';
 
 interface DrawioEditorProps {
   isOpen: boolean;
@@ -99,9 +100,22 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
   // Save PNG image to Neon DB
   const savePngToDb = async (base64Data: string) => {
     try {
-      // Construire le chemin de l'image ACI basé sur le moduleId
-      const imagePath = `/Flowchart/${moduleId} ACI.png`;
-      const imageName = `${moduleId} ACI.png`;
+      // Utiliser le mapping existant pour le nom de fichier
+      // La clé doit correspondre exactement au format du mapping (ex: '01.01')
+      const cleanModuleId = moduleId.trim();
+      const mappedFileName = ACI_FLOWCHART_IMAGE_MAPPING[cleanModuleId];
+      
+      // Log pour debug - à supprimer plus tard si besoin
+      console.log(`📷 Saving PNG for module: "${cleanModuleId}", mapped name: "${mappedFileName}"`);
+      
+      // Le nom DOIT venir du mapping pour correspondre aux fichiers existants
+      if (!mappedFileName) {
+        console.error(`⚠️ Module "${cleanModuleId}" non trouvé dans ACI_FLOWCHART_IMAGE_MAPPING`);
+      }
+      
+      // Utiliser le mapping, sinon fallback avec format correct: {id}{name} ACI.png
+      const imageName = mappedFileName || `${cleanModuleId}${moduleName} ACI.png`;
+      const imagePath = `/Flowchart/${imageName}`;
       
       const response = await fetch('/api/aci-image', {
         method: 'POST',
@@ -129,16 +143,30 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
   const requestPngExport = () => {
     if (iframeRef.current?.contentWindow) {
       setIsExportingPng(true);
+      console.log('Requesting PNG export from Draw.io...');
       iframeRef.current.contentWindow.postMessage(
         JSON.stringify({
           action: 'export',
           format: 'png',
+          xml: pendingXmlRef.current, // Include the XML to export
           background: '#ffffff',
-          scale: 2, // Higher quality
+          scale: 2,
           border: 10,
+          spinKey: 'export-png',
         }),
         '*'
       );
+      
+      // Timeout si l'export ne répond pas après 10 secondes
+      setTimeout(() => {
+        if (isExportingPng) {
+          console.log('PNG export timeout - completing save without PNG');
+          setIsExportingPng(false);
+          setIsSaving(false);
+          setSaveSuccess(true);
+          setTimeout(() => setSaveSuccess(false), 2000);
+        }
+      }, 10000);
     }
   };
 
@@ -192,25 +220,35 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
           }
         } else if (msg.event === 'export') {
           // Export PNG completed - save to DB
-          console.log('Export PNG completed');
+          console.log('Export PNG completed', msg);
           setIsExportingPng(false);
           
           if (msg.data) {
-            // msg.data contient l'image en base64 (data:image/png;base64,...)
-            // Extraire juste la partie base64
-            const base64Match = msg.data.match(/^data:image\/png;base64,(.+)$/);
-            if (base64Match) {
-              const pngSaved = await savePngToDb(base64Match[1]);
+            // msg.data contient l'image en base64
+            // Format peut être: "data:image/png;base64,..." ou juste le base64
+            let base64Data = msg.data;
+            
+            // Si c'est un data URL, extraire la partie base64
+            if (base64Data.startsWith('data:')) {
+              const commaIndex = base64Data.indexOf(',');
+              if (commaIndex > 0) {
+                base64Data = base64Data.substring(commaIndex + 1);
+              }
+            }
+            
+            if (base64Data && base64Data.length > 100) {
+              console.log('Saving PNG to DB, size:', base64Data.length);
+              const pngSaved = await savePngToDb(base64Data);
               
               if (pngSaved) {
                 setSaveSuccess(true);
                 setTimeout(() => setSaveSuccess(false), 2000);
-              } else {
-                // Le drawio est sauvé mais pas le PNG
-                setSaveSuccess(true);
-                setTimeout(() => setSaveSuccess(false), 2000);
               }
+            } else {
+              console.log('PNG data invalid or too small');
             }
+          } else {
+            console.log('No PNG data received from Draw.io');
           }
           
           setIsSaving(false);
