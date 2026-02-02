@@ -8,6 +8,7 @@ import { ACI_FLOWCHART_IMAGE_MAPPING } from '@/lib/flowchartImageMapping';
 interface DrawioEditorProps {
   isOpen: boolean;
   onClose: () => void;
+  onSaveSuccess?: () => void;
   drawioFilePath: string | null;
   moduleName: string;
   moduleId: string;
@@ -16,6 +17,7 @@ interface DrawioEditorProps {
 export const DrawioEditor: React.FC<DrawioEditorProps> = ({
   isOpen,
   onClose,
+  onSaveSuccess,
   drawioFilePath,
   moduleName,
   moduleId,
@@ -243,6 +245,8 @@ export const DrawioEditor: React.FC<DrawioEditorProps> = ({
               if (pngSaved) {
                 setSaveSuccess(true);
                 setTimeout(() => setSaveSuccess(false), 2000);
+                // Notifier le parent pour rafraîchir l'image
+                onSaveSuccess?.();
               }
             } else {
               console.log('PNG data invalid or too small');

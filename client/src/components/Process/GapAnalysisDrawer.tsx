@@ -105,8 +105,8 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
     loadFromNetlify();
   }, []);
 
-  // Charger l'image ACI depuis la DB
-  useEffect(() => {
+  // Fonction pour charger l'image ACI depuis la DB
+  const loadAciImageFromDb = React.useCallback(() => {
     if (!subModule.id) return;
     
     setAciImageLoading(true);
@@ -132,6 +132,11 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
         setAciImageLoading(false);
       });
   }, [subModule.id]);
+
+  // Charger l'image ACI au montage et quand le module change
+  useEffect(() => {
+    loadAciImageFromDb();
+  }, [loadAciImageFromDb]);
   
   // Fermer avec la touche Échap
   useEffect(() => {
@@ -1364,6 +1369,7 @@ export const GapAnalysisDrawer: React.FC<GapAnalysisDrawerProps> = ({
       <DrawioEditor
         isOpen={isDrawioEditorOpen}
         onClose={() => setIsDrawioEditorOpen(false)}
+        onSaveSuccess={loadAciImageFromDb}
         drawioFilePath={getAciDrawioFile(subModule.id)}
         moduleName={subModule.name}
         moduleId={subModule.id}
